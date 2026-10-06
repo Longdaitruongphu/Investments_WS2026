@@ -11,3 +11,14 @@ Already up to date.
 [Sun 10/04/2026  9:00:03.33] Hoàn tất cập nhật. 
 ---------------------------------------- 
 [Mon 10/05/2026 15:49:17.49] Bắt đầu cập nhật Git... 
+[main d7965fb] Auto-save local changes before daily update
+ 1 file changed, 7 insertions(+)
+From https://github.com/DROCLB/Investments_WS2026
+   da3e644..8e21049  main       -> upstream/main
+warning: in the working copy of 'update_log.txt', LF will be replaced by CRLF the next time Git touches it
+Auto-merging lectures/BFIN-WS2026-Lecture_04_bc.ipynb
+Auto-merging lectures/BFIN-WS2026-Lecture_06_bc.ipynb
+CONFLICT (content): Merge conflict in lectures/BFIN-WS2026-Lecture_06_bc.ipynb
+Automatic merge failed; fix conflicts and then commit the result.
+[Mon 10/05/2026 15:49:19.64] Hoàn tất cập nhật. 
+---------------------------------------- 
