@@ -22,3 +22,13 @@ CONFLICT (content): Merge conflict in lectures/BFIN-WS2026-Lecture_06_bc.ipynb
 Automatic merge failed; fix conflicts and then commit the result.
 [Mon 10/05/2026 15:49:19.64] Hoàn tất cập nhật. 
 ---------------------------------------- 
+[main 626ea13] Auto-save local changes before daily update
+ 5 files changed, 5941 insertions(+)
+ create mode 100644 all_questions.txt
+ create mode 100644 scratch.md
+ create mode 100644 scratch_all_lectures.md
+ create mode 100644 scratch_utf8.md
+fatal: unable to access 'https://github.com/DROCLB/Investments_WS2026.git/': Could not resolve host: github.com
+Already up to date.
+[Tue 10/06/2026  9:01:54.98] Hoàn tất cập nhật. 
+---------------------------------------- 
