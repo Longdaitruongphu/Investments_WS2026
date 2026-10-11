@@ -1,0 +1,602 @@
+[
+  {
+    "cell_index": 2,
+    "lecture": "## Lecture 1: Investment Environment and Instruments",
+    "header": "### Question 1 (Easy)",
+    "body": "Alpha purchases a newly built production line from Beta. Instead of paying cash, Alpha issues new bonds directly to Beta in payment. A week later, Beta sells those bonds to Gamma for cash. Alpha continues to own and use the production line.\n\na. For each transaction, identify the real asset and financial claims involved. State who holds the bonds and who owes the bond payments after each transaction.\n\nb. Beta describes the second transaction as “another round of financing for Alpha.” Assess this description.\n\n---"
+  },
+  {
+    "cell_index": 3,
+    "lecture": "## Lecture 1: Investment Environment and Instruments",
+    "header": "### Question 2 (Easy)",
+    "body": "Delta has issued ordinary bonds, preferred shares and common shares. An investor makes these statements:\n\n| Statement | Claim |\n|---|---|\n| A | Preferred shareholders rank ahead of common shareholders, so they must also rank ahead of bondholders. |\n| B | A stated preferred dividend is a contractual debt payment; omitting it has the same consequence as failing to pay a bond coupon. |\n| C | Common shareholders have limited liability, so they cannot lose the money they paid for their shares. |\n\nAssess each statement and give a corrected explanation. Assume ordinary securities with no special contractual provisions; detailed insolvency rules are not required.\n\n---"
+  },
+  {
+    "cell_index": 4,
+    "lecture": "## Lecture 1: Investment Environment and Instruments",
+    "header": "### Question 3 (Easy)",
+    "body": "Two managers describe their investment decisions:\n\n| Manager | Decision |\n|---|---|\n| Epsilon | After reviewing inflation and economic growth forecasts, reduces the portfolio's equity allocation from 60% to 40%. Epsilon then chooses individual bonds by comparing issuers' credit quality and yields. |\n| Zeta | Finds Eta's shares attractively priced after studying the firm's cash flows and competitive position. Zeta buys the shares despite an unfavourable industry outlook. |\n\na. Classify each manager's investment process and identify the asset-allocation or security-selection decisions.\n\nb. Epsilon claims the strategy is passive because the portfolio holds many securities. Is that sufficient to support the claim?\n\n---"
+  },
+  {
+    "cell_index": 5,
+    "lecture": "## Lecture 1: Investment Environment and Instruments",
+    "header": "### Question 4 (Average)",
+    "body": "Four investors take separate positions on Theta shares. All contracts expire on the same date.\n\n| Investor | Position | Strike or delivery price per share |\n|---|---|---:|\n| Iota | Buys a put option | USD 50 |\n| Kappa | Enters a short forward | USD 50 |\n| Lambda | Buys a call option | USD 50 |\n| Mu | Enters a long forward | USD 50 |\n\nOption premiums are paid when the positions are opened. Assume no counterparty default.\n\na. At expiration, Theta trades at USD 62. Should Iota exercise the put? Can Kappa choose not to deliver?\n\nb. Consider the alternative outcome in which Theta instead trades at USD 38. Should Lambda exercise the call? Can Mu decline to buy?\n\nc. An adviser says, “An option buyer can walk away, so an option that is not exercised costs the buyer nothing.” Assess the statement. No profit calculations are required.\n\n---"
+  },
+  {
+    "cell_index": 6,
+    "lecture": "## Lecture 1: Investment Environment and Instruments",
+    "header": "### Question 5 (Average)",
+    "body": "Nu sells Treasury securities to Xi for USD 240,000 today and agrees to repurchase the same securities from Xi for USD 241,080 after 45 days. No coupon is paid during the agreement, no fees apply, and both parties perform as agreed.\n\na. Identify the cash borrower and lender. Which party describes its position as a repo, and which as a reverse repo?\n\nb. Show the cash flows for each party today and on day 45. Calculate the lender's financing income.\n\nc. Calculate the lender's 45-day return and its simple annualized rate on a 360-day basis.\n\n---"
+  },
+  {
+    "cell_index": 7,
+    "lecture": "## Lecture 1: Investment Environment and Instruments",
+    "header": "### Question 6 (Average)",
+    "body": "Two options on Omicron shares expire in one month:\n\n| Purchased option | Strike price per share | Premium per share |\n|---|---:|---:|\n| Call | USD 46 | USD 3.50 |\n| Put | USD 50 | USD 2.25 |\n\nConsider each purchase separately. The options can be exercised only at expiration.\n\na. For terminal share prices of USD 42, USD 48 and USD 56, calculate each option's payoff and its buyer's net profit per share.\n\nb. Find each buyer's break-even terminal share price.\n\nc. At USD 48, what should each option holder do? Explain.\n\n---"
+  },
+  {
+    "cell_index": 8,
+    "lecture": "## Lecture 1: Investment Environment and Instruments",
+    "header": "### Question 7 (Average)",
+    "body": "Pi bought a call option on Rho shares. The strike price and premium are missing from the record. A payoff worksheet shows the following possible expiration outcomes for that same option:\n\n| Terminal share price (USD) | Buyer's net profit per share (USD) |\n|---:|---:|\n| 47 | −4 |\n| 59 | +3 |\n| 68 | +12 |\n\nThe worksheet includes the premium but no other costs.\n\na. Recover the premium and strike price.\n\nb. Check your answer against all three rows. Calculate the payoff and net profit at a terminal share price of USD 54, and state whether Pi should exercise.\n\n---"
+  },
+  {
+    "cell_index": 9,
+    "lecture": "## Lecture 1: Investment Environment and Instruments",
+    "header": "### Question 8 (Hard)",
+    "body": "Sigma has USD 10,000 to invest for one year. Tau shares currently cost USD 50 and pay no dividends. Sigma compares two fixed strategies:\n\n| Strategy | Investment today |\n|---|---|\n| Shares | Buy 200 Tau shares. |\n| Calls and cash | Buy 10 call contracts, each covering 100 Tau shares, at a premium of USD 5 per share. Invest the remaining money at a guaranteed annual return of 4%. |\n\nThe calls have a strike price of USD 55 and expire in one year. The contracts are cash-settled at expiration. No borrowing is allowed.\n\nSigma uses the following forecasts for Tau's price in one year:\n\n| State | Probability | Terminal share price (USD) |\n|---|---:|---:|\n| Weak | 0.20 | 35 |\n| Moderate | 0.40 | 55 |\n| Strong | 0.40 | 75 |\n\na. Verify each strategy's initial cost and calculate the cash balance at the end of the year.\n\nb. Calculate each strategy's terminal wealth and one-year return in every state.\n\nc. Calculate each strategy's expected return and expected terminal wealth.\n\nd. Sigma plans to select whichever strategy has the higher expected return. Assess this decision using your results.\n\n---"
+  },
+  {
+    "cell_index": 11,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 9 (Easy)",
+    "body": "Alpha has a bond with a face value of 2,000, a 4.5% annual coupon, and three years remaining to maturity. Its YTM is 6%.\n\na. List its remaining payments and calculate its price.\n\nb. Explain whether it trades at a premium, at par, or at a discount.\n\n---"
+  },
+  {
+    "cell_index": 12,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 10 (Easy)",
+    "body": "Beta's bond has a face value of 1,000, an 8% coupon paid semiannually, and three years remaining. Its nominal annual YTM is 6%, compounded semiannually.\n\na. Calculate its price.\n\nb. Gamma uses six payments of 80 and a discount rate of 6% per payment period, with 1,000 repaid at the end. Identify the errors in Gamma's calculation.\n\n---"
+  },
+  {
+    "cell_index": 13,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 11 (Easy)",
+    "body": "Delta and Epsilon are zero-coupon bonds, each with a face value of 5,000. Delta matures in two years and yields 4%. Epsilon matures in three years and costs 4,320.\n\na. Find Delta's price and Epsilon's annual yield.\n\nb. Epsilon sells for 13.6% less than its face value. Is 13.6% its annual return if held to maturity? Explain.\n\n---"
+  },
+  {
+    "cell_index": 14,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 12 (Easy)",
+    "body": "Zeta buys a face amount of 25,000 of a bond quoted at a clean price of 98.40 per 100 of face value. Its 5.4% coupon is paid semiannually. Settlement is 63 days after the last coupon, in a coupon period of 182 days. Use this day fraction for accrued interest; the buyer receives the next full coupon.\n\na. Calculate the accrued interest on the holding.\n\nb. Calculate the total settlement payment.\n\n---"
+  },
+  {
+    "cell_index": 15,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 13 (Easy)",
+    "body": "Eta's bond pays annual coupons, has a 6% coupon rate, and trades below face value. Assess each statement and correct it where needed.\n\n- Theta: “Its current yield exceeds 6%.”\n- Iota: “Its current yield includes the gain from receiving face value at maturity.”\n- Kappa: “Its YTM discounts the promised payments to today's price, so holding it to maturity guarantees that compound annual return.”\n\n---"
+  },
+  {
+    "cell_index": 16,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 14 (Average)",
+    "body": "Lambda's bond has a face value of 1,000 and exactly two years remaining. It pays total annual coupon cash of 60 in equal semiannual payments. Its current yield is 6.25%.\n\na. Find its price.\n\nb. Calculate its six-month YTM and report both the nominal annual YTM and the effective annual yield.\n\n---"
+  },
+  {
+    "cell_index": 17,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 15 (Average)",
+    "body": "A bond issued by Mu costs 1,080, has a face value of 1,000, pays an annual coupon of 70, and matures in four years. It may first be called in two years, immediately after that year's coupon is paid. Its quoted yield to first call is 4%.\n\na. Find the call payment implied by the quote, excluding the coupon paid on the call date.\n\nb. Calculate the YTM.\n\nc. Explain the different outcomes assumed by the two yields. Does the lower yield establish that Mu will call the bond?\n\n---"
+  },
+  {
+    "cell_index": 18,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 16 (Average)",
+    "body": "Nu holds a three-year inflation-indexed bond with initial principal of 2,000 and a real annual coupon rate of 2.5%. At each year-end, principal is first adjusted by that year's inflation; the coupon is then paid on the adjusted principal. The adjusted principal is repaid at maturity. There is no indexation lag or deflation floor.\n\n| Year | Inflation | Coupon paid |\n|---|---:|---:|\n| 1 | 3% | — |\n| 2 | Unknown | 53.56 |\n| 3 | −1% | — |\n\na. Find inflation in year 2.\n\nb. Complete the schedule of adjusted principal, coupons, principal repayments, and total payments for all three years.\n\n---"
+  },
+  {
+    "cell_index": 19,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 17 (Average)",
+    "body": "Xi pays 970 for a three-year bond with face value 1,000 and annual coupons of 50. Xi holds it to maturity. Coupon cash earns 2% from year 1 to year 2 and 7% from year 2 to year 3; these rates apply to all accumulated coupon cash during the stated year.\n\na. Find Xi's terminal wealth and realized compound annual return.\n\nb. Calculate the purchase YTM and explain the difference from the realized return.\n\n---"
+  },
+  {
+    "cell_index": 20,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 18 (Average)",
+    "body": "Omicron observes the following default-free zero-coupon yields.\n\n| Maturity | Annual effective spot rate |\n|---|---:|\n| 1 year | 3.8% |\n| 2 years | 4.4% |\n| 3 years | 4.1% |\n\nA default-free three-year bond has face value 1,000 and a 5% annual coupon. Its proposed price is 1,038.\n\na. Value the bond using the curve.\n\nb. Assess the proposed price and quantify any discrepancy.\n\n---"
+  },
+  {
+    "cell_index": 21,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 19 (Average)",
+    "body": "Pi observes annual effective spot rates of 4.0%, 4.6%, and 4.3% for one, two, and three years, respectively. Rho quotes a one-year forward rate of 3.40% for the period from year 2 to year 3.\n\na. Calculate the implied one-year forward rates for years 2 and 3.\n\nb. Is Rho's quote consistent with the spot curve? Compare the three-year growth factors under direct three-year investment and two-year investment followed by a year at the quoted forward rate.\n\n---"
+  },
+  {
+    "cell_index": 22,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 20 (Average)",
+    "body": "Sigma observes one-, two-, and three-year spot rates of 3.0%, 3.8%, and 4.5%. Under Sigma's model,\n\n$$f_{t-1,t}=E(r_{t-1,t})+LP_t,$$\n\nwhere $r_{t-1,t}$ is the future one-year short rate and $LP_t$ is an additive liquidity premium. Sigma uses premiums of 0.8 percentage points for year 2 and 1.2 percentage points for year 3.\n\na. Find the expected one-year short rates for years 2 and 3 under this model.\n\nb. Tau uses a year-3 premium of 1.8 percentage points with the same observed curve. Find Tau's expected year-3 short rate and explain what changes and what stays fixed.\n\n---"
+  },
+  {
+    "cell_index": 23,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 21 (Average)",
+    "body": "Upsilon and Phi offer explanations for the observed default-free spot curve below.\n\n![Annual effective spot yields at maturities 1–5 years: 3.0%, 3.6%, 4.1%, 4.4%, 4.6%.](attachment:q21_spot_curve.png)\n\n- Upsilon: “Expected one-year short rates rise over the next four years, and liquidity premiums are zero.”\n- Phi: “Expected one-year short rates remain at today's 3%; positive liquidity premiums account for the curve.”\n\nDoes the curve rule out either explanation? Does it establish either one? Explain briefly; no calculations are required.\n\n---"
+  },
+  {
+    "cell_index": 24,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 22 (Hard)",
+    "body": "The default-free one- and two-year spot rates are 3% and 4%. Chi is a default-free three-year bond with face value 1,000 and annual coupons of 40. Its curve-consistent price is 980.\n\nPsi has the same maturity and default treatment, but pays annual coupons of 25 and repays 1,000 at maturity.\n\na. Find the missing three-year spot rate.\n\nb. Find Psi's curve-consistent price.\n\nc. Omega proposes discounting every Psi payment at the three-year spot rate. Calculate the resulting price and assess this method.\n\n---"
+  },
+  {
+    "cell_index": 25,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 23 (Hard)",
+    "body": "Alpha holds a default-free three-year bond with face value 10,000 and a 6% annual coupon. Its clean quote is 102.60 per 100 of face value. The next coupon is in one year.\n\nDefault-free zero-coupon bonds are available at the prices below. Each pays only its face value at maturity. Arbitrary face amounts may be purchased; all instruments have identical tax and default treatment.\n\n| Zero maturity | Price per 100 of face value |\n|---|---:|\n| 1 year | 96.00 |\n| 2 years | 91.00 |\n| 3 years | 85.50 |\n\na. Specify the face amount of each zero needed to reproduce the coupon bond's payments. Show the payment at every date for both alternatives.\n\nb. Compare the cost of this zero portfolio with the quoted value of Alpha's holding.\n\nc. Assess the consistency of the coupon bond's quote with the zero prices. What quote per 100 would be consistent?\n\n---"
+  },
+  {
+    "cell_index": 26,
+    "lecture": "## Lecture 2: Bond Prices, Yields and the Term Structure",
+    "header": "### Question 24 (Hard)",
+    "body": "Beta buys a three-year bond with face value 1,000 and a 6% annual coupon when its YTM is 5%. One year later, Beta receives the coupon and immediately sells the bond. The sale price excludes the coupon just received. At that date the bond's YTM has the following distribution.\n\n| State | Probability | YTM at sale |\n|---|---:|---:|\n| Lower yields | 0.25 | 3% |\n| Unchanged yields | 0.50 | 5% |\n| Higher yields | 0.25 | 8% |\n\na. Find the purchase price.\n\nb. Find the sale price and one-year holding-period return in each state.\n\nc. Calculate the expected holding-period return and its standard deviation.\n\nd. Assess the claim: “Buying at a 5% YTM makes Beta's one-year return 5%, regardless of the sale-date yield.”\n\n---"
+  },
+  {
+    "cell_index": 28,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 25 (Easy)",
+    "body": "Alpha's bond costs 1,000. Its remaining payments have the following present values.\n\n| Payment time (years) | Present value | Fraction of price |\n|---|---:|---:|\n| 1 | 40 | 0.040 |\n| 2 | 38 | 0.038 |\n| 3 | 922 | Unknown |\n\na. Complete the missing weight and check the total weight.\n\nb. Calculate the bond's Macaulay duration and explain why it differs from three years.\n\n---"
+  },
+  {
+    "cell_index": 29,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 26 (Easy)",
+    "body": "Beta and Gamma each have a Macaulay duration of 4.2 years.\n\n| Bond | Coupon frequency | Quoted annual YTM |\n|---|---|---:|\n| Beta | Annual | 8% effective |\n| Gamma | Semiannual | 8% nominal, compounded semiannually |\n\na. Calculate each bond's modified duration with respect to its quoted annual yield.\n\nb. Which has the larger approximate percentage price response to a 10-basis-point rise in its quoted yield?\n\n---"
+  },
+  {
+    "cell_index": 30,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 27 (Easy)",
+    "body": "Delta's bond costs 980 and has modified duration of 5.8 years. Its YTM rises by 35 basis points.\n\nUsing duration, estimate the percentage price change, the change in USD, and the new price.\n\n---"
+  },
+  {
+    "cell_index": 31,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 28 (Easy)",
+    "body": "Epsilon holds the following two bonds. Prices are per 100 of face value.\n\n| Bond | Face amount held | Price | Modified duration |\n|---|---:|---:|---:|\n| Zeta | 80,000 | 90 | 2.4 years |\n| Eta | 60,000 | 120 | 7.6 years |\n\na. Calculate the market-value weights and portfolio modified duration.\n\nb. Calculate portfolio DV01 and estimate the value change if both annual yields rise by 20 basis points.\n\n---"
+  },
+  {
+    "cell_index": 32,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 29 (Average)",
+    "body": "Theta's four-year bond pays 45 annually and repays 1,000 at maturity. Its annual YTM is 4%. The corresponding discount factors are shown below.\n\n| Year | Total payment | Discount factor |\n|---|---:|---:|\n| 1 | 45 | 0.9615384615 |\n| 2 | 45 | 0.9245562130 |\n| 3 | 45 | 0.8889963587 |\n| 4 | 1,045 | 0.8548041910 |\n\na. Calculate the price, showing each payment's present value and time multiplied by present value.\n\nb. Calculate Macaulay duration and modified duration.\n\n---"
+  },
+  {
+    "cell_index": 33,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 30 (Average)",
+    "body": "Iota's bond had a price of 1,025 and modified duration of 4.8 years immediately before a rate announcement. Its price then fell by 1.44%. Assume the instantaneous movement was caused entirely by a change in its YTM.\n\na. Infer the yield change in basis points using duration.\n\nb. Verify the result against the price movement and explain why the inferred yield change is approximate.\n\n---"
+  },
+  {
+    "cell_index": 34,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 31 (Average)",
+    "body": "Kappa's bond pays 40 in year 1, 40 in year 2, and 1,040 in year 3. Its YTM is 5% and its modified duration is 2.7470283 years. For annual payments, use\n\n$$C=\\frac{\\sum_{t=1}^{T}t(t+1)\\,CF_t/(1+y)^t}{P(1+y)^2}.$$\n\na. Calculate the price and annual convexity.\n\nb. If YTM falls by 75 basis points, calculate the convexity contribution to the estimated price change, in percentage points and USD. Give the new price estimated using duration and convexity.\n\n---"
+  },
+  {
+    "cell_index": 35,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 32 (Average)",
+    "body": "Lambda's option-free bond has the following current measures:\n\n| Measure | Value |\n|---|---:|\n| YTM | 5.5% |\n| Price | 873.308680 |\n| Modified duration | 6.673273 years |\n| Annual convexity | 54.476335 years² |\n\nIts repriced values are 966.336276 at a 4% yield and 791.004552 at a 7% yield.\n\na. Estimate the price at each new yield using duration alone and then duration plus convexity.\n\nb. For both methods, report signed error as estimated price minus repriced value, in USD and as a percentage of the initial price.\n\nc. Which method performs better? Explain the signs of the duration-only errors.\n\n---"
+  },
+  {
+    "cell_index": 36,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 33 (Average)",
+    "body": "Mu records the following prices of an option-free bond around its current annual YTM of 5%.\n\n| Annual YTM | Price |\n|---|---:|\n| 4.75% | 1,054.494511 |\n| 5.00% | 1,043.294767 |\n| 5.25% | 1,032.247895 |\n\nFor a symmetric change $h$ in annual yield, the duration estimate is\n\n$$D_{M,\\mathrm{FD}}\\approx\\frac{P(y-h)-P(y+h)}{2P(y)h}.$$\n\na. Estimate modified duration and annual convexity from the table.\n\nb. Use those estimates to predict the price at a 6% YTM. The independently repriced value at that yield is 1,000.00. Quantify the prediction error.\n\n---"
+  },
+  {
+    "cell_index": 37,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 34 (Average)",
+    "body": "Nu's fund has a liability with present value 180,000 and modified duration of 4.0 years. Its current bond holdings are:\n\n| Bond | Face amount held | Price per 100 of face value | Modified duration |\n|---|---:|---:|---:|\n| Xi | 100,000 | 96 | 2.5 years |\n| Omicron | 80,000 | 105 | 7.0 years |\n\nAll durations use the same annual yield convention. Nu may transfer money between the two holdings at these prices, with no external cash and no short selling. Fractional face amounts are allowed.\n\na. Find the portfolio's current value and modified duration.\n\nb. Determine the trade that matches the liability's present value and modified duration. State both the money transferred and the face amounts bought or sold.\n\nc. Verify both matching conditions after the trade.\n\n---"
+  },
+  {
+    "cell_index": 38,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 35 (Average)",
+    "body": "Six months ago, Pi's fund matched the present value and duration of its coupon-bond assets to a single fixed liability. Since then, short-maturity yields have risen by 50 basis points and long-maturity yields have fallen by 25 basis points. The fund has not traded. Its manager proposes no review because the original durations matched.\n\na. Assess this proposal. What needs to be checked now?\n\nb. Pi could instead afford a default-free, noncallable zero that pays exactly the liability amount on its due date, in the same currency. Would that replacement require the same rebalancing for rate changes? Explain.\n\n---"
+  },
+  {
+    "cell_index": 39,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 36 (Hard)",
+    "body": "Rho reviews a worksheet for a four-year bond with face value 1,000, equal annual coupons, and a 6% YTM. The coupon entry has been lost. The discounted-payment entries below are correct; displayed PV figures are rounded.\n\n| Year | Total payment | Present value |\n|---|---|---:|\n| 1 | $C$ | 50.000000 |\n| 2 | $C$ | 47.169811 |\n| 3 | $C$ | 44.499822 |\n| 4 | $1{,}000+C$ | 834.074627 |\n\nThe worksheet reports Macaulay duration of 4.0000 years and a duration-only estimated price of 1,005.02 if YTM falls to 5.25%.\n\na. Recover the annual coupon and current price.\n\nb. Find the correct Macaulay and modified durations.\n\nc. Calculate annual convexity.\n\nd. Audit the worksheet's shocked-price estimate. Compare the correct duration-only estimate, duration-plus-convexity estimate, and exact repriced value.\n\n---"
+  },
+  {
+    "cell_index": 40,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 37 (Hard)",
+    "body": "Sigma is a straight bond; Tau has identical promised payments but can be called immediately for 1,075. Use this simplified model: Tau's value equals Sigma's value unless Sigma's value exceeds 1,075, in which case Tau is immediately called for 1,075. There is no accrued interest or call cost.\n\nThe table gives Sigma's values at each annual yield. At the initial 5% yield, Sigma's modified duration is 4.984990 years.\n\n| Annual yield | Sigma value |\n|---|---:|\n| 4% | 1,104.842737 |\n| 5% | 1,050.756921 |\n| 6% | 1,000.000000 |\n\na. Find Tau's initial value and its value or redemption proceeds after each yield shock. Identify when it is called.\n\nb. Calculate Tau's price change in USD and percent for each shock.\n\nc. Use Sigma's initial duration to estimate prices after both shocks. Compare these estimates with Tau's outcomes and explain the limits of this approach.\n\n---"
+  },
+  {
+    "cell_index": 41,
+    "lecture": "## Lecture 3: Duration, Convexity and Immunization",
+    "header": "### Question 38 (Hard)",
+    "body": "Upsilon must pay 120,000 exactly four years from today. The default-free annual yield curve is flat, but its level is unknown. Upsilon can hold:\n\n- Phi: a three-year bond paying annual coupons of 70 per 1,000 face value, currently priced at 1,054.4650 per 1,000 face value.\n- Chi: a zero-coupon bond maturing in six years.\n\nFractional face amounts are allowed; short selling is not. Phi's trial prices are:\n\n| Annual yield | Price per 1,000 face value |\n|---|---:|\n| 4.5% | 1,068.7241 |\n| 5.5% | 1,040.4690 |\n\na. Find the common yield and write Phi's pricing equation. Find the liability's present value and Chi's price per 1,000 face value.\n\nb. Calculate the Macaulay durations of Phi, Chi, and the liability.\n\nc. Find the amount invested in each bond and the corresponding face amounts that match the liability's present value and duration. Verify both conditions.\n\nd. Immediately after a parallel 50-basis-point yield increase, reprice the unchanged holdings and the liability. Is the position still fully funded, and does this establish exact protection against rate changes?\n\n---"
+  },
+  {
+    "cell_index": 43,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 39 (Easy)",
+    "body": "Alpha buys a share for 80. One year later, Alpha receives a dividend of 3 and sells the share for 78.\n\nCalculate the income yield, capital gain or loss in USD and percent, and total holding-period return.\n\n---"
+  },
+  {
+    "cell_index": 44,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 40 (Easy)",
+    "body": "Beta invests 12,000 and makes no deposits or withdrawals. The annual total returns, with all distributions reinvested, are:\n\n| Year | Return |\n|---|---:|\n| 1 | −20% |\n| 2 | +25% |\n| 3 | +10% |\n\na. Calculate the arithmetic and geometric average annual returns.\n\nb. Find ending wealth. Which average reproduces it when compounded over three years?\n\n---"
+  },
+  {
+    "cell_index": 45,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 41 (Easy)",
+    "body": "Gamma's annual return has the following distribution. The one-year risk-free return is 3%.\n\n| State | Probability | Gamma return |\n|---|---:|---:|\n| Weak | 0.25 | −12% |\n| Moderate | 0.50 | 8% |\n| Strong | 0.25 | 24% |\n\na. Calculate Gamma's expected total return.\n\nb. Calculate its excess return in each state and its expected excess return.\n\n---"
+  },
+  {
+    "cell_index": 46,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 42 (Easy)",
+    "body": "Delta has the following annual return distribution, with expected return of 7%.\n\n| State | Probability | Return |\n|---|---:|---:|\n| Weak | 0.20 | −10% |\n| Moderate | 0.50 | 6% |\n| Strong | 0.30 | 20% |\n\nCalculate the variance and standard deviation. Show each state's deviation from the mean and its contribution to variance.\n\n---"
+  },
+  {
+    "cell_index": 47,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 43 (Easy)",
+    "body": "Epsilon's six observed monthly total returns are:\n\n| Month | 1 | 2 | 3 | 4 | 5 | 6 |\n|---|---:|---:|---:|---:|---:|---:|\n| Return | 2% | −1% | 3% | 0% | −2% | 4% |\n\nEstimate the arithmetic mean monthly return, sample variance, and sample standard deviation.\n\n---"
+  },
+  {
+    "cell_index": 48,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 44 (Average)",
+    "body": "Zeta's monthly excess returns have mean 0.75% and standard deviation 3.5%. Assume constant monthly means and variances and zero autocovariances across months. Use the lecture's arithmetic annualization convention.\n\na. Calculate the monthly Sharpe ratio, annualized mean excess return, annualized standard deviation, and annualized Sharpe ratio.\n\nb. Does the annualized mean calculate a compounded one-year excess return? Explain.\n\n---"
+  },
+  {
+    "cell_index": 49,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 45 (Average)",
+    "body": "Eta holds this portfolio for one year without trading. All dividends arrive at year-end and remain as cash.\n\n| Asset | Shares | Initial price | Final price | Dividend per share |\n|---|---:|---:|---:|---:|\n| Theta | 40 | 50 | 52 | 1 |\n| Iota | 30 | 80 | 74 | 2 |\n| Kappa | 20 | 30 | 33 | 0 |\n\na. Find the initial portfolio value, asset weights, and each asset's total return.\n\nb. Calculate portfolio return and final wealth. Verify final wealth directly from the holdings and dividends.\n\n---"
+  },
+  {
+    "cell_index": 50,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 46 (Average)",
+    "body": "Lambda allocates 60% of initial wealth to Mu and 40% to Nu, without rebalancing during the year.\n\n| State | Probability | Mu return | Nu return |\n|---|---:|---:|---:|\n| Weak | 0.20 | −10% | 8% |\n| Moderate | 0.50 | 12% | 4% |\n| Strong | 0.30 | 25% | −2% |\n\na. Calculate each asset's expected return and the portfolio's expected return.\n\nb. Independently calculate the portfolio return in each state and reconcile the expected return obtained from those states.\n\n---"
+  },
+  {
+    "cell_index": 51,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 47 (Average)",
+    "body": "Xi and Omicron have the following joint annual return distribution.\n\n| State | Probability | Xi return | Omicron return |\n|---|---:|---:|---:|\n| Weak | 0.20 | 18% | 10% |\n| Moderate | 0.50 | 6% | −2% |\n| Strong | 0.30 | −12% | 16% |\n\na. Calculate the two expected returns and standard deviations.\n\nb. Calculate covariance and correlation. Interpret the sign and assess whether the assets move in opposite directions in every state.\n\n---"
+  },
+  {
+    "cell_index": 52,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 48 (Average)",
+    "body": "Pi invests 35% in Rho and 65% in Sigma. Their return correlation is −0.25.\n\n| Fund | Expected annual return | Annual standard deviation |\n|---|---:|---:|\n| Rho | 13% | 22% |\n| Sigma | 7% | 10% |\n\na. Calculate the portfolio's expected return, variance, and standard deviation.\n\nb. An analyst calculates portfolio standard deviation as the weighted average of the two fund standard deviations. Assess that calculation using your results.\n\n---"
+  },
+  {
+    "cell_index": 53,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 49 (Average)",
+    "body": "Tau invests 40% in Upsilon and 60% in Phi. Upsilon's annual SD is 18%, Phi's is 12%, and the portfolio's is 12%.\n\na. Infer the covariance and correlation between the two assets.\n\nb. A second report gives portfolio SD of 16% with the same asset SDs and weights. Could that report be correct? Justify your answer quantitatively.\n\n---"
+  },
+  {
+    "cell_index": 54,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 50 (Average)",
+    "body": "Chi has risk-aversion coefficient $A=5$ and must select one whole strategy from the following alternatives. Mixing strategies is not allowed.\n\n| Strategy | Expected annual return | Annual SD |\n|---|---:|---:|\n| Psi | 7.5% | 8% |\n| Omega | 12% | 14% |\n| Alpha | 15% | 24% |\n| Cash | 5.5% | 0% |\n\na. Calculate the mean–variance utility score and certainty-equivalent return for each strategy.\n\nb. Which strategy does Chi prefer under this criterion? Explain what its certainty equivalent means.\n\n---"
+  },
+  {
+    "cell_index": 55,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 51 (Average)",
+    "body": "Beta compares two fixed portfolios using the mean–variance criterion.\n\n| Portfolio | Expected annual return | Annual SD |\n|---|---:|---:|\n| Gamma | 8% | 10% |\n| Delta | 14% | 20% |\n\na. Find the risk-aversion coefficient at which Beta is indifferent.\n\nb. For $A>0$, state the ranges in which each portfolio is preferred, including the boundary case.\n\n---"
+  },
+  {
+    "cell_index": 56,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 52 (Average)",
+    "body": "Epsilon and Zeta have the annual return distributions shown below. Their summary measures are supplied; no moment calculations are required.\n\n![Epsilon: returns -16%, 8%, 32% with probabilities 12.5%, 75%, 12.5%. Zeta: returns -28%, 12% with probabilities 10%, 90%.](attachment:q52_return_distributions.png)\n\nDashed lines mark the mean.\n\n| Measure | Epsilon | Zeta |\n|---|---:|---:|\n| Expected return | 8% | 8% |\n| Standard deviation | 12% | 12% |\n| Skewness | 0 | −2.667 |\n| Excess kurtosis | 1.000 | 5.111 |\n\na. Can the mean–variance criterion distinguish the two investments?\n\nb. An analyst concludes that their risks are therefore identical. Assess the claim using the distributions, skewness, and excess kurtosis.\n\n---"
+  },
+  {
+    "cell_index": 57,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 53 (Hard)",
+    "body": "Eta forms an equally weighted portfolio of $n$ stocks. Every stock has annual SD of 30%, and the covariance between every distinct pair is 0.0100 in decimal-return units. These inputs remain unchanged as more stocks are added.\n\na. Find portfolio variance and SD for $n=10$.\n\nb. Find the limiting SD as $n$ grows without bound.\n\nc. What is the smallest whole number of stocks needed to obtain SD no greater than 12%?\n\nd. Could adding stocks achieve an SD of 9% under these assumptions? Explain.\n\n---"
+  },
+  {
+    "cell_index": 58,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 54 (Hard)",
+    "body": "Theta, Iota, and Kappa have annual SDs of 10%, 15%, and 20%, respectively. The Theta–Iota correlation is 0.20, and the Theta–Kappa correlation is −0.10. A portfolio invested equally in Iota and Kappa has SD of 14%.\n\na. Find the Iota–Kappa covariance and correlation.\n\nb. Complete the three-asset covariance matrix in the order Theta, Iota, Kappa.\n\nc. Calculate the variance and SD of a portfolio with weights 50%, 30%, and 20% in that order.\n\n---"
+  },
+  {
+    "cell_index": 59,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 55 (Hard)",
+    "body": "Lambda uses its own cash to buy 100 Mu shares at 50 each and 100 one-year put options, each covering one share. Each put has strike price 48 and costs 3. The puts expire in one year and are cash-settled; the shares pay no dividends. There is no borrowing or additional cash position.\n\n| State | Probability | Share price in one year |\n|---|---:|---:|\n| Weak | 0.20 | 32 |\n| Moderate | 0.50 | 52 |\n| Strong | 0.30 | 72 |\n\na. Find the initial cost of the combined position.\n\nb. Calculate terminal wealth and total return in each state.\n\nc. Calculate expected return and standard deviation.\n\nd. For $A=3$, calculate the certainty-equivalent return. Assess the claim that owning the puts prevents a loss on the whole position.\n\n---"
+  },
+  {
+    "cell_index": 60,
+    "lecture": "## Lecture 4: Returns, Risk and Portfolio Choice",
+    "header": "### Question 56 (Hard)",
+    "body": "Omicron considers two default-free, noncallable bonds with annual coupons. Prices are immediately after a coupon payment; all amounts below refer to 1,000 face value.\n\n| Bond | Annual coupon | Years remaining today | Purchase price |\n|---|---:|---:|---:|\n| Nu | 40 | 2 | 981.405896 |\n| Xi | 80 | 4 | 1,106.378515 |\n\nOne year later, Omicron receives that year's coupon and immediately sells. Sale prices exclude the coupon just received. Both bonds then have the annual effective YTM shown for the realized state.\n\n| State | Probability | Year-end YTM | Nu sale price | Xi sale price |\n|---|---:|---:|---:|---:|\n| Lower yields | 0.30 | 1% | Missing | 1,205.868965 |\n| Unchanged yields | 0.50 | 5% | 990.476190 | 1,081.697441 |\n| Higher yields | 0.20 | 10% | 945.454545 | Missing |\n\na. Calculate the two missing sale prices, to six decimal places.\n\nb. Calculate each bond's state returns, expected return, and SD, and the covariance of the two returns.\n\nc. Find expected return and SD for a portfolio investing 50% of initial wealth in each bond.\n\nd. With $A=2.5$, which does Omicron prefer: Nu alone, Xi alone, or the specified mix? Compare their mean–variance utility scores.\n\n---"
+  },
+  {
+    "cell_index": 62,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 57 (Easy)",
+    "body": "Alpha and Beta have expected returns of 6% and 14%. A portfolio must invest fully in these two assets, without short selling.\n\na. Find the weights needed for an expected return of 11%.\n\nb. Can the portfolio attain an expected return of 16%? Support your answer with the implied weights.\n\n---"
+  },
+  {
+    "cell_index": 63,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 58 (Easy)",
+    "body": "Gamma has 80,000 and places 30% in cash earning 4%. The remainder goes into Delta, a risky fund with expected return 12% and SD 18%.\n\na. Calculate the amount invested in each component.\n\nb. Find the complete portfolio's expected return and SD.\n\n---"
+  },
+  {
+    "cell_index": 64,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 59 (Easy)",
+    "body": "Epsilon has expected return 10% and SD 16%. Zeta may combine a nonnegative investment in Epsilon with lending or borrowing at 3%.\n\nFind the allocation that gives the complete portfolio an SD of 20%, its expected return, and whether Zeta lends or borrows.\n\n---"
+  },
+  {
+    "cell_index": 65,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 60 (Easy)",
+    "body": "Eta may choose one of the following risky funds and combine it with cash. Mixtures of the three funds are unavailable. Lending and borrowing both occur at 3%, and the chosen risky fund's weight must be nonnegative.\n\n| Fund | Expected return | SD |\n|---|---:|---:|\n| Theta | 9% | 10% |\n| Iota | 12% | 18% |\n| Kappa | 16% | 30% |\n\na. Calculate the slope of each available capital allocation line (CAL).\n\nb. Which fund provides the highest expected return at a complete-portfolio SD of 8%? Calculate that return.\n\n---"
+  },
+  {
+    "cell_index": 66,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 61 (Average)",
+    "body": "Lambda and Mu have return variances 0.040000 and 0.010000, with covariance 0.003000. The portfolio invests fully in these two assets. A worksheet for Lambda's weight $w$ contains:\n\n$$v(w)=0.04w^2+0.01(1-w)^2+0.006w(1-w),\\qquad \\frac{dv}{dw}=\\underline{\\hspace{2cm}}.$$\n\na. Complete the derivative and find the global minimum-variance weights when short selling is permitted.\n\nb. Calculate the portfolio's variance and SD. Would prohibiting short selling change the solution?\n\n---"
+  },
+  {
+    "cell_index": 67,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 62 (Average)",
+    "body": "Nu has expected return 7% and SD 12%; Xi has expected return 13% and SD 24%. Invest fully in these two assets without short selling. Cash is unavailable.\n\nFind the minimum-risk weights, expected return, and SD in each separate case:\n\na. The return correlation is $+1$.\n\nb. The return correlation is $-1$.\n\nExplain why the allocations differ.\n\n---"
+  },
+  {
+    "cell_index": 68,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 63 (Average)",
+    "body": "Omicron and Pi have expected returns of 7% and 13%, SDs of 10% and 20%, and return covariance 0.004000. Invest fully in the two funds without short selling; all weights between zero and one are available. Let $w$ denote Omicron's weight.\n\n| $w$ | Expected return | Variance |\n|---:|---:|---:|\n| 0 | 13.00% | 0.040000 |\n| 0.25 | 11.50% | 0.024625 |\n| 0.50 | Missing | 0.014500 |\n| 0.75 | 8.50% | Missing |\n| $6/7$ | 7.8571% | 0.009142857 |\n| 1 | 7.00% | 0.010000 |\n\na. Complete the missing entries.\n\nb. Find the global minimum-variance weight and the range of weights on the efficient branch.\n\nc. Identify a listed allocation that dominates holding only Omicron. Support the comparison numerically.\n\n---"
+  },
+  {
+    "cell_index": 69,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 64 (Average)",
+    "body": "Rho has expected return 10% and SD 10%; Sigma has expected return 12% and SD 25%. Their return correlation is 0.70, and the risk-free rate is 3%. Short selling is permitted. Weights within the risky portfolio must sum to one.\n\na. Find the tangency portfolio's risky-asset weights.\n\nb. Calculate its expected return, SD, and Sharpe ratio.\n\nc. Describe the positions needed for a net investment of 10,000 in this risky portfolio.\n\n---"
+  },
+  {
+    "cell_index": 70,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 65 (Average)",
+    "body": "Tau has 40,000 and risk aversion $A=2$. Upsilon has expected return 14% and SD 20%. Tau may invest a nonnegative fraction in Upsilon and lend or borrow at 4%.\n\na. Find the utility-maximizing allocation and the monetary positions.\n\nb. Calculate the complete portfolio's expected return, SD, and utility.\n\n---"
+  },
+  {
+    "cell_index": 71,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 66 (Average)",
+    "body": "Phi's optimal allocation is 60% in Chi and 40% in cash. Chi's expected return is 11% and its SD is 15%; the risk-free rate is 3.5%. Phi uses mean–variance utility. Lending and borrowing are available at the risk-free rate, and the observed choice is an interior optimum.\n\na. Infer Phi's risk aversion $A$.\n\nb. Chi's SD rises to 18%, while its expected return, the risk-free rate, and Phi's preferences remain unchanged. Find the revised allocation.\n\n---"
+  },
+  {
+    "cell_index": 72,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 67 (Average)",
+    "body": "Psi has 120,000. Omega is a risky fund with expected return 13%, SD 20%, and the following fixed constituent weights:\n\n| Asset | Weight within Omega |\n|---|---:|\n| Alpha | 25% |\n| Beta | 35% |\n| Gamma | 40% |\n\nPsi combines Omega with cash earning 3%, without borrowing or short selling, to obtain an expected return of 9.5%.\n\na. Find the weights in Omega and cash.\n\nb. Calculate the weight in total wealth and the monetary investment for every underlying asset and cash.\n\nc. Calculate the complete portfolio's SD.\n\n---"
+  },
+  {
+    "cell_index": 73,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 68 (Average)",
+    "body": "Delta and Epsilon use mean–variance utility, with $A=2$ and $A=6$. They share forecasts and access to the same risky assets. Initially, both may short sell and lend or borrow at the same risk-free rate. Assume a unique tangency portfolio with a positive risk premium.\n\na. What should be common in their optimal portfolios, and what should differ?\n\nb. Delta is then prohibited from borrowing, and the restriction binds. Must Delta's new optimum be 100% in the original tangency portfolio? Delta may also revise the risky-asset mix.\n\nc. In a separate case, only Epsilon faces a short-sale ban that excludes the original tangency portfolio. Must the two investors still hold the same risky mix? Explain.\n\n---"
+  },
+  {
+    "cell_index": 74,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 69 (Hard)",
+    "body": "Zeta has expected return 8% and SD 12%; Eta has expected return 16% and SD 20%. Their return correlation is 0.20. The risk-free lending and borrowing rate is 3%. Risky-asset weights must be nonnegative and sum to one.\n\na. Find the tangency portfolio and its Sharpe ratio.\n\nb. Now impose a 30% cap on Eta's weight within the risky portfolio. Find the portfolio with the highest feasible Sharpe ratio, checking the relevant interior and boundary candidates.\n\nc. State the CAL with and without the cap. At a complete-portfolio SD of 10%, how much expected return is lost because of the cap? The risky fraction must be nonnegative.\n\n---"
+  },
+  {
+    "cell_index": 75,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 70 (Hard)",
+    "body": "Theta has 100,000 and risk aversion $A=8$. Iota and Kappa have the following one-year returns:\n\n| State | Probability | Iota | Kappa |\n|---|---:|---:|---:|\n| Weak | 0.25 | −30% | 22% |\n| Middle | 0.50 | 12% | −2% |\n| Strong | 0.25 | 42% | 10% |\n\nThe states are mutually exclusive and exhaustive. The risk-free lending and borrowing rate is 4%. Short sales of the risky funds are prohibited; their weights within the risky portfolio must sum to one. Theta's total risky fraction must be nonnegative.\n\na. Calculate each fund's expected return and variance, and their covariance.\n\nb. Find the tangency portfolio and its Sharpe ratio within the stated feasible set.\n\nc. Find Theta's optimal risky fraction and cash weight.\n\nd. Report the amount held in each risky fund and cash, and the complete portfolio's expected return, SD, and utility.\n\n---"
+  },
+  {
+    "cell_index": 76,
+    "lecture": "## Lecture 5: Portfolio Selection and Capital Allocation",
+    "header": "### Question 71 (Hard)",
+    "body": "Lambda has 200,000 and risk aversion $A=3$. Mu, a bond fund, has a one-year expected return of 11%, SD 16%, and current modified duration of 5.5 years. Cash earns 3% and has zero instantaneous interest-rate sensitivity. Lambda may combine Mu and cash without borrowing or short selling.\n\nThe complete portfolio's current modified duration may not exceed 2.2 years.\n\na. Derive the feasible range for Mu's weight.\n\nb. Find the utility-maximizing risky fraction without the borrowing and duration limits, then determine the optimal allocation under the stated limits. Report monetary positions.\n\nc. Calculate the chosen portfolio's one-year expected return, SD, and utility.\n\nd. Immediately after the allocation, all relevant annual yields rise by 50 basis points in a parallel shift. Estimate the change in Mu's value and in the complete portfolio's value, in percent and USD, using duration. Treat this as an instantaneous price shock, with no income received during the shock.\n\n---"
+  },
+  {
+    "cell_index": 78,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 72 (Easy)",
+    "body": "Rho has beta 1.3. The risk-free rate is 3%, the expected market risk premium is 5%, and an analyst forecasts Rho's total return at 8.7%.\n\nCalculate Rho's CAPM required return and forecast alpha. Interpret the sign of alpha and locate the forecast relative to the security market line (SML).\n\n---"
+  },
+  {
+    "cell_index": 79,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 73 (Easy)",
+    "body": "Kappa and Gamma are correctly priced under the same CAPM:\n\n| Stock | Beta | Expected total return |\n|---|---:|---:|\n| Kappa | 0.5 | 5% |\n| Gamma | 1.5 | 11% |\n\na. Recover the risk-free rate and expected market risk premium.\n\nb. Delta is also correctly priced and has expected total return −1%. Find its beta and explain whether this expected return can be consistent with CAPM.\n\n---"
+  },
+  {
+    "cell_index": 80,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 74 (Easy)",
+    "body": "Epsilon's covariance with the market is −0.010800, and market return variance is 0.014400. An alternative summary reports Epsilon's SD as 18%, the market's SD as 12%, and their correlation as −0.50.\n\nCalculate Epsilon's beta using each summary. Check whether the summaries are consistent and interpret beta's sign.\n\n---"
+  },
+  {
+    "cell_index": 81,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 75 (Easy)",
+    "body": "Zeta follows a single-index model with beta 1.2 and residual SD 24%. The market's SD is 15%.\n\nCalculate Zeta's systematic variance, total variance, total SD, and the fraction of its return variance explained by the market ($R^2$).\n\n---"
+  },
+  {
+    "cell_index": 82,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 76 (Easy)",
+    "body": "CAPM applies, and the expected market risk premium is positive.\n\n| Stock | Beta | Total SD |\n|---|---:|---:|\n| Eta | 0.6 | 35% |\n| Theta | 1.4 | 25% |\n\na. Which stock has the higher required expected return? Explain.\n\nb. Eta's residual variance doubles while both betas, the risk-free rate, and the market premium remain unchanged. Does CAPM predict a change in Eta's required return? Could the change matter to an investor holding a concentrated position in Eta?\n\n---"
+  },
+  {
+    "cell_index": 83,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 77 (Average)",
+    "body": "The following positions total 100,000. The alphas and betas are forward-looking single-index model parameters. The expected market excess return is 6%.\n\n| Stock | Current holding | Alpha | Beta |\n|---|---:|---:|---:|\n| Iota | 40,000 | 1.0% | 0.6 |\n| Kappa | 35,000 | −0.5% | 1.4 |\n| Lambda | 25,000 | 0.2% | 1.1 |\n\nOnly the Iota and Kappa positions may change. Keep Lambda's holding and total invested wealth fixed; short selling is prohibited.\n\na. Determine the transfer needed to obtain a portfolio beta of 0.90.\n\nb. Report the new holdings, portfolio alpha, and expected excess return.\n\n---"
+  },
+  {
+    "cell_index": 84,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 78 (Average)",
+    "body": "Mu and Nu follow a single-index model. Market return variance is 0.040000.\n\n| Stock | Beta | Residual variance |\n|---|---:|---:|\n| Mu | 1.1 | 0.014400 |\n| Nu | −0.4 | 0.032400 |\n\na. Calculate each stock's total variance and SD, their covariance, and their correlation.\n\nb. Only Nu's residual variance doubles. Recalculate the covariance and correlation. Explain the difference between their responses.\n\n---"
+  },
+  {
+    "cell_index": 85,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 79 (Average)",
+    "body": "A portfolio holds the following three stocks. Its single-index forecasts use a market expected excess return of 6% and market SD of 18%.\n\n| Stock | Portfolio weight | Alpha | Beta | Residual SD |\n|---|---:|---:|---:|---:|\n| Xi | 50% | 0.4% | 1.3 | 20% |\n| Omicron | 30% | −0.2% | 0.7 | 15% |\n| Pi | 20% | 1.0% | −0.2 | 25% |\n\na. Find portfolio alpha, beta, and expected excess return.\n\nb. Find the portfolio's residual variance and SD.\n\nc. Find its systematic variance, total variance, and total SD.\n\n---"
+  },
+  {
+    "cell_index": 86,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 80 (Average)",
+    "body": "An OLS regression of Rho's monthly excess returns on monthly market excess returns includes an intercept. The same 36 observations give:\n\n| Sample statistic | Value |\n|---|---:|\n| Mean market excess return | 0.60% |\n| Mean Rho excess return | 1.00% |\n| Market excess-return variance | 0.001600 |\n| Rho–market excess-return covariance | 0.001920 |\n| Residual sum of squares (SSE) | 0.076500 |\n\nThe reported sample variance and covariance use the divisor $N-1$.\n\na. Recover the fitted beta and monthly regression alpha.\n\nb. Estimate residual variance and residual SD using the regression degrees of freedom.\n\nc. Recover the regression's $R^2$.\n\n---"
+  },
+  {
+    "cell_index": 87,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 81 (Average)",
+    "body": "Sigma sells for 50 today and is expected to pay a dividend of 1.50 at year-end, when the share will be sold. Its beta is 1.25. The risk-free rate is 2.5%, and the market's expected total return is 8.5%.\n\na. What expected year-end sale price is consistent with CAPM at today's price?\n\nb. An analyst instead forecasts a sale price of 52. Calculate the forecast total return and forecast alpha.\n\nc. What current price would make that analyst's payoff forecast consistent with CAPM? Hold the dividend forecast, beta, and market inputs fixed.\n\n---"
+  },
+  {
+    "cell_index": 88,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 82 (Average)",
+    "body": "Use the lecture's equilibrium relation\n\n$$E(R_M)=\\bar A\\sigma_M^2.$$\n\nThe effective aggregate risk-aversion coefficient is $\\bar A=3$, market return variance is 0.022500, and the risk-free rate is 2%. Tau has beta 0.6 and Upsilon has beta 1.4; both are correctly priced under CAPM.\n\na. Find the market risk premium and each stock's required total return.\n\nb. Market SD rises to 20%. Holding $\\bar A$, the risk-free rate, and both betas fixed, recalculate those three quantities. By what percentage does the market premium increase?\n\n---"
+  },
+  {
+    "cell_index": 89,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 83 (Average)",
+    "body": "A historical regression estimates Phi's monthly excess return as\n\n$$\\hat{R}_{\\mathrm{Phi},t}=0.003+1.2R_{M,t}.$$\n\nPhi has nonzero residual variance. Assess each claim:\n\na. “The positive fitted intercept disproves CAPM and establishes a positive future alpha.”\n\nb. “If Phi is correctly priced, it belongs on the capital market line (CML) at the horizontal coordinate 1.2.”\n\nc. “A positive forecast alpha would guarantee a risk-free profit from buying Phi and hedging its market beta.”\n\n---"
+  },
+  {
+    "cell_index": 90,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 84 (Hard)",
+    "body": "Chi's expected one-year total payoff, including its sale price and dividend, is 112 per share. The risk-free rate is 4% and the expected market risk premium is 6%. Two analysts use beta estimates of 0.8 and 1.4. Use the one-period valuation relation\n\n$$P_0=\\frac{E(P_1+D_1)}{1+r_f+\\beta E(R_M)}.$$\n\nHold the expected payoff and market inputs fixed across the estimates.\n\na. Calculate the valuation under each beta. Report the dollar and percentage change when the estimate rises from 0.8 to 1.4.\n\nb. The share is quoted at 100. Find the beta that makes this quote consistent with the payoff forecast and CAPM.\n\nc. How do the two analysts' valuation conclusions differ at the quoted price? Explain whether their disagreement establishes a risk-free trading opportunity.\n\n---"
+  },
+  {
+    "cell_index": 91,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 85 (Hard)",
+    "body": "The following table gives joint forecasts for Psi and the market. The states are mutually exclusive and exhaustive. Cash earns 3%.\n\n| State | Probability | Market total return | Psi total return |\n|---|---:|---:|---:|\n| Weak | 0.25 | −20% | −9.9% |\n| Middle | 0.50 | 10% | 5.1% |\n| Strong | 0.25 | 30% | 32.1% |\n\na. Calculate the two expected returns, market variance, Psi–market covariance, and Psi's beta.\n\nb. Calculate Psi's CAPM required return and forecast alpha.\n\nc. Construct a fully invested market-and-cash portfolio with the same beta as Psi, without borrowing or short selling. Find its expected return and SD.\n\nd. Calculate Psi's return minus the comparison portfolio's return in each state, and the SD of that difference. Does matching beta make the two investments equivalent?\n\n---"
+  },
+  {
+    "cell_index": 92,
+    "lecture": "## Lecture 6: Single-Index Model and CAPM",
+    "header": "### Question 86 (Hard)",
+    "body": "The following one-year forecasts and single-index risk inputs apply to Omega and Gamma:\n\n| Stock | Forecast total return | Beta | Residual SD |\n|---|---:|---:|---:|\n| Omega | 14% | 1.3 | 12% |\n| Gamma | 10% | 0.6 | 15% |\n\nThe market's forecast total return is 10% and its SD is 18%. Risk-free lending and borrowing are available at 3%. The risky portfolio is restricted to Omega and Gamma, with nonnegative weights summing to one; the market index is a comparison benchmark only.\n\na. Build the two stocks' covariance matrix under the single-index assumptions.\n\nb. Find the risky portfolio with the highest Sharpe ratio. Report its weights, expected return, SD, and Sharpe ratio.\n\nc. Compare its beta and Sharpe ratio with the market benchmark.\n\nd. Now replace the zero residual-correlation assumption with a residual correlation of 0.50. Hold expected returns, betas, market variance, and both residual SDs fixed. Recalculate the optimal risky weights and Sharpe ratio. Explain what changed.\n\n---"
+  },
+  {
+    "cell_index": 94,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 87 (Easy)",
+    "body": "Mu and Nu are correctly priced by a two-factor model. The risk-free rate is 3%.\n\n| Factor | Annual risk premium | Mu loading | Nu loading |\n|---|---:|---:|---:|\n| GDP growth | 5% | 1.1 | 1.1 |\n| Inflation | −2% | 0.4 | −0.6 |\n\na. Calculate each asset's expected total return.\n\nb. Calculate the expected-return difference, Nu minus Mu, and identify the factor contribution that accounts for it.\n\n---"
+  },
+  {
+    "cell_index": 95,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 88 (Easy)",
+    "body": "Xi follows a two-factor surprise model. Its expected total return was 9%, but its realized return was 6.4%.\n\n| Factor | Xi's loading | Realized surprise |\n|---|---:|---:|\n| GDP growth | 1.5 | −1 percentage point |\n| Inflation | −0.8 | Unknown |\n\nXi's firm-specific return surprise was +0.5 percentage points. Inflation had been forecast at 2.5%. Loadings measure return percentage points per one-percentage-point factor surprise.\n\na. Recover the inflation surprise.\n\nb. Find actual inflation.\n\n---"
+  },
+  {
+    "cell_index": 96,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 89 (Easy)",
+    "body": "A portfolio invests 40% in Omicron and 60% in Pi.\n\n| Fund | Factor 1 loading | Factor 2 loading |\n|---|---:|---:|\n| Omicron | 1.4 | −0.5 |\n| Pi | 0.4 | 1.0 |\n\nBoth funds satisfy the two-factor pricing model. The risk-free rate is 2.5%; the factor premiums are 4% and 2%, respectively.\n\na. Find the portfolio's loading on each factor.\n\nb. Calculate its expected total return.\n\n---"
+  },
+  {
+    "cell_index": 97,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 90 (Easy)",
+    "body": "Assess the following claims.\n\na. Tau: “APT needs the same efficient market portfolio and mean–variance investor assumptions as CAPM.”\n\nb. Upsilon: “Adding a second factor increases a return regression's $R^2$, so that factor must earn a risk premium.” Explain also what APT leaves unspecified about the factors.\n\n---"
+  },
+  {
+    "cell_index": 98,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 91 (Average)",
+    "body": "Kappa and Lambda are ideal diversified portfolios correctly priced by the same two-factor model. The annual risk-free rate is 3%.\n\n| Portfolio | Factor 1 loading | Factor 2 loading | Expected total return |\n|---|---:|---:|---:|\n| Kappa | 1.0 | 0.5 | 9% |\n| Lambda | 0.5 | 1.5 | 8% |\n\na. Recover the two factor premiums and establish whether the solution is unique.\n\nb. Mu has factor loadings 0.8 and −0.4. What expected total return does the model require for Mu?\n\n---"
+  },
+  {
+    "cell_index": 99,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 92 (Average)",
+    "body": "Nu and Xi have zero residual risk and share one factor surprise $F$, which is −5% or +5% with equal probabilities. Their total returns satisfy $r_i=E(r_i)+\\beta_iF$. Cash is explicitly risk-free at 2%.\n\n| Portfolio | Factor loading | Expected total return |\n|---|---:|---:|\n| Nu | 0.8 | 10% |\n| Xi | 1.2 | 11% |\n\nShort selling and borrowing or lending at 2% are permitted. An analyst proposes:\n\n| Position | Signed initial amount |\n|---|---:|\n| Nu | +12,000 |\n| Xi | −10,000 |\n| Cash | −2,000 |\n\nPositive amounts denote long positions; negative amounts denote short positions or borrowing.\n\na. Compare the factor premiums implied by Nu and Xi.\n\nb. Does the proposed trade constitute arbitrage? Check its financing and factor exposure.\n\nc. Keep the Nu position fixed at +12,000 and repair the other positions. Verify the resulting financing, factor exposure, and terminal dollar profit.\n\n---"
+  },
+  {
+    "cell_index": 100,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 93 (Average)",
+    "body": "Pi's FF3 loadings are 1.1 on the market, −0.4 on SMB, and 0.8 on HML. The following monthly arithmetic averages and loadings refer to the same sample:\n\n| Series | Monthly mean |\n|---|---:|\n| Market excess return | 0.50% |\n| SMB | 0.30% |\n| HML | 0.20% |\n| Risk-free return | 0.15% |\n| Pi's gross total return | 1.00% |\n\nA fixed monthly fee of 0.10% of beginning-of-month wealth is deducted, so net return equals gross return minus the fee.\n\na. Calculate the zero-alpha benchmark total return and Pi's net monthly alpha.\n\nb. Find the maximum monthly fee consistent with a nonnegative net alpha, holding gross returns and loadings fixed.\n\nc. Arithmetic-annualize the current net alpha using $12\\times$ monthly alpha.\n\n---"
+  },
+  {
+    "cell_index": 101,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 94 (Average)",
+    "body": "The following six size/value portfolios have these returns in one month:\n\n| Size | Low book-to-market (L) | Neutral (N) | High book-to-market (H) |\n|---|---:|---:|---:|\n| Small (S) | −1% | 2% | 5% |\n| Big (B) | 0% | 1% | 2% |\n\nUse the FF3 constructions\n\n$$SMB=\\frac{SL+SN+SH}{3}-\\frac{BL+BN+BH}{3},$$\n\n$$HML=\\frac{SH+BH}{2}-\\frac{SL+BL}{2}.$$\n\na. Calculate SMB and HML for the month.\n\nb. Rho has loadings of −0.3 on SMB and 0.4 on HML. Calculate the combined contribution of these two factors to its monthly return. Can this contribution alone determine Rho's total return?\n\n---"
+  },
+  {
+    "cell_index": 102,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 95 (Average)",
+    "body": "Sigma earns a total return of 1.20% in a month when the risk-free return is 0.20%. The realized factor returns are:\n\n| Factor | Return |\n|---|---:|\n| Market excess return | 2.00% |\n| SMB | −1.00% |\n| HML | 0.50% |\n| WML | 3.00% |\n\nTwo fitted models give the following coefficients. Each intercept is monthly.\n\n| Model | Intercept | Market loading | SMB loading | HML loading | WML loading |\n|---|---:|---:|---:|---:|---:|\n| Carhart | 0.10% | 0.9 | 0.3 | −0.2 | 0.5 |\n| FF3 | 0.25% | 1.0 | 0.2 | 0.1 | Not included |\n\na. Calculate the fitted excess return and residual under Carhart.\n\nb. Repeat using the supplied FF3 estimates. Explain why the difference in fitted returns need not equal the Carhart momentum contribution.\n\n---"
+  },
+  {
+    "cell_index": 103,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 96 (Average)",
+    "body": "Tau's FF5 regression has a monthly intercept of 0.05% and the following loadings. The factor returns come from the FF5 dataset for one observed month:\n\n| Factor | Loading | Realized return |\n|---|---:|---:|\n| Market excess return | 1.1 | −2.00% |\n| SMB | −0.2 | 1.00% |\n| HML | 0.3 | 0.30% |\n| RMW | 0.5 | −0.40% |\n| CMA | −0.4 | −0.70% |\n\nTau's total return that month is −1.20%; the risk-free return is 0.25%.\n\na. Calculate each factor's contribution and the fitted excess return.\n\nb. Calculate the residual and interpret it alongside Tau's actual total return.\n\n---"
+  },
+  {
+    "cell_index": 104,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 97 (Average)",
+    "body": "Upsilon is a long-only value ETF marketed as “smart beta.” An FF3 regression of its monthly returns after fees reports $R^2=94\\%$, alpha of 0.20% per month, an SMB loading of −0.1, and an HML loading of 0.7.\n\nIts manager says: “The fit and positive alpha prove persistent stock-picking skill. Investors are effectively buying the academic HML factor.”\n\na. Which conclusions about exposure, fit, and skill do the reported estimates support?\n\nb. Assess the claimed equivalence to HML. Could changing the performance benchmark alter the interpretation of Upsilon's alpha?\n\n---"
+  },
+  {
+    "cell_index": 105,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 98 (Hard)",
+    "body": "Phi, Chi, and Psi are ideal diversified portfolios with zero residual risk. Their one-year total returns satisfy\n\n$$r_i=E(r_i)+\\beta_{i1}F_1+\\beta_{i2}F_2,$$\n\nwhere both factor surprises have mean zero. Cash is risk-free at 3%.\n\n| Portfolio | Factor 1 loading | Factor 2 loading | Expected total return |\n|---|---:|---:|---:|\n| Phi | 1.2 | 0.4 | 10.0% |\n| Chi | 0.3 | 1.1 | 9.0% |\n| Psi | 0.9 | 0.8 | 11.5% |\n\nShort selling and borrowing or lending at 3% are permitted.\n\na. Find weights in Phi, Chi, and cash that sum to one and match both of Psi's factor loadings.\n\nb. Compare the matching portfolio's expected return with Psi's.\n\nc. Construct an arbitrage using a position of 10,000 in Psi. State whether it is long or short, give all other monetary positions, and verify the terminal dollar profit for arbitrary factor realizations.\n\n---"
+  },
+  {
+    "cell_index": 106,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 99 (Hard)",
+    "body": "Omega and Zeta follow a two-factor surprise model:\n\n| Asset | Factor 1 loading | Factor 2 loading | Residual variance |\n|---|---:|---:|---:|\n| Omega | 1.1 | 0.6 | 0.008100 |\n| Zeta | 0.4 | 1.2 | 0.014400 |\n\nTheir residuals are uncorrelated. Factor 1 has SD 16%. Cash has zero exposure to both factors and zero variance. Short selling and risk-free borrowing or lending are permitted.\n\na. For wealth of 90,000, find weights and monetary positions in Omega, Zeta, and cash that give a Factor 1 loading of one and a Factor 2 loading of zero.\n\nb. Calculate the portfolio's residual variance, residual SD, and total SD.\n\nc. Does the portfolio track Factor 1 without error? Is it risk-free? Explain both answers.\n\n---"
+  },
+  {
+    "cell_index": 107,
+    "lecture": "## Lecture 7: Multifactor Models and APT",
+    "header": "### Question 100 (Hard)",
+    "body": "Rho and Sigma are evaluated using the same 60 monthly observations. Fund returns are after fees. The sample arithmetic means are:\n\n| Series | Monthly mean |\n|---|---:|\n| Market excess return | 0.60% |\n| SMB | 0.20% |\n| HML | 0.30% |\n| Risk-free return | 0.20% |\n| Rho total return | 1.20% |\n| Sigma total return | 1.08% |\n\nSeparate OLS regressions, each including an intercept, report:\n\n| Fund | CAPM market beta | FF3 market loading | FF3 SMB loading | FF3 HML loading |\n|---|---:|---:|---:|---:|\n| Rho | 1.00 | 0.90 | 0.80 | 0.60 |\n| Sigma | 0.95 | 1.00 | −0.20 | 0.10 |\n\na. Calculate each fund's zero-alpha benchmark total return and monthly alpha under CAPM.\n\nb. Repeat under FF3.\n\nc. Reconcile the change in each fund's alpha using the changes in market, size, and value contributions.\n\nd. Rank the funds by estimated alpha under each model. Explain what the comparison shows about performance assessment.\n\n---"
+  }
+]
