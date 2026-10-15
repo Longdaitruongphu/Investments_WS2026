@@ -43,3 +43,22 @@ fatal: unable to access 'https://github.com/DROCLB/Investments_WS2026.git/': Cou
 Already up to date.
 [Thu 10/08/2026  9:21:44.12] Hoàn tất cập nhật. 
 ---------------------------------------- 
+[main f806ed1] Auto-save local changes before daily update
+ 5 files changed, 11796 insertions(+)
+ create mode 100644 all_parsed_questions.json
+ create mode 100644 all_practice_questions.txt
+ create mode 100644 images/EX/BFIN-WS2026-Practice_L01-L07_questions.ipynb
+ create mode 100644 images/EX/BFIN-WS2026-Practice_L01-L07_solutions.ipynb
+From https://github.com/DROCLB/Investments_WS2026
+   8e21049..76f86f1  main       -> upstream/main
+warning: in the working copy of 'update_log.txt', LF will be replaced by CRLF the next time Git touches it
+Merge made by the 'ort' strategy.
+ lectures/BFIN-WS2026-Lecture_06_ac.ipynb | 2367 +++++++++++++
+ lectures/BFIN-WS2026-Lecture_06_bc.ipynb |  255 +-
+ lectures/BFIN-WS2026-Lecture_07_ac.ipynb | 5617 ++++++++++++++++++++++++++++++
+ 3 files changed, 8221 insertions(+), 18 deletions(-)
+ create mode 100644 lectures/BFIN-WS2026-Lecture_06_ac.ipynb
+ create mode 100644 lectures/BFIN-WS2026-Lecture_07_ac.ipynb
+[Sun 10/11/2026  9:00:04.72] Hoàn tất cập nhật. 
+---------------------------------------- 
+[Thu 10/15/2026 15:21:08.89] Bắt đầu cập nhật Git... 
