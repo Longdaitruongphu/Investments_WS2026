@@ -1,0 +1,16 @@
+# Automation logs
+update_log.txt
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
