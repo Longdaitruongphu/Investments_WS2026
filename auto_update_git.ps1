@@ -19,48 +19,52 @@ function Write-Log {
     Add-Content -Path $logFile -Value $logLine -Encoding UTF8
 }
 
+function Run-Git([string]$commandArgs) {
+    $raw = (& cmd.exe /c "git $commandArgs 2>&1")
+    return @{
+        ExitCode = $LASTEXITCODE
+        Output = ($raw -join "`n").Trim()
+    }
+}
+
 Write-Log "======================================================================" "INFO"
 Write-Log "BAT DAU TIEN TRINH TU DONG CAP NHAT BAI HOC (INVESTMENTS WS2026)" "INFO"
 
 try {
     # 1. Luu lai thay doi noi bo (local) neu co
-    Write-Log "[BUOC 1] Kiem tra va tu dong luu thay doi noi bo (commit local)..." "INFO"
-    git add -A 2>&1 | Out-Null
+    Write-Log "[BUOC 1] Kiem tra va tu dong luu thay doi local (commit)..." "INFO"
+    $null = Run-Git "add -A"
     
-    $status = (git status --porcelain)
-    if ($status) {
+    $statusCheck = Run-Git "status --porcelain"
+    if ($statusCheck.Output) {
         $timeStr = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-        $commitMsg = "Auto-save local changes before daily update [$timeStr]"
-        $commitResult = (git commit -m $commitMsg 2>&1 | Out-String).Trim()
-        Write-Log "[BUOC 1] Phat hien thay doi local. Da commit thanh cong:`n$commitResult" "INFO"
+        $commitMsg = "`"Auto-save local changes before daily update [$timeStr]`""
+        $commitRes = Run-Git "commit -m $commitMsg"
+        Write-Log "[BUOC 1] Phat hien thay doi local. Da commit thanh cong:`n$($commitRes.Output)" "INFO"
     } else {
         Write-Log "[BUOC 1] Thu muc lam viec sach se, khong co thay doi local can commit." "INFO"
     }
 
     # 2. Fetch du lieu moi nhat tu upstream (DROCLB/Investments_WS2026)
     Write-Log "[BUOC 2] Dang kiem tra bai hoc moi tu upstream (DROCLB/Investments_WS2026)..." "INFO"
-    $fetchResult = (git fetch upstream main 2>&1 | Out-String).Trim()
-    if ($LASTEXITCODE -ne 0) {
-        Write-Log "[BUOC 2] Khong the tai tu upstream. Vui long kiem tra mang:`n$fetchResult" "ERROR"
+    $fetchRes = Run-Git "fetch upstream main"
+    if ($fetchRes.ExitCode -ne 0) {
+        Write-Log "[BUOC 2] Khong the tai tu upstream. Vui long kiem tra internet:`n$($fetchRes.Output)" "ERROR"
     } else {
-        $newCommits = (git rev-list HEAD..upstream/main --count 2>$null)
-        if ($newCommits) {
-            $newCommits = $newCommits.Trim()
-        } else {
-            $newCommits = "0"
-        }
+        $countRes = Run-Git "rev-list HEAD..upstream/main --count"
+        $newCommits = if ($countRes.Output) { $countRes.Output.Trim() } else { "0" }
 
         if ([int]$newCommits -gt 0) {
             Write-Log "[BUOC 2] Phat hien $newCommits bai hoc/commit moi tu giang vien! Dang merge..." "INFO"
             $timeStr = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-            $mergeMsg = "Auto-merge daily upstream updates [$timeStr]"
-            $mergeResult = (git merge upstream/main -m $mergeMsg 2>&1 | Out-String).Trim()
+            $mergeMsg = "`"Auto-merge daily upstream updates [$timeStr]`""
+            $mergeRes = Run-Git "merge upstream/main -m $mergeMsg"
 
-            if ($LASTEXITCODE -eq 0) {
-                Write-Log "[BUOC 2] Da cap nhat bai hoc moi thanh cong!`n$mergeResult" "SUCCESS"
+            if ($mergeRes.ExitCode -eq 0) {
+                Write-Log "[BUOC 2] Da cap nhat bai hoc moi thanh cong!`n$($mergeRes.Output)" "SUCCESS"
             } else {
-                Write-Log "[BUOC 2] Xung dot khi merge bai hoc! Dang abort de bao ve file local:`n$mergeResult" "WARNING"
-                git merge --abort 2>&1 | Out-Null
+                Write-Log "[BUOC 2] Xung dot khi merge bai hoc! Dang abort de bao ve file local:`n$($mergeRes.Output)" "WARNING"
+                $null = Run-Git "merge --abort"
                 Write-Log "[BUOC 2] Da rollback ve trang thai an toan. Vui long mo VS Code de kiem tra." "WARNING"
             }
         } else {
@@ -70,11 +74,11 @@ try {
 
     # 3. Dong bo toan bo len GitHub ca nhan (origin/main)
     Write-Log "[BUOC 3] Dang sao luu toan bo len GitHub ca nhan (origin/main)..." "INFO"
-    $pushResult = (git push origin main 2>&1 | Out-String).Trim()
-    if ($LASTEXITCODE -eq 0) {
-        Write-Log "[BUOC 3] Da sao luu len GitHub ca nhan thanh cong!`n$pushResult" "SUCCESS"
+    $pushRes = Run-Git "push origin main"
+    if ($pushRes.ExitCode -eq 0) {
+        Write-Log "[BUOC 3] Da sao luu len GitHub ca nhan thanh cong!`n$($pushRes.Output)" "SUCCESS"
     } else {
-        Write-Log "[BUOC 3] Chua the push len origin (co the offline hoac khong co thay doi):`n$pushResult" "WARNING"
+        Write-Log "[BUOC 3] Chua the push len origin (co the offline hoac khong co thay doi):`n$($pushRes.Output)" "WARNING"
     }
 
 } catch {
