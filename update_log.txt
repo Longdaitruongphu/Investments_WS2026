@@ -1,3 +1,56 @@
 ﻿[2026-10-18 17:47:07] [INFO] ======================================================================
 [2026-10-18 17:47:07] [INFO] BAT DAU TIEN TRINH TU DONG CAP NHAT BAI HOC (INVESTMENTS WS2026)
 [2026-10-18 17:47:07] [INFO] [BUOC 1] Kiem tra va tu dong luu thay doi noi bo (commit local)...
+[2026-10-18 17:47:07] [INFO] [BUOC 1] Phat hien thay doi local. Da commit thanh cong:
+[main d1982ef] Auto-save local changes before daily update [2026-10-18 17:47:07]
+ 18 files changed, 8478 insertions(+), 8332 deletions(-)
+ create mode 100644 .gitignore
+ create mode 100644 MASTER_LECTURE_09_DERIVATIVES_GUIDE.md
+ create mode 100644 MASTER_LECTURE_QUESTIONS_SOLUTIONS.md
+ create mode 100644 MASTER_LECTURE_THEORY_GUIDE.md
+ create mode 100644 MASTER_PRACTICE_Q01_Q100_SOLUTIONS.md
+ delete mode 100644 all_parsed_questions.json
+ delete mode 100644 all_practice_questions.txt
+ delete mode 100644 all_questions.txt
+ create mode 100644 auto_update_git.ps1
+ create mode 100644 lectures/BFIN-WS2026-Practice_L01-L07_questions.ipynb
+ create mode 100644 run_silent.vbs
+ delete mode 100644 scratch.md
+ delete mode 100644 scratch_all_lectures.md
+ delete mode 100644 scratch_utf8.md
+ create mode 100644 setup_schedule.ps1
+[2026-10-18 17:47:07] [INFO] [BUOC 2] Dang kiem tra bai hoc moi tu upstream (DROCLB/Investments_WS2026)...
+[2026-10-18 17:47:08] [INFO] [BUOC 2] Phat hien 4 bai hoc/commit moi tu giang vien! Dang merge...
+[2026-10-18 17:47:08] [SUCCESS] [BUOC 2] Da cap nhat bai hoc moi thanh cong!
+git : warning: in the working copy of 'update_log.txt', LF will be replaced by CRLF the next time Git touches it
+At D:\Downloads\Investments_WS2026\auto_update_git.ps1:57 char:29
++ ...     $mergeResult = (git merge upstream/main -m $mergeMsg 2>&1 | Out-S ...
++                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: in the... Git touches it:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Merge made by the 'ort' strategy.
+ lectures/BFIN-WS2026-Lecture_09_ac.ipynb |     1 +
+ lectures/BFIN-WS2026-Lecture_09_bc.ipynb |    23 +-
+ lectures/BFIN-WS2026-Lecture_10_bc.ipynb |  3868 +++++++++
+ lectures/BFIN-WS2026-Lecture_11_bc.ipynb | 13161 +++++++++++++++++++++++++++++
+ 4 files changed, 17043 insertions(+), 10 deletions(-)
+ create mode 100644 lectures/BFIN-WS2026-Lecture_09_ac.ipynb
+ create mode 100644 lectures/BFIN-WS2026-Lecture_10_bc.ipynb
+ create mode 100644 lectures/BFIN-WS2026-Lecture_11_bc.ipynb
+[2026-10-18 17:47:08] [INFO] [BUOC 3] Dang sao luu toan bo len GitHub ca nhan (origin/main)...
+[2026-10-18 17:47:12] [SUCCESS] [BUOC 3] Da sao luu len GitHub ca nhan thanh cong!
+git : To https://github.com/Longdaitruongphu/Investments_WS2026.git
+At D:\Downloads\Investments_WS2026\auto_update_git.ps1:73 char:20
++     $pushResult = (git push origin main 2>&1 | Out-String).Trim()
++                    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...ents_WS2026.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   20680fb..d1db612  main -> main
+[2026-10-18 17:47:12] [INFO] TIEN TRINH CAP NHAT HOAN TAT AN TOAN.
+[2026-10-18 17:47:12] [INFO] ======================================================================
+
+[2026-10-18 17:47:23] [INFO] ======================================================================
+[2026-10-18 17:47:23] [INFO] BAT DAU TIEN TRINH TU DONG CAP NHAT BAI HOC (INVESTMENTS WS2026)
+[2026-10-18 17:47:23] [INFO] [BUOC 1] Kiem tra va tu dong luu thay doi noi bo (commit local)...
