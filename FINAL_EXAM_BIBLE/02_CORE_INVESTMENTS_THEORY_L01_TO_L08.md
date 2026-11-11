@@ -12,7 +12,7 @@
 >   2. **Trụ cột Portfolio Theory (L04–L05):** Phân phối kịch bản / GMVP / Tangency Portfolio $P^*$ (kèm kiểm tra biên cấm bán khống hoặc trần tỷ trọng) / CAL, Kinked CAL & Phân bổ vốn tối ưu $y^*$ theo hàm hữu dụng $U = E(r) - \frac{1}{2}A\sigma^2$ / Ngưỡng đa dạng hóa $S_Y > \rho_{XY}S_X$.
 >   3. **Trụ cột Asset Pricing & Market Efficiency (L06–L08):** Single-Index Model ($R^2$, phân rã phương sai, kết hợp cổ phiếu $\alpha \ne 0$ với Market) / CAPM (CML vs. SML, định giá cổ phiếu) / APT Pure Arbitrage 3 bước, Factor-Mimicking & Debt-Financed Hedging / Đánh giá quỹ Fama-French (Gross vs. Net Alpha, phí hòa vốn) / Limits to Arbitrage (No-Arbitrage Band có phí mượn cổ phiếu).
 > - **Quy tắc làm tròn chuẩn của đề thi:** Giữ nguyên giá trị chưa làm tròn (*unrounded intermediate values*) trong toàn bộ các bước tính trung gian; chỉ làm tròn kết quả cuối cùng về **2 chữ số thập phân** đối với số tiền (USD/EUR) và tỷ lệ phần trăm (`%`), **4 chữ số thập phân** đối với Duration/Convexity/Sharpe Ratio/Beta, và **ít nhất 6 chữ số thập phân** đối với Variance/Covariance dạng số thập phân.
-
+D:\Downloads\Investments_WS2026\FINAL_EXAM_BIBLE\01_DERIVATIVES_MASTERY_L09_L10_L11_EXTRA.md
 ---
 
 ## MỤC LỤC ĐỊNH HƯỚNG NHANH
