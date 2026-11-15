@@ -1,0 +1,2349 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WALL STREET LEGENDS: BFIN RPG QUEST (WS2026)</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #070b19;
+      --foreground: #f8fafc;
+      --card: #111827;
+      --card-foreground: #f8fafc;
+      --primary: #6366f1;
+      --primary-foreground: #ffffff;
+      --secondary: #1e293b;
+      --secondary-foreground: #e2e8f0;
+      --muted: #0f172a;
+      --muted-foreground: #94a3b8;
+      --accent: #ec4899;
+      --accent-foreground: #ffffff;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      background: radial-gradient(circle at 15% 15%, #1e1b4b 0%, #090d16 55%, #050811 100%);
+      color: var(--foreground);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .cyber-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(236, 72, 153, 0.07) 1px, transparent 1px);
+    }
+
+    @keyframes heroIdle {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-10px) scale(1.03); }
+    }
+    @keyframes monsterIdle {
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+      50% { transform: translateY(-12px) rotate(-2deg) scale(1.04); }
+    }
+    @keyframes petBounce {
+      0%, 100% { transform: translateY(0px) rotate(-3deg); }
+      50% { transform: translateY(-14px) rotate(5deg); }
+    }
+    @keyframes heroLungeRight {
+      0% { transform: translateX(0) scale(1); }
+      35% { transform: translateX(140px) translateY(-15px) scale(1.22) rotate(6deg); filter: drop-shadow(0 0 25px #38bdf8); }
+      65% { transform: translateX(90px) scale(1.1); }
+      100% { transform: translateX(0) scale(1); }
+    }
+    @keyframes monsterLungeLeft {
+      0% { transform: translateX(0) scale(1); }
+      35% { transform: translateX(-140px) translateY(-10px) scale(1.25) rotate(-8deg); filter: drop-shadow(0 0 28px #ef4444); }
+      65% { transform: translateX(-70px) scale(1.1); }
+      100% { transform: translateX(0) scale(1); }
+    }
+    @keyframes takeDamageShake {
+      0%, 100% { transform: translateX(0); filter: none; }
+      15% { transform: translateX(-16px) rotate(-6deg) scale(0.92); filter: brightness(2.5) saturate(3) hue-rotate(-30deg); }
+      35% { transform: translateX(16px) rotate(6deg) scale(1.06); filter: brightness(2) drop-shadow(0 0 20px #ef4444); }
+      55% { transform: translateX(-12px) rotate(-4deg); }
+      75% { transform: translateX(10px) rotate(3deg); }
+    }
+    @keyframes screenShakeAnim {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-10px, 6px); }
+      40% { transform: translate(10px, -8px); }
+      60% { transform: translate(-8px, -4px); }
+      80% { transform: translate(8px, 6px); }
+    }
+    @keyframes slashWave {
+      0% { opacity: 0; transform: translateX(-80px) scale(0.4) rotate(-15deg); }
+      40% { opacity: 1; transform: translateX(60px) scale(1.35) rotate(5deg); }
+      100% { opacity: 0; transform: translateX(220px) scale(1.7) rotate(15deg); }
+    }
+    @keyframes floatDamage {
+      0% { opacity: 1; transform: translateY(0) scale(0.7); }
+      30% { opacity: 1; transform: translateY(-28px) scale(1.25); }
+      100% { opacity: 0; transform: translateY(-75px) scale(0.95); }
+    }
+    @keyframes rainbowFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes speechPop {
+      0% { transform: scale(0.8) translateY(8px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .hero-sprite { animation: heroIdle 3s ease-in-out infinite; transition: all 0.25s; }
+    .monster-sprite { animation: monsterIdle 3.2s ease-in-out infinite; transition: all 0.25s; }
+    .pet-sprite { animation: petBounce 2.3s ease-in-out infinite; }
+    .lunge-right { animation: heroLungeRight 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards !important; }
+    .lunge-left { animation: monsterLungeLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards !important; }
+    .hit-shake { animation: takeDamageShake 0.6s ease-in-out forwards !important; }
+    .screen-shake { animation: screenShakeAnim 0.45s ease-in-out; }
+    .rainbow-banner {
+      background: linear-gradient(270deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899);
+      background-size: 300% 300%;
+      animation: rainbowFlow 8s ease infinite;
+    }
+    .speech-bubble {
+      animation: speechPop 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    }
+
+    .arena-w1 { background: radial-gradient(circle at 50% 25%, rgba(59, 130, 246, 0.38), rgba(15, 23, 42, 0.95)), linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); }
+    .arena-w2 { background: radial-gradient(circle at 50% 25%, rgba(245, 158, 11, 0.38), rgba(15, 23, 42, 0.95)), linear-gradient(135deg, #1c1917 0%, #451a03 100%); }
+    .arena-w3 { background: radial-gradient(circle at 50% 25%, rgba(16, 185, 129, 0.38), rgba(15, 23, 42, 0.95)), linear-gradient(135deg, #064e3b 0%, #0f172a 100%); }
+    .arena-w4 { background: radial-gradient(circle at 50% 25%, rgba(168, 85, 247, 0.42), rgba(15, 23, 42, 0.95)), linear-gradient(135deg, #2e1065 0%, #0f172a 100%); }
+    .arena-w5 { background: radial-gradient(circle at 50% 25%, rgba(244, 63, 94, 0.42), rgba(15, 23, 42, 0.95)), linear-gradient(135deg, #4c0519 0%, #0f172a 100%); }
+    .arena-w6 { background: radial-gradient(circle at 50% 25%, rgba(6, 182, 212, 0.45), rgba(88, 28, 135, 0.85)), linear-gradient(135deg, #083344 0%, #3b0764 100%); }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #090d16; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #6366f1, #ec4899); border-radius: 9999px; }
+
+    .btn-game {
+      transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-game:hover {
+      transform: translateY(-3px) scale(1.02);
+      filter: brightness(1.12);
+    }
+    .btn-game:active {
+      transform: translateY(1px) scale(0.97);
+    }
+  </style>
+</head>
+<body class="cyber-grid select-none">
+
+  <!-- FULLSCREEN PARTICLE FX CANVAS -->
+  <canvas id="fx-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+  <!-- FLOATING FAIRY COMPANION MIMI -->
+  <div id="fairy-widget" class="fixed bottom-4 right-4 z-40 flex items-end gap-2.5 max-w-xs sm:max-w-sm pointer-events-auto">
+    <div id="fairy-bubble" class="speech-bubble bg-gradient-to-br from-fuchsia-950/95 via-indigo-950/95 to-slate-900/95 border-2 border-pink-400/70 rounded-2xl rounded-br-none p-3.5 shadow-2xl shadow-pink-500/20 text-xs leading-relaxed">
+      <div class="flex items-center justify-between gap-2 mb-1">
+        <span class="font-extrabold text-pink-300 flex items-center gap-1">🧚‍♀️ Finance Fairy Mimi</span>
+        <button onclick="toggleFairyBubble()" class="text-[10px] text-slate-400 hover:text-white px-1.5 py-0.5 rounded bg-slate-800">Hide/Show</button>
+      </div>
+      <p id="fairy-text" class="text-slate-100">Welcome, Champion! Pick your <b>Hero</b> and enter the <b>Wall Street Arena</b>! Every right answer unleashes a critical slash on the Exam Monsters!</p>
+    </div>
+    <button onclick="pokeFairy()" title="Tap Mimi for a quick exam tip!" class="btn-game shrink-0 w-16 h-16 rounded-full bg-gradient-to-tr from-pink-500 via-fuchsia-500 to-indigo-500 p-1 shadow-xl shadow-pink-500/40 border-2 border-white/60 flex items-center justify-center relative">
+      <span class="text-3xl pet-sprite">🧚‍♀️</span>
+      <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-slate-900 animate-ping"></span>
+    </button>
+  </div>
+
+  <!-- TOP ARCADE RPG HUD HEADER -->
+  <header class="sticky top-0 z-30 backdrop-blur-xl bg-slate-950/90 border-b-2 border-indigo-500/40 shadow-2xl shadow-indigo-950/50">
+    <div class="max-w-7xl mx-auto px-3 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Left: Hero Mini-Portrait & Status Bars -->
+      <div class="flex items-center gap-3">
+        <button onclick="openHeroModal()" class="btn-game relative group w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-600 via-fuchsia-600 to-amber-500 p-0.5 shadow-lg shadow-indigo-500/30" title="Switch Hero / View Skills">
+          <div id="hud-hero-avatar" class="w-full h-full rounded-[14px] bg-slate-900 flex items-center justify-center overflow-hidden"></div>
+          <span id="hud-level-badge" class="absolute -bottom-1.5 -right-1.5 px-1.5 py-0.5 text-[10px] font-black rounded-full bg-amber-400 text-slate-950 border border-white shadow">Lv.1</span>
+        </button>
+
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="hud-hero-name" class="font-black text-sm sm:text-base bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-fuchsia-300 to-amber-300">Kitsune Minh-San</span>
+            <button onclick="openHeroModal()" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/30 text-indigo-200 border border-indigo-400/40 hover:bg-indigo-500/50">🔄 Switch Hero</button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 mt-1 w-56 sm:w-72">
+            <div class="bg-slate-900/90 rounded-full h-4 border border-rose-500/40 p-0.5 relative overflow-hidden">
+              <div id="hud-hp-bar" class="h-full rounded-full bg-gradient-to-r from-rose-600 via-red-500 to-orange-400 transition-all duration-300" style="width:100%"></div>
+              <span id="hud-hp-text" class="absolute inset-0 flex items-center justify-center text-[10px] font-black text-white drop-shadow">❤️ 100/100</span>
+            </div>
+            <div class="bg-slate-900/90 rounded-full h-4 border border-cyan-400/40 p-0.5 relative overflow-hidden">
+              <div id="hud-mana-bar" class="h-full rounded-full bg-gradient-to-r from-blue-600 via-cyan-400 to-teal-300 transition-all duration-300" style="width:40%"></div>
+              <span id="hud-mana-text" class="absolute inset-0 flex items-center justify-center text-[10px] font-black text-white drop-shadow">⚡ Ult: 40%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Animated XP Bar & Title Rank -->
+      <div class="hidden lg:flex flex-col items-center flex-1 max-w-xs">
+        <div class="flex justify-between w-full text-[11px] font-bold mb-1">
+          <span id="hud-rank-title" class="text-amber-300">🏅 Lv.1 Trading Rookie</span>
+          <span id="hud-xp-text" class="text-cyan-300">0 / 300 XP</span>
+        </div>
+        <div class="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-indigo-500/40 p-0.5">
+          <div id="hud-xp-bar" class="h-full rounded-full rainbow-banner transition-all duration-500" style="width:5%"></div>
+        </div>
+      </div>
+
+      <!-- Right: Currencies, Combo Flame, Potions & Controls -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <div class="px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-400/40 flex items-center gap-1.5 shadow-inner">
+          <span class="text-base">🪙</span>
+          <div>
+            <div class="text-[9px] uppercase font-bold text-amber-300/80 leading-none">Gold</div>
+            <div id="hud-gold" class="text-xs sm:text-sm font-black text-amber-300">250</div>
+          </div>
+        </div>
+
+        <div class="px-3 py-1.5 rounded-xl bg-fuchsia-500/15 border border-fuchsia-400/40 flex items-center gap-1.5 shadow-inner">
+          <span class="text-base">💎</span>
+          <div>
+            <div class="text-[9px] uppercase font-bold text-fuchsia-300/80 leading-none">Gems</div>
+            <div id="hud-gems" class="text-xs sm:text-sm font-black text-fuchsia-300">15</div>
+          </div>
+        </div>
+
+        <div id="hud-combo-box" class="px-3 py-1.5 rounded-xl bg-orange-500/15 border border-orange-400/40 flex items-center gap-1.5">
+          <span class="text-base animate-bounce">🔥</span>
+          <div>
+            <div class="text-[9px] uppercase font-bold text-orange-300/80 leading-none">Combo</div>
+            <div id="hud-combo" class="text-xs sm:text-sm font-black text-orange-400">x0</div>
+          </div>
+        </div>
+
+        <button onclick="usePotion('heal')" title="Drink Healing Potion (+50 HP)" class="btn-game px-2.5 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-xs font-extrabold text-emerald-300 flex items-center gap-1">
+          🧪 <span id="hud-potions">3</span>
+        </button>
+
+        <button onclick="toggleSound()" id="btn-sound" class="btn-game p-2 rounded-xl bg-slate-800 border border-slate-700 text-sm" title="Toggle Arcade Sound FX">🔊</button>
+      </div>
+    </div>
+
+    <!-- GAME MODE NAVIGATION TABS -->
+    <div class="max-w-7xl mx-auto px-3 pb-2.5 pt-1 flex items-center gap-1.5 overflow-x-auto">
+      <button onclick="switchMode('campaign')" id="tab-campaign" class="mode-tab btn-game px-3.5 py-2 rounded-xl font-extrabold text-xs whitespace-nowrap flex items-center gap-1.5 bg-gradient-to-r from-indigo-600 to-fuchsia-600 text-white shadow-lg shadow-indigo-500/30 border border-white/20">
+        ⚔️ 1. Monster Campaign (6 Realms)
+      </button>
+      <button onclick="switchMode('boss')" id="tab-boss" class="mode-tab btn-game px-3.5 py-2 rounded-xl font-extrabold text-xs whitespace-nowrap flex items-center gap-1.5 bg-slate-900/90 text-slate-300 border border-slate-700 hover:border-rose-400">
+        🐉 2. 5×3 Raid Bosses (Calc)
+      </button>
+      <button onclick="switchMode('spells')" id="tab-spells" class="mode-tab btn-game px-3.5 py-2 rounded-xl font-extrabold text-xs whitespace-nowrap flex items-center gap-1.5 bg-slate-900/90 text-slate-300 border border-slate-700 hover:border-fuchsia-400">
+        🧚‍♀️ 3. ELI5 Spell Academy (≤100 Words)
+      </button>
+      <button onclick="switchMode('bomb')" id="tab-bomb" class="mode-tab btn-game px-3.5 py-2 rounded-xl font-extrabold text-xs whitespace-nowrap flex items-center gap-1.5 bg-slate-900/90 text-slate-300 border border-slate-700 hover:border-amber-400">
+        💣 4. Goblin Bomb Defusal (Traps)
+      </button>
+      <button onclick="switchMode('forge')" id="tab-forge" class="mode-tab btn-game px-3.5 py-2 rounded-xl font-extrabold text-xs whitespace-nowrap flex items-center gap-1.5 bg-slate-900/90 text-slate-300 border border-slate-700 hover:border-cyan-400">
+        🌳 5. 2-Period Binomial Forge
+      </button>
+      <button onclick="switchMode('tavern')" id="tab-tavern" class="mode-tab btn-game px-3.5 py-2 rounded-xl font-extrabold text-xs whitespace-nowrap flex items-center gap-1.5 bg-slate-900/90 text-slate-300 border border-slate-700 hover:border-emerald-400">
+        🏪 6. Tavern & Pet Shop
+      </button>
+      <button onclick="switchMode('grimoire')" id="tab-grimoire" class="mode-tab btn-game px-3.5 py-2 rounded-xl font-extrabold text-xs whitespace-nowrap flex items-center gap-1.5 bg-slate-900/90 text-slate-300 border border-slate-700 hover:border-yellow-400">
+        📜 7. Formula Grimoire & Revenge (<span id="mistake-badge">0</span>)
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN GAME CONTAINER -->
+  <main id="game-root" class="max-w-7xl mx-auto px-3 py-4 pb-24 space-y-5">
+
+    <!-- MODE 1: CAMPAIGN BATTLE ARENA -->
+    <section id="view-campaign" class="space-y-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5" id="realm-selector"></div>
+
+      <div id="campaign-arena" class="arena-w1 relative rounded-3xl border-2 border-indigo-400/50 p-4 sm:p-6 overflow-hidden shadow-2xl">
+        <div class="absolute -top-16 -left-16 w-56 h-56 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-16 -right-16 w-56 h-56 bg-fuchsia-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-white/15">
+          <div class="flex items-center gap-2">
+            <span id="stage-realm-badge" class="px-3 py-1 rounded-full text-xs font-black bg-cyan-500/30 text-cyan-200 border border-cyan-300/50">REALM 1</span>
+            <h2 id="stage-realm-title" class="text-base sm:text-lg font-black text-white drop-shadow">Wall Street & Margin Arena</h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="shuffleCampaignQuestions()" class="btn-game px-3 py-1 rounded-xl bg-fuchsia-500/25 border border-fuchsia-400/50 text-xs font-extrabold text-fuchsia-200">🎲 Shuffle Quest</button>
+            <span id="stage-wave-counter" class="px-3 py-1 rounded-xl bg-slate-900/80 border border-slate-700 text-xs font-black text-amber-300">Wave 1 / 4</span>
+          </div>
+        </div>
+
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 items-center gap-4 py-2 min-h-[220px]">
+          <!-- LEFT: HERO & PET -->
+          <div class="md:col-span-5 flex flex-col items-center md:items-start relative">
+            <div id="hero-speech" class="speech-bubble mb-2 px-3.5 py-2 rounded-2xl rounded-bl-none bg-cyan-950/90 border border-cyan-400/60 text-xs font-bold text-cyan-100 shadow-lg max-w-xs">
+              "Ready for battle! Pick the right strike to land a critical hit!"
+            </div>
+
+            <div class="flex items-end gap-3">
+              <div id="battle-hero-sprite" class="hero-sprite w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center relative"></div>
+              <div id="battle-pet-sprite" class="pet-sprite w-16 h-16 flex flex-col items-center justify-center bg-slate-900/60 rounded-2xl border border-amber-400/40 p-1 shadow-lg" title="Companion Pet"></div>
+            </div>
+
+            <div class="mt-3 flex flex-wrap items-center gap-2">
+              <button onclick="castUltimateSkill()" id="btn-ultimate" class="btn-game px-3.5 py-2 rounded-xl font-black text-xs bg-gradient-to-r from-amber-500 via-orange-500 to-pink-500 text-slate-950 shadow-lg shadow-amber-500/30 border border-white/60 flex items-center gap-1.5">
+                ⚡ ULTIMATE R (<span id="ult-ready-text">40%</span>)
+              </button>
+              <button onclick="useFiftyFifty()" class="btn-game px-3 py-2 rounded-xl font-extrabold text-xs bg-purple-600/30 border border-purple-400/60 text-purple-200 hover:bg-purple-600/50">
+                ✂️ Slash 2 Traps (50 🪙)
+              </button>
+              <button onclick="askFairyHint()" class="btn-game px-3 py-2 rounded-xl font-extrabold text-xs bg-pink-600/30 border border-pink-400/60 text-pink-200 hover:bg-pink-600/50">
+                🧚‍♀️ Mimi Hint (Free)
+              </button>
+            </div>
+          </div>
+
+          <!-- CENTER: VS & FX -->
+          <div class="md:col-span-2 flex flex-col items-center justify-center relative py-2">
+            <div id="slash-fx-layer" class="pointer-events-none absolute inset-0 flex items-center justify-center"></div>
+            <div id="floating-dmg-layer" class="pointer-events-none absolute -top-6 inset-x-0 flex flex-col items-center justify-center z-20"></div>
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-rose-500 via-amber-500 to-fuchsia-600 p-0.5 shadow-2xl shadow-rose-500/40 animate-pulse">
+              <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center font-black text-lg italic text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-rose-400">
+                VS
+              </div>
+            </div>
+            <div id="shield-status-pill" class="mt-2 px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/25 border border-emerald-400/50 text-emerald-300 hidden">
+              🛡️ Immunity Shield: ON
+            </div>
+          </div>
+
+          <!-- RIGHT: MONSTER BOSS -->
+          <div class="md:col-span-5 flex flex-col items-center md:items-end relative">
+            <div id="monster-speech" class="speech-bubble mb-2 px-3.5 py-2 rounded-2xl rounded-br-none bg-rose-950/90 border border-rose-400/60 text-xs font-bold text-rose-100 shadow-lg max-w-xs text-right">
+              "Hahaha! Let's see if you survive this financial riddle!"
+            </div>
+
+            <div id="battle-monster-sprite" class="monster-sprite w-36 h-36 sm:w-40 sm:h-40 flex items-center justify-center relative"></div>
+
+            <div class="w-64 sm:w-72 mt-2 bg-slate-950/85 p-2.5 rounded-2xl border border-rose-500/50 shadow-xl">
+              <div class="flex items-center justify-between text-xs font-black mb-1">
+                <span id="monster-name" class="text-rose-300">🐻 Margin-Call Bear</span>
+                <span id="monster-hp-text" class="text-amber-300">HP: 600 / 600</span>
+              </div>
+              <div class="w-full h-4 bg-slate-900 rounded-full overflow-hidden border border-rose-500/40 p-0.5">
+                <div id="monster-hp-bar" class="h-full rounded-full bg-gradient-to-r from-rose-600 via-red-500 to-amber-400 transition-all duration-300" style="width:100%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTION CARD -->
+      <div class="bg-slate-900/95 border-2 border-indigo-500/40 rounded-3xl p-4 sm:p-6 shadow-2xl space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span id="q-topic-tag" class="px-3 py-1 rounded-xl text-xs font-black bg-indigo-500/25 text-indigo-300 border border-indigo-400/40">L01 • Margin</span>
+            <span id="q-reward-tag" class="px-3 py-1 rounded-xl text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-400/40">+120 XP • +60 🪙</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="prevCampaignQ()" class="btn-game px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300">◀ Prev</button>
+            <button onclick="nextCampaignQ()" class="btn-game px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-fuchsia-600 text-xs font-black text-white">Next Quest ▶</button>
+          </div>
+        </div>
+
+        <div id="q-prompt-box" class="p-4 rounded-2xl bg-gradient-to-r from-slate-950 via-indigo-950/50 to-slate-950 border border-indigo-400/30 text-sm sm:text-base font-bold text-slate-100 leading-relaxed"></div>
+        <div id="q-hint-box" class="hidden p-3.5 rounded-2xl bg-pink-950/60 border border-pink-400/50 text-xs sm:text-sm text-pink-100"></div>
+        <div id="q-options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+        <div id="q-feedback-panel" class="hidden rounded-2xl border-2 p-4 sm:p-5 space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- MODE 2: 5x3 RAID BOSS ARENA -->
+    <section id="view-boss" class="hidden space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" id="raid-boss-selector"></div>
+
+      <div class="arena-w5 rounded-3xl border-2 border-rose-500/60 p-4 sm:p-6 shadow-2xl space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/15 pb-4">
+          <div class="flex items-center gap-4">
+            <div id="raid-boss-avatar" class="monster-sprite w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center"></div>
+            <div>
+              <span id="raid-boss-tag" class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-500/30 text-rose-200 border border-rose-400/50">3-PART CALCULATION BOSS</span>
+              <h2 id="raid-boss-title" class="text-lg sm:text-xl font-black text-white mt-1"></h2>
+              <p id="raid-boss-lore" class="text-xs text-rose-200/90 mt-0.5"></p>
+            </div>
+          </div>
+
+          <div class="w-full sm:w-72 bg-slate-950/85 p-3 rounded-2xl border border-rose-400/50">
+            <div class="flex justify-between text-xs font-black mb-1">
+              <span class="text-rose-300">RAID BOSS HP (3 PHASES)</span>
+              <span id="raid-hp-label" class="text-amber-300">100%</span>
+            </div>
+            <div class="w-full h-4 bg-slate-900 rounded-full overflow-hidden border border-rose-500/40 p-0.5">
+              <div id="raid-hp-bar" class="h-full rounded-full bg-gradient-to-r from-rose-600 via-orange-500 to-yellow-400 transition-all duration-500" style="width:100%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="raid-scenario-box" class="p-4 rounded-2xl bg-slate-950/90 border border-amber-400/40 text-sm text-slate-100 leading-relaxed"></div>
+        <div id="raid-phases-container" class="grid grid-cols-1 lg:grid-cols-3 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- MODE 3: SPELL ACADEMY (PROVE & SHORT CONCEPTUAL <=100 WORDS + ELI5) -->
+    <section id="view-spells" class="hidden space-y-4">
+      <div class="arena-w4 rounded-3xl border-2 border-fuchsia-500/50 p-4 sm:p-6 shadow-2xl">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="text-4xl pet-sprite">🧙‍♀️</div>
+            <div>
+              <h2 class="text-lg sm:text-xl font-black text-white">ELI5 Spell Academy & Short Proofs (≤ 100 Words)</h2>
+              <p class="text-xs text-fuchsia-200">Pick the <b>Key Grading Hook</b> to unlock the Kid-Friendly ELI5 Story & Exam Model Answer!</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2" id="spell-filter-bar"></div>
+        </div>
+
+        <div id="spell-card-stage" class="bg-slate-950/90 rounded-3xl border border-fuchsia-400/40 p-4 sm:p-6 space-y-4"></div>
+      </div>
+    </section>
+
+    <!-- MODE 4: GOBLIN BOMB DEFUSAL BLITZ -->
+    <section id="view-bomb" class="hidden space-y-4">
+      <div class="arena-w2 rounded-3xl border-2 border-amber-500/60 p-4 sm:p-6 shadow-2xl space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/15 pb-3">
+          <div class="flex items-center gap-3">
+            <div class="text-5xl monster-sprite">👺</div>
+            <div>
+              <h2 class="text-lg sm:text-xl font-black text-amber-300">Goblin Bomb Squad: Fatal Exam Trap Blitz</h2>
+              <p class="text-xs text-amber-100/90"><b>Gobo the Trap Goblin</b> just threw a ticking bomb! Cut the right wire before it explodes!</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="bomb-progress-pill" class="px-3.5 py-1.5 rounded-xl bg-slate-950 border border-amber-400/50 text-xs font-black text-amber-300">Bomb 1 / 8</span>
+            <button onclick="nextBombTrap()" class="btn-game px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-black text-xs">Next Bomb ▶</button>
+          </div>
+        </div>
+
+        <div id="bomb-box" class="relative bg-slate-950/95 border-2 border-amber-400/50 rounded-3xl p-5 sm:p-7 text-center space-y-5 shadow-inner">
+          <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-rose-500/20 border border-rose-400/50 text-rose-300 text-xs font-black">
+            💣 <span id="bomb-topic">MARGIN CALL TRAP</span>
+          </div>
+
+          <p id="bomb-statement" class="text-base sm:text-lg font-extrabold text-white max-w-3xl mx-auto leading-relaxed"></p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto pt-2">
+            <button onclick="cutBombWire(true)" class="btn-game py-4 px-5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-black text-sm sm:text-base shadow-xl shadow-emerald-600/30 border-2 border-emerald-300 flex items-center justify-center gap-2">
+              ✂️🟢 CUT GREEN WIRE: 100% TRUE!
+            </button>
+            <button onclick="cutBombWire(false)" class="btn-game py-4 px-5 rounded-2xl bg-gradient-to-r from-rose-600 to-orange-600 text-white font-black text-sm sm:text-base shadow-xl shadow-rose-600/30 border-2 border-rose-300 flex items-center justify-center gap-2">
+              ✂️🔴 CUT RED WIRE: EXAM TRAP (FALSE)!
+            </button>
+          </div>
+
+          <div id="bomb-feedback" class="hidden text-left p-4 rounded-2xl border-2 mt-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODE 5: 2-PERIOD BINOMIAL FORGE -->
+    <section id="view-forge" class="hidden space-y-4">
+      <div class="arena-w6 rounded-3xl border-2 border-cyan-400/60 p-4 sm:p-6 shadow-2xl space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/15 pb-3">
+          <div>
+            <h2 class="text-lg sm:text-xl font-black text-cyan-300">🌳 Alchemist's 2-Period Binomial Forge & Dynamic Delta-Hedging</h2>
+            <p class="text-xs text-cyan-100/90">Tune parameters or click a Preset Gem to summon the full Binomial Tree, self-financing (Δ, B) portfolios, and Option Leverage Ω, β_opt!</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="loadForgePreset('q32')" class="btn-game px-3 py-1.5 rounded-xl bg-cyan-500/25 border border-cyan-300/60 text-xs font-black text-cyan-200">💎 Preset Q32 (Call)</button>
+            <button onclick="loadForgePreset('q33')" class="btn-game px-3 py-1.5 rounded-xl bg-amber-500/25 border border-amber-300/60 text-xs font-black text-amber-200">🔥 Preset Q33 (Additive +$18/-$12)</button>
+            <button onclick="loadForgePreset('q39')" class="btn-game px-3 py-1.5 rounded-xl bg-fuchsia-500/25 border border-fuchsia-300/60 text-xs font-black text-fuchsia-200">🔮 Preset Q39 (Put)</button>
+            <button onclick="loadForgePreset('extra')" class="btn-game px-3 py-1.5 rounded-xl bg-emerald-500/25 border border-emerald-300/60 text-xs font-black text-emerald-200">⚡ Preset Extra Session</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 bg-slate-950/85 p-3.5 rounded-2xl border border-cyan-500/30 text-xs">
+          <div>
+            <label class="font-bold text-slate-400 block mb-1">Tree Type</label>
+            <select id="fg-mode" onchange="runBinomialForge()" class="w-full rounded-xl bg-slate-900 border border-slate-700 p-2 font-bold text-white">
+              <option value="mult">Multiplicative (u, d)</option>
+              <option value="add">Additive (+U, -D)</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold text-slate-400 block mb-1">Option Type</label>
+            <select id="fg-type" onchange="runBinomialForge()" class="w-full rounded-xl bg-slate-900 border border-slate-700 p-2 font-bold text-white">
+              <option value="call">European Call</option>
+              <option value="put">European Put</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold text-slate-400 block mb-1">Spot S₀ ($)</label>
+            <input id="fg-s0" type="number" step="any" value="100" oninput="runBinomialForge()" class="w-full rounded-xl bg-slate-900 border border-slate-700 p-2 font-bold text-cyan-300" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-400 block mb-1">Strike K ($)</label>
+            <input id="fg-k" type="number" step="any" value="100" oninput="runBinomialForge()" class="w-full rounded-xl bg-slate-900 border border-slate-700 p-2 font-bold text-amber-300" />
+          </div>
+          <div>
+            <label id="fg-u-label" class="font-bold text-slate-400 block mb-1">Up Factor (u)</label>
+            <input id="fg-u" type="number" step="any" value="1.10" oninput="runBinomialForge()" class="w-full rounded-xl bg-slate-900 border border-slate-700 p-2 font-bold text-emerald-300" />
+          </div>
+          <div>
+            <label id="fg-d-label" class="font-bold text-slate-400 block mb-1">Down Factor (d)</label>
+            <input id="fg-d" type="number" step="any" value="0.90" oninput="runBinomialForge()" class="w-full rounded-xl bg-slate-900 border border-slate-700 p-2 font-bold text-rose-300" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-400 block mb-1">R_f / period (e.g. 0.05)</label>
+            <input id="fg-r" type="number" step="any" value="0.05" oninput="runBinomialForge()" class="w-full rounded-xl bg-slate-900 border border-slate-700 p-2 font-bold text-fuchsia-300" />
+          </div>
+        </div>
+
+        <div id="forge-output" class="grid grid-cols-1 lg:grid-cols-3 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- MODE 6: WALL STREET TAVERN & SHOP -->
+    <section id="view-tavern" class="hidden space-y-5">
+      <div class="arena-w3 rounded-3xl border-2 border-emerald-400/60 p-4 sm:p-6 shadow-2xl space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/15 pb-3">
+          <div>
+            <h2 class="text-lg sm:text-xl font-black text-emerald-300">🏪 Wall Street Tavern: Recruit Heroes, Pets & Relics</h2>
+            <p class="text-xs text-emerald-100/90">Spend your Gold (🪙) earned from battles to unlock passive buffs and epic gear!</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider text-cyan-300 mb-3">🦸 1. Choose Your Hero Class</h3>
+          <div id="tavern-heroes-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider text-amber-300 mb-3">🐾 2. Companion Pets (Live Combat Buffs)</h3>
+          <div id="tavern-pets-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider text-fuchsia-300 mb-3">🗡️ 3. Armory & Relics Shop</h3>
+          <div id="tavern-items-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODE 7: FORMULA GRIMOIRE & REVENGE QUEUE -->
+    <section id="view-grimoire" class="hidden space-y-5">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div class="lg:col-span-2 bg-slate-900/95 border-2 border-indigo-500/40 rounded-3xl p-4 sm:p-6 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-lg font-black text-indigo-300">📜 Master Formula Grimoire (L01–L11 + Extra)</h2>
+            <input id="formula-search" type="text" oninput="renderFormulaGrimoire()" placeholder="🔍 Search formulas (e.g. margin, duration, capm, parity, delta...)" class="w-full sm:w-72 rounded-xl bg-slate-950 border border-indigo-400/50 px-3 py-1.5 text-xs text-white" />
+          </div>
+          <div id="formula-cards-list" class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[580px] overflow-y-auto pr-1"></div>
+        </div>
+
+        <div class="bg-slate-900/95 border-2 border-rose-500/40 rounded-3xl p-4 sm:p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-black text-rose-300">⚔️ Revenge Queue (Missed)</h2>
+            <button onclick="clearRevengeList()" class="text-xs font-bold text-slate-400 hover:text-white">Clear All</button>
+          </div>
+          <p class="text-xs text-slate-300">Every time a monster hits you, that question is saved here so you can avenge it for bonus XP!</p>
+          <div id="revenge-list-box" class="space-y-2.5 max-h-[480px] overflow-y-auto"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- HERO SWITCHER MODAL -->
+  <div id="hero-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border-2 border-indigo-400 rounded-3xl max-w-4xl w-full p-5 sm:p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-lg sm:text-xl font-black text-white">🦸 Choose Your Wall Street Champion</h3>
+        <button onclick="closeHeroModal()" class="px-3 py-1 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs">Close ✕</button>
+      </div>
+      <div id="modal-heroes-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. CUSTOM SVG CHARACTERS (HEROES, PETS & REALM MONSTERS)
+    // =========================================================================
+    const HEROES = {
+      kitsune: {
+        id: 'kitsune',
+        name: 'Kitsune Minh-San',
+        title: '🦊 Derivatives Assassin',
+        color: 'from-cyan-500 to-blue-600',
+        passive: 'Risk-Neutral Vision: Deals +35% Critical Damage in Derivatives realms & grants wider rounding tolerance against Raid Bosses!',
+        ultName: '⚡ Dynamic Delta Slash',
+        ultDesc: 'Eliminates 2 wrong options immediately AND deals 250 true damage to the Monster!',
+        quotes: [
+          'Hedge Ratio Δ = (Cu - Cd)/(Su - Sd)! One-hit strike!',
+          'No free lunch! Law of One Price — Draw blades!',
+          'The 2-period binomial tree is already solved in my palm!'
+        ],
+        svg: `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_0_16px_rgba(34,211,238,0.65)]">
+          <defs>
+            <linearGradient id="k-aura" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#06b6d4"/>
+              <stop offset="100%" stop-color="#6366f1"/>
+            </linearGradient>
+          </defs>
+          <path d="M22 88 Q4 62 18 42 Q30 55 34 78 Z" fill="url(#k-aura)" opacity="0.9"/>
+          <path d="M35 65 L85 65 L92 108 L28 108 Z" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2.5"/>
+          <path d="M46 66 L60 95 L74 66" fill="none" stroke="#f43f5e" stroke-width="3"/>
+          <line x1="16" y1="22" x2="98" y2="96" stroke="#e0f2fe" stroke-width="4" stroke-linecap="round"/>
+          <line x1="104" y1="22" x2="22" y2="96" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+          <polygon points="34,38 26,10 50,26" fill="#f97316" stroke="#fde047" stroke-width="2"/>
+          <polygon points="86,38 94,10 70,26" fill="#f97316" stroke="#fde047" stroke-width="2"/>
+          <circle cx="60" cy="45" r="22" fill="#fed7aa" stroke="#38bdf8" stroke-width="2.5"/>
+          <rect x="38" y="36" width="44" height="12" rx="6" fill="#0284c7" stroke="#67e8f9" stroke-width="2"/>
+          <line x1="44" y1="42" x2="55" y2="42" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="65" y1="42" x2="76" y2="42" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M40 50 Q60 66 80 50 L76 64 Q60 70 44 64 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+          <polygon points="60,4 53,16 67,16" fill="none" stroke="#fde047" stroke-width="2"/>
+        </svg>`
+      },
+      paladin: {
+        id: 'paladin',
+        name: 'Golden Bull Ares',
+        title: '🐂 Portfolio Paladin',
+        color: 'from-amber-500 to-rose-600',
+        passive: 'Duration Immunity Shield: Blocks 100% of damage from the first wrong answer in each realm and awards +30% extra Gold!',
+        ultName: '☄️ Tangency Sharpe Meteor',
+        ultDesc: 'Restores +40 HP, grants Immunity Shield, and reveals Mimi’s Formula Hint!',
+        quotes: [
+          'Diversification kills idiosyncratic risk, and my Shield blocks the rest!',
+          'Duration equals horizon H — Total Immunization!',
+          'Maximize the Sharpe Ratio along the Capital Allocation Line!'
+        ],
+        svg: `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_0_16px_rgba(245,158,11,0.65)]">
+          <path d="M30 34 Q10 12 24 6 Q32 18 42 26 Z" fill="#fbbf24" stroke="#fef08a" stroke-width="2"/>
+          <path d="M90 34 Q110 12 96 6 Q88 18 78 26 Z" fill="#fbbf24" stroke="#fef08a" stroke-width="2"/>
+          <path d="M24 58 L96 58 L104 110 L16 110 Z" fill="#991b1b" stroke="#f59e0b" stroke-width="2.5"/>
+          <rect x="34" y="60" width="52" height="44" rx="10" fill="#d97706" stroke="#fef08a" stroke-width="2.5"/>
+          <polygon points="60,66 50,82 60,96 70,82" fill="#fef08a"/>
+          <circle cx="60" cy="42" r="22" fill="#f59e0b" stroke="#fef08a" stroke-width="2.5"/>
+          <rect x="44" y="36" width="32" height="10" rx="4" fill="#0f172a"/>
+          <circle cx="52" cy="41" r="3" fill="#38bdf8"/>
+          <circle cx="68" cy="41" r="3" fill="#38bdf8"/>
+          <path d="M12 56 L38 56 L38 82 Q25 98 12 82 Z" fill="#1d4ed8" stroke="#fde047" stroke-width="3"/>
+          <text x="25" y="76" text-anchor="middle" fill="#fde047" font-size="14" font-weight="900">σ</text>
+        </svg>`
+      },
+      oracle: {
+        id: 'oracle',
+        name: 'Oracle Luna',
+        title: '🧙‍♀️ No-Arbitrage Mage',
+        color: 'from-fuchsia-500 to-purple-600',
+        passive: 'Law of One Price: Automatically reveals Fairy Mimi’s Hint on every question and charges Ultimate Rage 1.5x faster!',
+        ultName: '🔮 Arbitrage Beam',
+        ultDesc: 'Blasts the Monster for 250 damage, removes 2 wrong choices, and awards +60 Gold!',
+        quotes: [
+          'Two portfolios with identical payoffs at T must have the exact same price today!',
+          'C + K·e^(-rT) = P + S₀! Universal balance cannot be broken!',
+          'See through every formula with intuitive ELI5 magic!'
+        ],
+        svg: `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_0_16px_rgba(232,121,249,0.7)]">
+          <line x1="98" y1="20" x2="88" y2="110" stroke="#c084fc" stroke-width="4"/>
+          <circle cx="98" cy="20" r="10" fill="#f472b6" stroke="#fef08a" stroke-width="2.5"/>
+          <path d="M32 62 L88 62 L96 110 L24 110 Z" fill="#4c1d95" stroke="#e879f9" stroke-width="2.5"/>
+          <circle cx="60" cy="46" r="20" fill="#fde68a" stroke="#e879f9" stroke-width="2"/>
+          <circle cx="53" cy="45" r="3" fill="#a855f7"/>
+          <circle cx="67" cy="45" r="3" fill="#a855f7"/>
+          <path d="M54 53 Q60 58 66 53" fill="none" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round"/>
+          <polygon points="22,34 98,34 60,4" fill="#581c87" stroke="#f0abfc" stroke-width="2.5"/>
+          <ellipse cx="60" cy="34" rx="36" ry="6" fill="#7e22ce" stroke="#f0abfc" stroke-width="2"/>
+          <circle cx="22" cy="54" r="9" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/>
+        </svg>`
+      }
+    };
+
+    const PETS = {
+      chick: {
+        id: 'chick', name: '🐣 Golden Compound Chick', cost: 0, unlocked: true,
+        buff: '+25 Gold (🪙) on every correct attack',
+        emoji: '🐣'
+      },
+      cat: {
+        id: 'cat', name: '🐱 Lucky Alpha Cat', cost: 300, unlocked: false,
+        buff: '+40% Critical Damage & +35 XP per correct hit',
+        emoji: '🐱'
+      },
+      owl: {
+        id: 'owl', name: '🦉 Feynman Wise Owl', cost: 450, unlocked: false,
+        buff: 'Auto-unlocks Mimi Hint & heals +8 HP per correct hit',
+        emoji: '🦉'
+      }
+    };
+
+    const REALMS = [
+      {
+        id: 'w1', badge: 'REALM 1', name: 'Wall Street & Margin Arena',
+        sub: 'Lecture 01 + Practice L01–L07', arenaClass: 'arena-w1',
+        monsterName: '🐻 Cyber Margin-Call Bear',
+        monsterMaxHp: 600,
+        monsterTaunts: [
+          'Forgot to subtract margin loan interest? Your account is about to get liquidated!',
+          'Short selling when the stock rallies? Prepare to lose everything to me!',
+          'Daring to enter the Exchange without knowing Bid vs Ask?'
+        ],
+        monsterSvg: `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_0_18px_rgba(244,63,94,0.7)]">
+          <circle cx="34" cy="26" r="14" fill="#7f1d1d" stroke="#f43f5e" stroke-width="3"/>
+          <circle cx="86" cy="26" r="14" fill="#7f1d1d" stroke="#f43f5e" stroke-width="3"/>
+          <circle cx="60" cy="62" r="42" fill="#450a0a" stroke="#f43f5e" stroke-width="3.5"/>
+          <polygon points="38,44 56,52 40,56" fill="#ef4444"/>
+          <polygon points="82,44 64,52 80,56" fill="#22d3ee"/>
+          <ellipse cx="60" cy="74" rx="20" ry="14" fill="#991b1b" stroke="#fca5a5" stroke-width="2"/>
+          <polygon points="46,78 51,90 56,78" fill="#ffffff"/>
+          <polygon points="64,78 69,90 74,78" fill="#ffffff"/>
+        </svg>`
+      },
+      {
+        id: 'w2', badge: 'REALM 2', name: 'Bond Fortress & Duration',
+        sub: 'Lectures 02 & 03 • Spot/Forward & Immunization', arenaClass: 'arena-w2',
+        monsterName: '🕰️ Chronos Convexity Titan',
+        monsterMaxHp: 750,
+        monsterTaunts: [
+          'Mortals always confuse Modified Duration with Macaulay Duration!',
+          'Forget the (1/2) factor in Convexity and you are finished!',
+          'Yields are spiking! Is your bond portfolio truly immunized?'
+        ],
+        monsterSvg: `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_0_18px_rgba(245,158,11,0.75)]">
+          <polygon points="60,8 108,36 108,84 60,112 12,84 12,36" fill="#451a03" stroke="#fbbf24" stroke-width="3.5"/>
+          <circle cx="60" cy="60" r="34" fill="#78350f" stroke="#fde047" stroke-width="2.5"/>
+          <line x1="60" y1="60" x2="60" y2="34" stroke="#fde047" stroke-width="4" stroke-linecap="round"/>
+          <line x1="60" y1="60" x2="82" y2="68" stroke="#f43f5e" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="46" cy="50" r="5" fill="#38bdf8"/>
+          <circle cx="74" cy="50" r="5" fill="#38bdf8"/>
+        </svg>`
+      },
+      {
+        id: 'w3', badge: 'REALM 3', name: 'Markowitz Jungle & Sharpe',
+        sub: 'Lectures 04 & 05 • Utility, CAL & Efficient Frontier', arenaClass: 'arena-w3',
+        monsterName: '🐍 Covariance Hydra',
+        monsterMaxHp: 800,
+        monsterTaunts: [
+          'Utility U = E(r) - 0.5·A·σ² has 0.5, but does y* have it?!',
+          'Adding the risk-free asset leaves the Sharpe Ratio unchanged—or does it?',
+          'Want to add a new asset? Pass my Sharpe Diversification Hurdle first!'
+        ],
+        monsterSvg: `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_0_18px_rgba(16,185,129,0.75)]">
+          <path d="M24 98 Q12 50 42 28 Q60 16 78 28 Q108 50 96 98 Z" fill="#064e3b" stroke="#34d399" stroke-width="3.5"/>
+          <polygon points="36,46 54,54 38,60" fill="#fde047"/>
+          <polygon points="84,46 66,54 82,60" fill="#fde047"/>
+          <path d="M56 76 L60 98 L64 76" fill="none" stroke="#f43f5e" stroke-width="3.5"/>
+        </svg>`
+      },
+      {
+        id: 'w4', badge: 'REALM 4', name: 'Temple of CAPM, APT & EMH',
+        sub: 'Lectures 06, 07, 08 + Extra APT & ESG', arenaClass: 'arena-w4',
+        monsterName: '👁️ Lord Alpha-Beta Judge',
+        monsterMaxHp: 900,
+        monsterTaunts: [
+          'A stock plotting ABOVE the SML — is it undervalued or overvalued?!',
+          'In the Single-Index Model, covariance between two stocks is strictly βi·βj·σM²!',
+          'Do Green assets earn higher or lower expected returns in ESG equilibrium?'
+        ],
+        monsterSvg: `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_0_18px_rgba(192,132,252,0.8)]">
+          <polygon points="60,10 110,96 10,96" fill="#3b0764" stroke="#c084fc" stroke-width="3.5"/>
+          <ellipse cx="60" cy="64" rx="26" ry="16" fill="#faf5ff" stroke="#e879f9" stroke-width="2.5"/>
+          <circle cx="60" cy="64" r="9" fill="#9333ea"/>
+          <circle cx="60" cy="64" r="4" fill="#fde047"/>
+          <circle cx="24" cy="30" r="8" fill="#38bdf8"/>
+          <circle cx="96" cy="30" r="8" fill="#f43f5e"/>
+        </svg>`
+      },
+      {
+        id: 'w5', badge: 'REALM 5', name: 'Dojo of Forwards & Futures',
+        sub: 'Lecture 09 + Practice L08–L11 (Q6–Q17)', arenaClass: 'arena-w5',
+        monsterName: '👹 Shogun Contango',
+        monsterMaxHp: 1000,
+        monsterTaunts: [
+          'Beware Trap Q7! Touching Maintenance Margin does NOT trigger a call — it must drop STRICTLY BELOW (<)!',
+          'On Futures margin calls, you must top up back to INITIAL MARGIN, not Maintenance!',
+          'A newly signed Forward has Value V₀ = 0, never confuse it with Forward Price F₀!'
+        ],
+        monsterSvg: `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_0_20px_rgba(251,113,133,0.8)]">
+          <polygon points="20,40 8,10 46,28" fill="#fbbf24"/>
+          <polygon points="100,40 112,10 74,28" fill="#fbbf24"/>
+          <rect x="26" y="30" width="68" height="72" rx="18" fill="#881337" stroke="#fb7185" stroke-width="3.5"/>
+          <polygon points="36,52 56,58 38,64" fill="#fde047"/>
+          <polygon points="84,52 64,58 82,64" fill="#fde047"/>
+          <path d="M40 82 Q60 70 80 82" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+        </svg>`
+      },
+      {
+        id: 'w6', badge: 'REALM 6 (FINAL BOSS)', name: 'Citadel of Options & Binomial Trees',
+        sub: 'Lectures 10, 11 + Extra Session + Q18–Q40', arenaClass: 'arena-w6',
+        monsterName: '🐉 Emperor Binomial Dragon',
+        monsterMaxHp: 1200,
+        monsterTaunts: [
+          'European Call Lower Bound is max(0, S₀ - PV(K)), NEVER S₀ - K!',
+          'On an additive dollar-move tree (+$18/-$12), risk-neutral p changes at every node!',
+          'A Put has Δ < 0, so Option Elasticity Ω < 0 and Option Beta β_put < 0!'
+        ],
+        monsterSvg: `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_0_22px_rgba(34,211,238,0.85)]">
+          <polygon points="6,24 42,46 16,86" fill="#0e7490" stroke="#67e8f9" stroke-width="2.5"/>
+          <polygon points="114,24 78,46 104,86" fill="#0e7490" stroke="#67e8f9" stroke-width="2.5"/>
+          <polygon points="60,12 92,48 80,102 40,102 28,48" fill="#1e1b4b" stroke="#22d3ee" stroke-width="3.5"/>
+          <polygon points="40,52 56,60 42,66" fill="#f43f5e"/>
+          <polygon points="80,52 64,60 78,66" fill="#f43f5e"/>
+          <circle cx="60" cy="34" r="7" fill="#fde047"/>
+          <path d="M44 84 L52 94 L60 84 L68 94 L76 84" fill="none" stroke="#67e8f9" stroke-width="3"/>
+        </svg>`
+      }
+    ];
+
+    // =========================================================================
+    // 2. CAMPAIGN QUESTIONS DATABASE (100% ENGLISH)
+    // =========================================================================
+    const CAMPAIGN_QUESTIONS = [
+      {
+        id: 'w1_1', realm: 'w1', topic: 'L01 • Long Margin Call Trigger',
+        prompt: 'You buy 100 shares on margin at P₀ = $100. Initial Margin (IM) = 60%, Maintenance Margin (MM) = 40%. At what stock price P* will you first receive a Margin Call?',
+        options: ['$66.67', '$60.00', '$75.00', '$50.00'],
+        ans: 0,
+        hint: 'Mimi: Fixed loan per share = P₀·(1 - IM) = $40. Use P* = Loan / (1 - MM)!',
+        math: 'Initial equity = $60/share ⇒ Fixed loan D = $40/share. Margin call condition: (P - 40)/P = 0.40 ⇒ 0.60·P = 40 ⇒ P* = 40 / 0.60 = $66.67.',
+        eli5: '🧒 Kid-Friendly Intuition: You buy a $100 toy using $60 of your own allowance and borrow $40 from Mom. Mom says your own share of the toy must always stay at least 40% of its price. If the toy drops to $66.67, paying Mom back $40 leaves you $26.67 — which is exactly 40% of $66.67!',
+        trap: '⚠️ Exam Trap: Never compute P₀·(1 - MM) = $60! You must divide by (1 - MM) because the denominator P is shrinking!'
+      },
+      {
+        id: 'w1_2', realm: 'w1', topic: 'L01 • Short Sale Margin Call',
+        prompt: 'An investor shorts 1,000 shares at P₀ = $50 with Initial Margin IM = 50% and Maintenance Margin MM = 30%. How high can the stock price rise (P*) before a Margin Call is triggered?',
+        options: ['$57.69', '$65.00', '$62.50', '$55.00'],
+        ans: 0,
+        hint: 'Mimi: For a Short Sale, rising prices hurt you! Shortcut formula: P* = P₀ · (1 + IM) / (1 + MM).',
+        math: 'Total cash in account per share = P₀·(1 + IM) = 50 × 1.5 = $75. At price P, equity E = 75 - P. Condition: (75 - P)/P = 0.30 ⇒ 1.30·P = 75 ⇒ P* = 75 / 1.30 = $57.69.',
+        eli5: '🧒 Kid-Friendly Intuition: You borrow your friend’s robot, sell it for $50, and add $25 of your own deposit so your piggy bank holds $75. If the robot price jumps to $57.69, your remaining equity is $75 - $57.69 = $17.31 — right at the 30% safety line!',
+        trap: '⚠️ Classic Trap: Long Margin divides by (1 - MM), whereas Short Margin divides by (1 + MM)!'
+      },
+      {
+        id: 'w1_3', realm: 'w1', topic: 'L01 • Margin Levered Return (ROE)',
+        prompt: 'You buy a stock at P₀ = $80 with Initial Margin IM = 50% and margin loan interest rate i_loan = 8%/year. After 1 year, the stock pays a dividend D₁ = $2 and you sell at P₁ = $92. What is your Return on Equity (ROE)?',
+        options: ['27.00%', '17.50%', '35.00%', '22.00%'],
+        ans: 0,
+        hint: 'Mimi: Remember to add the $2 dividend AND subtract the margin interest ($40 × 8% = $3.20)!',
+        math: 'Initial equity E₀ = $40, Loan = $40. Annual interest = 40 × 8% = $3.20. Net dollar profit = (92 - 80) + 2 - 3.20 = $10.80. ROE = 10.80 / 40 = 27.00%.',
+        eli5: '🧒 Kid-Friendly Intuition: You put in $40 and borrow $40 to buy an $80 share. It goes up $12 and pays a $2 bonus ($14 total), but you owe $3.20 interest for borrowing. You pocket $10.80 on your $40 (= 27%)!',
+        trap: '⚠️ Trap: Forgetting to subtract the $3.20 loan interest gives 35.00% (distractor C)!'
+      },
+      {
+        id: 'w1_4', realm: 'w1', topic: 'L01 • Bid-Ask Spread & Market Order',
+        prompt: 'The limit order book shows Best Bid = $49.80 and Best Ask = $50.20. If you place a Market Order to BUY 1 share and immediately place a Market Order to SELL 1 share, what happens?',
+        options: ['Buy at $50.20, Sell at $49.80 → Instant loss of $0.40', 'Buy at $49.80, Sell at $50.20 → Instant gain of $0.40', 'Both execute at the $50.00 midpoint', 'Zero cost if commissions are zero'],
+        ans: 0,
+        hint: 'Mimi: Traders always BUY at the higher Ask price and SELL at the lower Bid price!',
+        math: 'A Market Buy hits the lowest Ask ($50.20). A Market Sell hits the highest Bid ($49.80). Round-trip spread cost = $50.20 - $49.80 = $0.40.',
+        eli5: '🧒 Kid-Friendly Intuition: Just like a currency exchange booth! When you walk in to BUY, the shop charges the higher price ($50.20). Turn around immediately to SELL it back, and the shop only pays the lower price ($49.80). That $0.40 gap is the shopkeeper’s fee!',
+        trap: '⚠️ Trap: Never confuse Bid as the price YOU buy at — Bid is what the Dealer bids to buy from you!'
+      },
+
+      {
+        id: 'w2_1', realm: 'w2', topic: 'L02 • Bootstrapping Spot & Forward Rate',
+        prompt: 'The 1-year spot rate is s₁ = 5.0% and the 2-year spot rate is s₂ = 6.0%. What is the 1-year implied forward rate starting in year 1 (f₁,₂)?',
+        options: ['7.01%', '6.50%', '5.50%', '7.50%'],
+        ans: 0,
+        hint: 'Mimi: (1 + s₂)² = (1 + s₁)·(1 + f₁,₂). Compute 1.06² / 1.05 - 1!',
+        math: 'By no-arbitrage: 1 + f₁,₂ = (1.06)² / 1.05 = 1.1236 / 1.05 = 1.070095 ⇒ f₁,₂ ≈ 7.01%.',
+        eli5: '🧒 Kid-Friendly Intuition: A 2-year bank deposit grows by 1.06 × 1.06. If Year 1 only grew 5%, Year 2 must sprint ahead at 7.01% so both paths end up with the exact same money!',
+        trap: '⚠️ Trap: Don’t approximate with 2×6% - 5% = 7.00% when 2-decimal precision is required!'
+      },
+      {
+        id: 'w2_2', realm: 'w2', topic: 'L03 • Duration & Convexity Price Approximation',
+        prompt: 'A bond trades at P = $1,000 with Modified Duration D_mod = 6.0 years and Convexity C = 50. If YTM increases by Δy = +1.50% (+0.015), what is the approximate percentage price change (ΔP/P)?',
+        options: ['-8.44%', '-9.00%', '-7.88%', '-9.56%'],
+        ans: 0,
+        hint: 'Mimi: Golden formula: ΔP/P ≈ -D_mod·Δy + 0.5·C·(Δy)². Do NOT forget the 0.5 before Convexity!',
+        math: 'Duration effect = -6.0 × 0.015 = -9.00%. Convexity adjustment = 0.5 × 50 × (0.015)² = +0.5625%. Total ΔP/P = -9.00% + 0.5625% = -8.4375% ≈ -8.44%.',
+        eli5: '🧒 Kid-Friendly Intuition: The straight Duration ruler guesses the price drops 9%, but because the bond price curve bends upward like a U-shaped slide (positive Convexity), the cushion catches +0.56% of the fall, leaving only -8.44%!',
+        trap: '⚠️ #1 Trap: Forgetting the 1/2 in front of Convexity yields -7.88% (distractor C)!'
+      },
+      {
+        id: 'w2_3', realm: 'w2', topic: 'L03 • Portfolio Immunization Weights',
+        prompt: 'A pension fund owes a single liability due in H = 5 years. You immunize it using two zero-coupon bonds with maturities D_A = 2 years and D_B = 7 years. What weight should go into Bond A (w_A)?',
+        options: ['40.00%', '60.00%', '50.00%', '28.57%'],
+        ans: 0,
+        hint: 'Mimi: Solve 2·w_A + 7·(1 - w_A) = 5!',
+        math: 'Matching duration: 2·w_A + 7·(1 - w_A) = 5 ⇒ -5·w_A = -2 ⇒ w_A = 2/5 = 40.00% (and w_B = 60.00%).',
+        eli5: '🧒 Kid-Friendly Intuition: Think of a seesaw balanced at 5! Kid A sits at 2 (distance 3) and Kid B sits at 7 (distance 2). To balance, Kid A gets 2/(2+3) = 40% of the weight!',
+        trap: '⚠️ Trap: Remember a zero-coupon bond’s Macaulay Duration equals its exact maturity T!'
+      },
+      {
+        id: 'w2_4', realm: 'w2', topic: 'L02 • Clean Price vs Dirty (Invoice) Price',
+        prompt: 'A bond pays $40 semiannually (180-day period). Exactly 45 days have passed since the last coupon. Its quoted Clean Price is $990. What is the Dirty (Invoice) Price you actually pay?',
+        options: ['$1,000.00', '$990.00', '$980.00', '$1,010.00'],
+        ans: 0,
+        hint: 'Mimi: Dirty Price = Clean Price + Accrued Interest (40 × 45/180)!',
+        math: 'Accrued Interest = $40 × (45 / 180) = $10.00. Invoice (Dirty) Price = $990 + $10 = $1,000.00.',
+        eli5: '🧒 Kid-Friendly Intuition: The previous owner held the bond for 1/4 of the 6-month period, earning 1/4 of the $40 candy reward ($10). When you buy it, you pay the $990 sticker price plus $10 to reimburse the seller for their earned reward!',
+        trap: '⚠️ Trap: Screens quote Clean Price, but your wallet always pays Dirty Price!'
+      },
+
+      {
+        id: 'w3_1', realm: 'w3', topic: 'L04 • Optimal Risky Share y* & Utility',
+        prompt: 'Risky portfolio P has E(r_P) = 14%, σ_P = 20%, and r_f = 4%. An investor has risk aversion A = 4 in U = E(r) - 0.5·A·σ². What is the optimal allocation to the risky portfolio y*?',
+        options: ['62.50%', '125.00%', '50.00%', '80.00%'],
+        ans: 0,
+        hint: 'Mimi: y* = [E(r_P) - r_f] / (A · σ_P²). Convert σ_P = 0.20 ⇒ σ_P² = 0.04!',
+        math: 'Risk premium = 0.14 - 0.04 = 0.10. Denominator = A · σ_P² = 4 × (0.20)² = 0.16. Optimal y* = 0.10 / 0.16 = 62.50%.',
+        eli5: '🧒 Kid-Friendly Intuition: The bigger the reward (10%), the more you invest; the more you fear bumpy waves (A × σ² = 0.16), the less you invest. Dividing reward by fear gives 62.5%!',
+        trap: '⚠️ Fatal Trap: Utility U has 0.5, but taking the derivative wrt y cancels the 0.5! Never put 0.5 in the denominator of y*!'
+      },
+      {
+        id: 'w3_2', realm: 'w3', topic: 'L05 • Zero-Variance Portfolio (ρ = -1)',
+        prompt: 'Stocks A (σ_A = 15%) and B (σ_B = 30%) are perfectly negatively correlated (ρ_AB = -1.0). What weight w_A creates a Zero-Variance Portfolio?',
+        options: ['66.67%', '33.33%', '50.00%', '75.00%'],
+        ans: 0,
+        hint: 'Mimi: When ρ = -1, w_A = σ_B / (σ_A + σ_B)! The calmer stock gets the bigger weight!',
+        math: 'Set w_A·σ_A - (1 - w_A)·σ_B = 0 ⇒ w_A = σ_B / (σ_A + σ_B) = 30% / (15% + 30%) = 66.67%.',
+        eli5: '🧒 Kid-Friendly Intuition: B bounces twice as wildly as A (30% vs 15%) in the opposite direction. To hold both completely still, you need 2 parts of calm A (66.67%) to balance 1 part of wild B (33.33%)!',
+        trap: '⚠️ Trap: Don’t compute σ_A / (σ_A + σ_B) = 33.33%! The lower-volatility stock needs the larger weight!'
+      },
+      {
+        id: 'w3_3', realm: 'w3', topic: 'L05 • Diversification Sharpe Hurdle',
+        prompt: 'Your current portfolio P has Sharpe Ratio S_P = 0.50. You consider adding asset Z with correlation ρ_ZP = 0.60. What minimum Sharpe Ratio (S_Z) does asset Z need to improve the portfolio’s overall Sharpe Ratio?',
+        options: ['S_Z > 0.30', 'S_Z > 0.50', 'S_Z > 0.83', 'S_Z > 0.25'],
+        ans: 0,
+        hint: 'Mimi: Diversification Hurdle Rule: S_Z > S_P × ρ_ZP!',
+        math: 'Addition hurdle: S_Z > S_P · ρ_ZP = 0.50 × 0.60 = 0.30. Even if S_Z = 0.35 < 0.50, low correlation (0.60) still lifts overall Sharpe!',
+        eli5: '🧒 Kid-Friendly Intuition: Your soccer team scores 0.50. A new player only scores 0.35 alone, but has a totally different play style (60% overlap = 0.30). Since 0.35 > 0.30, adding them still makes the whole team stronger!',
+        trap: '⚠️ Theory Trap: Many think S_Z must beat S_P — FALSE! It only needs to beat ρ · S_P!'
+      },
+
+      {
+        id: 'w4_1', realm: 'w4', topic: 'L06 • Single-Index Model Covariance',
+        prompt: 'In the Single-Index Model, β_A = 1.2, β_B = 0.8, market volatility σ_M = 20%, and Stock A’s idiosyncratic volatility σ(e_A) = 30%. What is Cov(R_A, R_B)?',
+        options: ['0.0384', '0.1920', '0.1476', '0.0480'],
+        ans: 0,
+        hint: 'Mimi: In SIM, residuals e_A and e_B are uncorrelated! So Cov(R_A, R_B) = β_A · β_B · σ_M²!',
+        math: 'Cov(R_A, R_B) = 1.2 × 0.8 × (0.20)² = 0.96 × 0.04 = 0.0384. (Note: σ(e_A) = 30% is completely irrelevant for covariance between two different stocks!).',
+        eli5: '🧒 Kid-Friendly Intuition: Two boats A and B float on the same river (Market M). Private mishaps inside Boat A don’t rock Boat B. They only sway together because of the shared river waves: 1.2 × 0.8 × 0.04 = 0.0384!',
+        trap: '⚠️ Trap: σ(e_A) = 30% is a decoy! Never add firm-specific risk to cross-stock covariance!'
+      },
+      {
+        id: 'w4_2', realm: 'w4', topic: 'L07 • CAPM Alpha & SML Mispricing',
+        prompt: 'Given r_f = 3%, E(r_M) = 11%, Stock X has β = 1.5 and an analyst forecasts E(r_X) = 17%. According to CAPM, what is Stock X’s Alpha and valuation status?',
+        options: ['α = +2.0% → Undervalued, plots ABOVE the SML', 'α = +2.0% → Overvalued, plots ABOVE the SML', 'α = -2.0% → Undervalued, plots BELOW the SML', 'α = +0.5% → Fairly priced'],
+        ans: 0,
+        hint: 'Mimi: CAPM fair return = 3% + 1.5×(11% - 3%) = 15%. Forecast 17% > 15% means it is a bargain (Undervalued)!',
+        math: 'E(r_CAPM) = 3% + 1.5 × 8% = 15%. Jensen’s Alpha α = 17% - 15% = +2.0% > 0. Higher expected return for its beta means the current price P₀ is too cheap (Undervalued), plotting ABOVE the SML.',
+        eli5: '🧒 Kid-Friendly Intuition: Fair pay for this job is 15%, but it secretly pays 17% (+2% bonus Alpha)! That means its current ticket price is on sale (Undervalued), and on the return chart it floats ABOVE the SML line!',
+        trap: '⚠️ Reverse-Wording Trap: Plotting ABOVE the SML means High Return ⇒ Low Current Price (Undervalued), NOT Overvalued!'
+      },
+      {
+        id: 'w4_3', realm: 'w4', topic: 'L07 • ESG Asset Pricing Equilibrium',
+        prompt: 'In an ESG asset pricing equilibrium (Pastor-Stambaugh-Taylor / L07), if investors have strong non-pecuniary preferences for Green assets, in long-run equilibrium:',
+        options: ['Green assets have higher current prices and LOWER expected returns than Brown assets', 'Green assets always earn higher expected returns than Brown assets', 'ESG tastes do not affect equilibrium prices or returns', 'Brown assets enjoy a lower cost of capital than Green assets'],
+        ans: 0,
+        hint: 'Mimi: Everyone bids up Green stocks ⇒ P₀ rises ⇒ Future expected return E(r) falls ("Greenium")!',
+        math: 'Because investors derive non-financial utility from holding Green assets (plus climate-hedging benefits), they accept lower expected financial returns (negative ESG alpha) in equilibrium.',
+        eli5: '🧒 Kid-Friendly Intuition: Everyone loves eco-friendly toys, so they bid up the price today. Because you pay more upfront today, your percentage profit later is slightly smaller than on dusty Brown toys nobody wants!',
+        trap: '⚠️ Trap: Don’t confuse short-term price gains during ESG inflows with long-run equilibrium Expected Returns!'
+      },
+
+      {
+        id: 'w5_1', realm: 'w5', topic: 'L09 & Practice Q7 • Futures Margin Call "Strictly Below" Trap',
+        prompt: 'You are Long 5 Futures contracts (100 units each = 500 units total) at F₀ = $120. Initial Margin = $6,000, Maintenance Margin = $4,500. Rule: Margin call triggers only when balance falls STRICTLY BELOW (< $4,500). Settlement prices: Day 1 = $117, Day 2 = $115. When does the Margin Call occur and how much Variation Margin must be deposited?',
+        options: ['No call on Day 1 (balance = exact $4,500); Call on Day 2 → Deposit $2,500 back to $6,000', 'Margin call immediately on Day 1 → Deposit $1,500', 'Call on Day 2 → Deposit $1,000 back to $4,500', 'No margin call on either day'],
+        ans: 0,
+        hint: 'Mimi: Legendary Q7! Day 1 loss = 500×$3 = $1,500 ⇒ Balance = $4,500 (NOT < $4,500, so NO call!). Day 2 drops to $115 ⇒ Balance = $3,500 < $4,500 ⇒ Top up to $6,000!',
+        math: 'Size = 500 units. Day 1: Loss = 500×(120-117) = $1,500 ⇒ Bal = 6,000 - 1,500 = $4,500 (exact MM, no call!). Day 2: Extra loss = 500×(117-115) = $1,000 ⇒ Bal = $3,500 < $4,500 ⇒ Call triggered! Must restore to Initial Margin ($6,000): Deposit = 6,000 - 3,500 = $2,500.',
+        eli5: '🧒 Kid-Friendly Intuition: The pool alarm only rings if water drops STRICTLY BELOW 4,500ml. On Day 1 it stops right at 4,500ml — silent! On Day 2 it drops to 3,500ml — ALARM! And Futures rules force you to refill all the way back to the top 6,000ml line (+2,500ml)!',
+        trap: '⚠️ DOUBLE TRAP: (1) Exact MM = no call; (2) Futures Variation Margin restores to INITIAL MARGIN ($6,000), NOT Maintenance!'
+      },
+      {
+        id: 'w5_2', realm: 'w5', topic: 'L09 • Forward Price with Discrete Dividend',
+        prompt: 'A stock trades at S₀ = $100 and pays a guaranteed $4 cash dividend in 6 months (0.5 yr). Continuous risk-free rate r = 6%/yr. What is the no-arbitrage 1-year Forward Price F₀?',
+        options: ['$102.06', '$106.18', '$102.18', '$101.94'],
+        ans: 0,
+        hint: 'Mimi: F₀ = [S₀ - PV(D)] · e^(rT) = [100 - 4·e^(-0.06×0.5)] · e^(0.06)!',
+        math: 'PV(D) = 4 × e^(-0.03) = $3.8818. Adjusted spot = 100 - 3.8818 = $96.1182. F₀ = 96.1182 × e^(0.06) = $102.06 (equivalently: 100·e^0.06 - 4·e^0.03 = $102.06).',
+        eli5: '🧒 Kid-Friendly Intuition: A 1-year Forward buyer misses out on the $4 golden egg laid at month 6. So the fair forward price subtracts that egg plus its 6-month bank interest ($4.12)!',
+        trap: '⚠️ Trap: Don’t subtract $4 flat at year-end (106.18 - 4 = $102.18, distractor C)!'
+      },
+      {
+        id: 'w5_3', realm: 'w5', topic: 'L09 • Value of Existing Forward Contract V_t',
+        prompt: 'Months ago you entered a Long Forward to buy at K = $95 with τ = 0.5 years remaining today. Today’s market forward price for the same delivery date is F_t = $105 and r = 8%/yr (continuous). What is the current market value V_t of your contract?',
+        options: ['+$9.61', '+$10.00', '$0.00', '+$9.23'],
+        ans: 0,
+        hint: 'Mimi: Existing Forward value V_t = (F_t - K) · e^(-r·τ)! Remember to discount from maturity back to today!',
+        math: 'At maturity (τ = 0.5 yr away), your locked-in gain is F_t - K = 105 - 95 = $10. Present value today: V_t = 10 × e^(-0.08 × 0.5) = 10 × e^(-0.04) = +$9.61.',
+        eli5: '🧒 Kid-Friendly Intuition: Your old coupon lets you buy at $95 while the new market price is $105 ($10 guaranteed profit in 6 months). Converting $10 of future money into cash today equals $9.61!',
+        trap: '⚠️ Trap: V₀ = 0 only at initiation! Mid-life V_t ≠ 0 and must be discounted by e^(-rτ)!'
+      },
+
+      {
+        id: 'w6_1', realm: 'w6', topic: 'L10 & Practice Q20 • European Call Lower Bound & Arbitrage',
+        prompt: 'A non-dividend stock is at S₀ = $105. A 1-year European Call with strike K = $100 and effective risk-free rate R_f = 5% trades at C_mkt = $8.00. Is there an arbitrage opportunity and what riskless profit can you lock in today (t=0)?',
+        options: ['Yes! Lower bound is $9.76 > $8.00 → Buy Call + Short Stock + Lend $95.24 → Lock in +$1.76 at t=0', 'No arbitrage because intrinsic value S₀ - K = $5.00 < $8.00', 'Yes! Profit is +$3.00 at t=0', 'Must wait until maturity to know'],
+        ans: 0,
+        hint: 'Mimi: Call Lower Bound is S₀ - K/(1+R_f) = 105 - 100/1.05 = $9.76! Never use S₀ - K = $5!',
+        math: 'PV(K) = 100 / 1.05 = $95.24. Lower bound C_min = max(0, 105 - 95.24) = $9.76. Since C_mkt = $8.00 < $9.76, buy Call (-$8), short 1 share (+$105), and lend PV(K) (-$95.24) for an immediate riskless profit of +$1.76 at t=0 (and payoff ≥ 0 at T).',
+        eli5: '🧒 Kid-Friendly Intuition: People think the ticket is only worth $105 - $100 = $5, so $8 looks expensive. Actually, you don’t pay $100 until next year (only $95.24 in the bank today!). So the ticket is worth at least $105 - $95.24 = $9.76. Selling it at $8 is a $1.76 free-money giveaway!',
+        trap: '⚠️ #1 Exam Trap: Using S₀ - K instead of S₀ - PV(K) for European Call Lower Bound!'
+      },
+      {
+        id: 'w6_2', realm: 'w6', topic: 'L11 & Practice Q33 • Additive Dollar-Move Binomial Tree',
+        prompt: 'On an Additive Binomial Tree starting at S₀ = $100, each step the stock either rises by +$18 or falls by -$12, with R_f = 3% per period. What are the risk-neutral probabilities p₀ (at t=0) and p_u (at the up-node S_u = $118)?',
+        options: ['p₀ = 0.5000 and p_u = 0.5180 (p CHANGES at every node!)', 'p₀ = 0.5000 and p_u = 0.5000 (p is always constant)', 'p₀ = 0.6000 and p_u = 0.6000', 'p₀ = 0.5180 and p_u = 0.5000'],
+        ans: 0,
+        hint: 'Mimi: On an additive tree (+$18/-$12), use p_node = [S_node·(1+r) - S_down] / (S_up - S_down) = (r·S_node + 12)/30!',
+        math: 'Spread S_up - S_down = 18 - (-12) = $30 at every node. At S₀ = 100: p₀ = (0.03×100 + 12)/30 = 15/30 = 0.5000. At S_u = 118: p_u = (0.03×118 + 12)/30 = 15.54/30 = 0.5180.',
+        eli5: '🧒 Kid-Friendly Intuition: Because the stock steps by fixed dollar amounts (+$18 / -$12), when the stock price climbs to $118, the 3% bank interest is bigger ($3.54 vs $3.00). So the probability balance shifts from 50.0% up to 51.8%!',
+        trap: '⚠️ Fatal Q33 Trap: Reusing p₀ = 0.5000 in Period 2 on an additive tree fails completely!'
+      },
+      {
+        id: 'w6_3', realm: 'w6', topic: 'Extra Session & Practice Q40 • Option Leverage Ω & Option Beta',
+        prompt: 'A stock trades at S₀ = $100 with β_S = 1.20. A European Put on this stock trades at P₀ = $6.00 with Hedge Ratio Δ_P = -0.40. What is the Put Option’s Beta (β_Put)?',
+        options: ['-8.00', '+8.00', '-0.48', '-6.67'],
+        ans: 0,
+        hint: 'Mimi: Option Elasticity Ω = Δ · (S₀ / P₀) = -0.40 × (100 / 6) = -6.6667. Then multiply by β_S = 1.20!',
+        math: 'Option Elasticity Ω_Put = Δ_P × (S₀ / P₀) = -0.40 × (100 / 6.00) = -6.6667. Option Beta: β_Put = Ω_Put × β_S = -6.6667 × 1.20 = -8.00.',
+        eli5: '🧒 Kid-Friendly Intuition: A Put moves opposite the stock (Δ = -0.40) and costs only $6 vs $100 (16.67x leverage!). Combined, a 1% stock wiggle whips the Put by -6.67%, and multiplying by the stock’s 1.20 market beta gives -8.00!',
+        trap: '⚠️ Trap: Forgetting the leverage ratio (S₀ / P₀) gives -0.48 (distractor C)!'
+      },
+      {
+        id: 'w6_4', realm: 'w6', topic: 'L10 & L11 • Black-Scholes & American Options Conceptual',
+        prompt: '(Conceptual MCQ — No BSM math on exam) Which statement about American Options and the Black-Scholes-Merton model is 100% TRUE?',
+        options: ['An American Call on a non-dividend-paying stock should never be exercised early, so C_American = C_European', 'An American Put on a non-dividend stock is also never optimal to exercise early', 'In Black-Scholes, N(d₂) is the Call option’s Hedge Ratio (Delta)', 'Higher volatility σ increases Call prices but decreases Put prices'],
+        ans: 0,
+        hint: 'Mimi: Keeping an American Call preserves interest on K and downside insurance! And N(d₁) is Delta!',
+        math: 'Because C_Amer ≥ C_Euro ≥ S_t - K·e^(-rτ) > S_t - K (for r > 0, D = 0), keeping the Call "alive" always beats early exercise. Conversely, deep ITM American Puts CAN be optimal to exercise early to collect K and earn interest. In BSM, Δ_Call = N(d₁), while N(d₂) is the risk-neutral ITM probability. Higher σ raises BOTH Call and Put prices (Vega > 0).',
+        eli5: '🧒 Kid-Friendly Intuition: Breaking open a Call ticket early forces you to pay $K right now (losing bank interest) and throws away your crash-protection shield! Keeping the Call until maturity always wins!',
+        trap: '⚠️ MCQ Trap: Remember N(d₁) = Hedge Ratio Δ, N(d₂) = ITM probability, and Vega > 0 for both Calls and Puts!'
+      }
+    ];
+
+    // =========================================================================
+    // 3. 5x3 RAID BOSSES DATABASE (100% ENGLISH)
+    // =========================================================================
+    const RAID_BOSSES = [
+      {
+        id: 'rb1',
+        tag: 'RAID BOSS 1 • L09 & PRACTICE Q7',
+        title: '👹 Shogun Futures Margin ("Strictly Below" Trap)',
+        lore: 'Master the "strictly below (<)" Maintenance Margin trigger and Initial Margin top-up rule!',
+        scenario: 'An investor holds <b>Long 10 Futures contracts</b>, each for <b>100 units</b> (total position = <b>1,000 units</b>) entered at <b>F₀ = $80.00</b>.<br>• Initial Margin: <b>$10,000</b> (total).<br>• Maintenance Margin: <b>$7,000</b>.<br>• Exchange rule: Margin Call triggers only when end-of-day balance falls <b>strictly below (&lt; $7,000)</b>.<br>• Settlement prices: <b>Day 1: F₁ = $77.00</b>; <b>Day 2: F₂ = $75.50</b>.',
+        phases: [
+          {
+            label: 'Phase a) End-of-Day 1 Balance ($)',
+            question: 'Compute the margin account balance at the end of Day 1 (F₁ = $77.00). Enter dollar amount ($).',
+            ans: 7000, tol: 1, unit: '$',
+            explain: 'Day 1 loss = 1,000 × ($77 - $80) = -$3,000. Balance = $10,000 - $3,000 = <b>$7,000</b>. Because $7,000 is NOT strictly below $7,000, <b>NO Margin Call occurs on Day 1!</b>'
+          },
+          {
+            label: 'Phase b) Pre-Deposit Day 2 Balance ($)',
+            question: 'On Day 2, price drops further to F₂ = $75.50. Compute the account balance before any deposit ($).',
+            ans: 5500, tol: 1, unit: '$',
+            explain: 'Day 2 loss = 1,000 × ($75.50 - $77.00) = -$1,500. Balance = $7,000 - $1,500 = <b>$5,500</b> (&lt; $7,000 ⇒ Margin Call triggered!).'
+          },
+          {
+            label: 'Phase c) Day 2 Variation Margin Deposit ($)',
+            question: 'How much Variation Margin must the investor deposit on Day 2 to restore the Futures account ($)?',
+            ans: 4500, tol: 1, unit: '$',
+            explain: 'Futures margin calls require restoring to <b>Initial Margin ($10,000)</b>: Deposit = $10,000 - $5,500 = <b>$4,500</b>! (Trap: topping up only to $7,000 = $1,500 is wrong for Futures!).'
+          }
+        ]
+      },
+      {
+        id: 'rb2',
+        tag: 'RAID BOSS 2 • L10 & PRACTICE Q20',
+        title: '🐉 Dragon of Put-Call Parity & Option Lower Bounds',
+        lore: 'Defeat arbitrage traps using PV(K) discounting and Put-Call Parity!',
+        scenario: 'A non-dividend stock trades at <b>S₀ = $110</b>. Annual effective risk-free rate is <b>R_f = 10%</b>. Consider <b>T = 1-year</b> European options with strike <b>K = $100</b>.',
+        phases: [
+          {
+            label: 'Phase a) European Call Lower Bound ($)',
+            question: 'Compute the theoretical no-arbitrage Lower Bound for the European Call at t = 0 ($).',
+            ans: 19.09, tol: 0.05, unit: '$',
+            explain: 'PV(K) = 100 / 1.10 = $90.9091. Call Lower Bound: C_min = max(0, S₀ - PV(K)) = 110 - 90.9091 = <b>$19.09</b>.'
+          },
+          {
+            label: 'Phase b) Riskless Arbitrage Profit if C_mkt = $16 ($)',
+            question: 'Suppose the Call trades cheaply at C_mkt = $16.00. You execute the arbitrage strategy locking in riskless profit at t = 0 (with T payoff ≥ 0). What is your t = 0 cash profit ($)?',
+            ans: 3.09, tol: 0.05, unit: '$',
+            explain: 'At t = 0: Buy Call (-$16), Short 1 share (+$110), Lend PV(K) (-$90.91). Immediate t = 0 riskless profit = 19.09 - 16.00 = <b>$3.09</b>!'
+          },
+          {
+            label: 'Phase c) Fair European Put Price when C = $22 ($)',
+            question: 'If the Call trades fairly at C = $22.00, what must the European Put (P₀) with K = $100, T = 1 year cost by Put-Call Parity ($)?',
+            ans: 2.91, tol: 0.05, unit: '$',
+            explain: 'Put-Call Parity: P₀ = C₀ + PV(K) - S₀ = 22.00 + 90.9091 - 110.00 = <b>$2.91</b>.'
+          }
+        ]
+      },
+      {
+        id: 'rb3',
+        tag: 'RAID BOSS 3 • L11 & PRACTICE Q33',
+        title: '🌲 Additive 2-Period Binomial Treant (+$18 / -$12)',
+        lore: 'Core 40% Derivatives Raid: Node-varying risk-neutral probabilities on an additive tree!',
+        scenario: 'A stock is at <b>S₀ = $100</b>. Each period (2 periods total), it moves by <b>+$18</b> or <b>-$12</b> (Additive Tree). Risk-free rate is <b>R_f = 3%/period</b>. Price a 2-period European Call with <b>K = $105</b>.',
+        phases: [
+          {
+            label: 'Phase a) Risk-Neutral p_u at S_u = $118',
+            question: 'At the Period 1 up-node (S_u = $118), Period 2 goes to S_uu = $136 or S_ud = $106. Compute p_u (to 4 decimals).',
+            ans: 0.518, tol: 0.002, unit: '',
+            explain: 'p_u = [S_u·(1 + R_f) - S_ud] / (S_uu - S_ud) = [118 × 1.03 - 106] / 30 = 15.54 / 30 = <b>0.5180</b>.'
+          },
+          {
+            label: 'Phase b) Call Value C_u at S_u = $118 ($)',
+            question: 'Compute the option value C_u at node S_u = $118 ($).',
+            ans: 16.06, tol: 0.05, unit: '$',
+            explain: 'At T=2: C_uu = max(0, 136 - 105) = $31; C_ud = max(0, 106 - 105) = $1. Thus C_u = [0.5180×31 + 0.4820×1] / 1.03 = 16.54 / 1.03 = <b>$16.06</b>.'
+          },
+          {
+            label: 'Phase c) Call Value C₀ at t = 0 ($)',
+            question: 'Given C_d = $0.4738 at S_d = $88 (where p_d = 0.4880) and p₀ = 0.5000 at t = 0, compute C₀ ($).',
+            ans: 8.03, tol: 0.05, unit: '$',
+            explain: 'C₀ = [0.50 × 16.0583 + 0.50 × 0.4738] / 1.03 = 8.2660 / 1.03 = <b>$8.03</b>.'
+          }
+        ]
+      },
+      {
+        id: 'rb4',
+        tag: 'RAID BOSS 4 • EXTRA SESSION & PRACTICE Q40',
+        title: '⚡ Archmage of Option Leverage Ω & Beta Hedging',
+        lore: 'Combine Option Elasticity Ω, Option Beta, and Delta-Neutral Put Hedging!',
+        scenario: 'You hold <b>N_S = 1,000 shares</b> at <b>S₀ = $100/share</b> ($100,000 equity) with <b>β_S = 1.50</b>.<br>European Puts on this stock trade at <b>P₀ = $5.00</b> with <b>Hedge Ratio Δ_P = -0.40</b>.',
+        phases: [
+          {
+            label: 'Phase a) Put Option Elasticity Ω_P',
+            question: 'Compute the Option Elasticity (Leverage Ω_P) of the European Put.',
+            ans: -8.0, tol: 0.05, unit: '',
+            explain: 'Ω_P = Δ_P × (S₀ / P₀) = -0.40 × (100 / 5.00) = <b>-8.00</b>.'
+          },
+          {
+            label: 'Phase b) Put Option Beta (β_P)',
+            question: 'Compute the Beta of the European Put (β_P).',
+            ans: -12.0, tol: 0.05, unit: '',
+            explain: 'β_P = Ω_P × β_S = -8.00 × 1.50 = <b>-12.00</b>.'
+          },
+          {
+            label: 'Phase c) Puts Needed for Zero Dollar-Beta',
+            question: 'How many Put options (N_P) must you buy to bring total portfolio market exposure (Dollar Beta) to zero?',
+            ans: 2500, tol: 2, unit: 'puts',
+            explain: 'To neutralize stock exposure: N_S × 1 + N_P × Δ_P = 0 ⇒ 1,000 - 0.40 × N_P = 0 ⇒ N_P = 1,000 / 0.40 = <b>2,500 puts</b>. (Note Q40: If restricted to protective puts N_P ≤ N_S = 1,000, buy 1,000 puts and sell shares for the remainder!).'
+          }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // 4. SPELL ACADEMY DATABASE (100% ENGLISH)
+    // =========================================================================
+    const SPELLS_DB = [
+      {
+        id: 'sp1', cat: 'Derivatives', code: 'P11',
+        title: 'Prove Put-Call Parity for European Options (No Dividends)',
+        hookQuestion: 'What is the 1-step key idea to prove Put-Call Parity (C + K·e^(-rT) = P + S₀) in 3 lines?',
+        hooks: [
+          'Build Portfolio A (1 Call + K·e^(-rT) cash) and Portfolio B (1 Put + 1 Stock), showing both pay max(S_T, K) in every state at T!',
+          'Take the second derivative with respect to volatility σ',
+          'Assume every investor is risk-neutral in the real world'
+        ],
+        ansHook: 0,
+        eli5: '🧒 Kid-Friendly Story: Imagine two mystery gift boxes opening at year-end. Box A has a Call ticket to buy at $K plus $K saved in the bank. Box B has 1 real stock plus a Put insurance ticket to sell at $K. Whether the stock moons or crashes, opening either box gives you the exact bigger amount between S_T and $K! Since both boxes pay identically in every future, they must cost the exact same today!',
+        modelEn: 'Construct two portfolios at t = 0: Portfolio A holds one European call plus cash K·e^(-rT) invested at the risk-free rate; Portfolio B holds one European put plus one share of stock S₀. At maturity T, if S_T ≥ K, Portfolio A pays (S_T - K) + K = S_T, and Portfolio B pays 0 + S_T = S_T. If S_T < K, Portfolio A pays 0 + K = K, and Portfolio B pays (K - S_T) + S_T = K. Since both yield max(S_T, K) in all states, the Law of One Price requires C₀ + K·e^(-rT) = P₀ + S₀.',
+        keywords: ['Portfolio A vs Portfolio B', 'Same terminal payoff max(S_T, K) in all states', 'Law of One Price / No-Arbitrage']
+      },
+      {
+        id: 'sp2', cat: 'Derivatives', code: 'P13',
+        title: 'Why an American Call on a Non-Dividend Stock is Never Exercised Early',
+        hookQuestion: 'Why is holding an American Call on a non-dividend stock until maturity always better than exercising early?',
+        hooks: [
+          'Because C_t ≥ S_t - K·e^(-rτ) > S_t - K: selling the Call alive captures (1) interest earned on delaying payment of K and (2) downside insurance!',
+          'Because exchanges ban early exercise on profitable American Calls',
+          'Because early exercise increases the stock’s Beta'
+        ],
+        ansHook: 0,
+        eli5: '🧒 Kid-Friendly Story: If you cash in your Call ticket early today, you must pay $K immediately (losing bank interest!) and if the stock crashes tomorrow you eat the loss. Keeping the ticket alive lets $K keep earning bank interest while protecting you if the stock crashes! So an "alive" Call is always worth more than a "dead" exercised one!',
+        modelEn: 'By no-arbitrage, a European call on a non-dividend-paying stock satisfies C_Euro ≥ max(0, S_t - K·e^(-rτ)). Since an American call has at least the value of a European call and r > 0, we have C_Amer ≥ C_Euro ≥ S_t - K·e^(-rτ) > S_t - K. Thus, the American call’s market value ("alive") strictly exceeds its immediate exercise value ("dead"). Early exercise sacrifices both the time value of money on the strike price K and valuable downside protection.',
+        keywords: ['C_Amer ≥ S_t - K·e^(-rτ) > S_t - K', 'Time value of money on K', 'Downside insurance protection']
+      },
+      {
+        id: 'sp3', cat: 'Derivatives', code: 'P15',
+        title: 'Derive Single-Period Binomial Hedge Ratio Δ & Risk-Neutral Probability p',
+        hookQuestion: 'Why do real-world probabilities (q) vanish completely from binomial option pricing?',
+        hooks: [
+          'Because choosing Δ = (C_u - C_d)/(S_u - S_d) makes the hedged portfolio payoff identical in both Up and Down states, forcing it to earn the risk-free rate R_f!',
+          'Because Wall Street traders ignore risk completely',
+          'Because stocks always rise 50% of the time and fall 50% of the time'
+        ],
+        ansHook: 0,
+        eli5: '🧒 Kid-Friendly Story: When you combine Δ shares with 1 option so that whether tomorrow is sunny (stock up) or rainy (stock down) your basket ends with the exact same cash, all risk disappears! A zero-risk basket must earn the exact same rate as a safe bank account, regardless of how brave or scared investors are!',
+        modelEn: 'Form a portfolio of Δ shares and one short call. Choose Δ so the portfolio value at T = 1 is identical in both up and down states: Δ·S_u - C_u = Δ·S_d - C_d, giving Δ = (C_u - C_d)/(S_u - S_d). Since this portfolio is risk-free, no-arbitrage requires it to earn R_f. Rearranging yields C₀ = [p·C_u + (1 - p)·C_d]/(1 + R_f), where p = (1 + R_f - d)/(u - d). Real-world probabilities cancel out because risk is perfectly hedged.',
+        keywords: ['State-independent payoff ΔS_u - C_u = ΔS_d - C_d', 'Earns risk-free rate R_f', 'Risk hedged away → real-world q vanishes']
+      },
+      {
+        id: 'sp4', cat: 'Core L01-L08', code: 'A5 & P9',
+        title: 'Core Assumptions of CAPM & Derivation of the Security Market Line (SML)',
+        hookQuestion: 'Which equilibrium condition directly produces the CAPM Security Market Line (SML)?',
+        hooks: [
+          'In equilibrium, every asset must offer the same reward-to-marginal-risk ratio [E(r_i) - r_f] / Cov(r_i, r_M) as the Market Portfolio M!',
+          'Every stock must have zero idiosyncratic variance',
+          'All investors borrow at different interest rates'
+        ],
+        ansHook: 0,
+        eli5: '🧒 Kid-Friendly Story: In a giant supermarket where everyone carries the exact same shopping cart (Market Portfolio M), an item’s fair reward doesn’t depend on how much it wobbles alone, but on how much extra wobble it adds to the shared cart (Beta)! Twice the Beta means twice the risk premium!',
+        modelEn: 'CAPM assumes mean-variance optimizers, homogeneous expectations over one period, frictionless markets, and unrestricted borrowing/lending at r_f. Thus all investors hold the Market Portfolio M on the CML. In equilibrium, the marginal reward-to-risk ratio of any asset i equals that of M: [E(r_i) - r_f] / Cov(r_i, r_M) = [E(r_M) - r_f] / σ_M². Defining β_i = Cov(r_i, r_M) / σ_M² yields the SML: E(r_i) = r_f + β_i[E(r_M) - r_f].',
+        keywords: ['Homogeneous expectations & Mean-variance', 'Market Portfolio M is Tangency Portfolio', 'Marginal risk = Cov(r_i, r_M)/σ_M² = β_i']
+      },
+      {
+        id: 'sp5', cat: 'Core L01-L08', code: 'A8 & C10',
+        title: 'CAPM vs. Arbitrage Pricing Theory (APT) & Fama-French 3-Factor Model',
+        hookQuestion: 'What is the biggest theoretical advantage of APT over CAPM?',
+        hooks: [
+          'APT relies only on No-Arbitrage across well-diversified portfolios, avoiding quadratic utility assumptions and Roll’s Critique of an unobservable Market Portfolio!',
+          'APT forces every investor to have risk aversion A = 4',
+          'APT works only for bonds and not equities'
+        ],
+        ansHook: 0,
+        eli5: '🧒 Kid-Friendly Story: CAPM demands that everyone on Earth think identically and own a piece of every asset in the universe (impossible to measure!). APT is way more practical: just pack enough stocks into a basket so random noise cancels out, then apply the simple "No Free Money" rule across shared economic factors!',
+        modelEn: 'Unlike CAPM—which requires restrictive utility/distributional assumptions and the unobservable true Market Portfolio (Roll’s Critique)—Ross’s APT relies only on a linear factor return-generating process and No-Arbitrage across well-diversified portfolios where idiosyncratic risk e_i diversifies to zero. Fama-French (1993) empirically extends this multi-factor structure using Market (MKT), Size (SMB: Small Minus Big), and Value (HML: High Minus Low book-to-market) factors.',
+        keywords: ['No-Arbitrage on well-diversified portfolios', 'Avoids Roll’s Critique', 'Fama-French: MKT, SMB (Size), HML (Value)']
+      },
+      {
+        id: 'sp6', cat: 'Core L01-L08', code: 'A3 & C4',
+        title: 'Redington Immunization Conditions & Why Asset Convexity Must Exceed Liability',
+        hookQuestion: 'Besides matching PV(A) = PV(L) and Duration D_A = H, why must Asset Convexity exceed Liability Convexity (C_A > C_L)?',
+        hooks: [
+          'Because Duration only matches the first-order slope; higher Asset Convexity ensures the second-order curve bends above the liability for any yield shift Δy, locking in a positive surplus!',
+          'Because higher Convexity reduces corporate taxes',
+          'Because high Convexity eliminates rebalancing forever'
+        ],
+        ansHook: 0,
+        eli5: '🧒 Kid-Friendly Story: Picture your Liability as a flat slide and your Assets as a curvy U-shaped bowl resting right on top of it today. Because the bowl curves upward faster (higher Convexity), whether interest rates slide left or right, the bowl’s rim always stays ABOVE the slide — you always have enough money to pay your debt!',
+        modelEn: 'Classic immunization requires three conditions: (1) PV(Assets) = PV(Liabilities), (2) Portfolio Macaulay Duration equals the liability horizon (D_A = H) so price risk and reinvestment risk offset to first order, and (3) Asset dispersion/convexity exceeds Liability convexity (C_A > C_L). Greater asset convexity ensures the second-order Taylor term ½(C_A - C_L)(Δy)² > 0, keeping net worth non-negative for any parallel shift Δy.',
+        keywords: ['PV_A = PV_L', 'D_Mac = Horizon H', 'C_A > C_L ensures second-order surplus']
+      }
+    ];
+
+    // =========================================================================
+    // 5. GOBLIN BOMB DEFUSAL DATABASE (100% ENGLISH)
+    // =========================================================================
+    const BOMBS_DB = [
+      {
+        topic: 'FUTURES MARGIN CALL TRAP (PRACTICE Q7)',
+        stmt: 'On a Futures exchange, if Maintenance Margin is $4,500 and your end-of-day account balance drops to EXACTLY $4,500, you immediately receive a Margin Call and only need to deposit enough to reach $4,500.',
+        isTrue: false,
+        explain: '💥 DOUBLE TRAP! (1) Balance must fall STRICTLY BELOW (< $4,500) to trigger a Margin Call; (2) Once triggered, Futures require topping up all the way back to INITIAL MARGIN, not Maintenance Margin!'
+      },
+      {
+        topic: 'EUROPEAN CALL LOWER BOUND (PRACTICE Q20)',
+        stmt: 'The no-arbitrage lower bound of a European Call on a non-dividend stock is max(0, S₀ - PV(K)), NOT max(0, S₀ - K).',
+        isTrue: true,
+        explain: '✅ 100% TRUE! Because you pay strike K only at maturity T, its present value today is PV(K) = K/(1+R_f)^T < K, making the European Call lower bound strictly higher than intrinsic value S₀ - K!'
+      },
+      {
+        topic: 'ADDITIVE BINOMIAL TREE TRAP (PRACTICE Q33)',
+        stmt: 'In a 2-period Additive Binomial Tree (+$18 / -$12 each period), the risk-neutral probability p is a constant number across all nodes in Period 1 and Period 2.',
+        isTrue: false,
+        explain: '💥 FATAL TRAP! Constant p = (1+r-d)/(u-d) holds ONLY for Multiplicative trees! On an Additive tree (+$U, -$D), percentage moves shrink as price rises, so p₀ ≠ p_u ≠ p_d — you MUST recompute p at every node!'
+      },
+      {
+        topic: 'OPTIMAL RISKY WEIGHT y* FORMULA TRAP',
+        stmt: 'Given Utility U = E(r) - 0.5·A·σ², the optimal weight in the risky portfolio is y* = [E(r_P) - r_f] / (0.5 · A · σ_P²).',
+        isTrue: false,
+        explain: '💥 FORMULA TRAP! Differentiating 0.5·A·y²·σ_P² wrt y brings down the 2, which cancels the 0.5! The true formula is y* = [E(r_P) - r_f] / (A · σ_P²) — NO 0.5 in the denominator!'
+      },
+      {
+        topic: 'CAPM SML VALUATION TRAP',
+        stmt: 'If a stock’s expected return plots ABOVE the Security Market Line (Jensen’s Alpha > 0), the stock is currently UNDERVALUED and is a BUY.',
+        isTrue: true,
+        explain: '✅ 100% TRUE! Plotting above the SML means the stock delivers higher expected return than its beta requires ⇒ its current market price P₀ is cheap (Undervalued)!'
+      },
+      {
+        topic: 'OPTION LEVERAGE & BETA (EXTRA SESSION)',
+        stmt: 'A European Put option on a positive-beta stock (β_S > 0) will always have Δ_Put < 0, Option Elasticity Ω_Put < 0, and Option Beta β_Put < 0.',
+        isTrue: true,
+        explain: '✅ 100% TRUE! Puts gain value when the stock drops (Δ_Put < 0), so Ω_Put = Δ_Put·(S₀/P₀) < 0 and β_Put = Ω_Put·β_S < 0, making Puts powerful negative-beta hedging tools!'
+      },
+      {
+        topic: 'SINGLE-INDEX MODEL COVARIANCE TRAP',
+        stmt: 'In the Single-Index Model, the covariance between stocks i and j is Cov(R_i, R_j) = β_i·β_j·σ_M² + σ(e_i)·σ(e_j).',
+        isTrue: false,
+        explain: '💥 TRAP! SIM assumes firm-specific residuals are uncorrelated: Cov(e_i, e_j) = 0. Thus Cov(R_i, R_j) = β_i · β_j · σ_M² only!'
+      },
+      {
+        topic: 'BLACK-SCHOLES N(d₁) vs N(d₂) TRAP',
+        stmt: 'In the Black-Scholes Call formula, N(d₁) is the Hedge Ratio (Delta Δ_Call), whereas N(d₂) is the risk-neutral probability that the option finishes in-the-money (S_T > K).',
+        isTrue: true,
+        explain: '✅ 100% TRUE! Exams love swapping N(d₁) and N(d₂). Quick memory trick: d₁ stands first next to S₀ so N(d₁) is shares Δ; d₂ stands next to K·e^(-rT) so N(d₂) is the ITM probability!'
+      }
+    ];
+
+    // =========================================================================
+    // 6. FORMULA GRIMOIRE DATABASE (100% ENGLISH)
+    // =========================================================================
+    const FORMULAS_DB = [
+      { tag: 'L01 • Margin', title: 'Margin Call Price Threshold (P*)', eq: 'Long: P* = Loan / (1 - MM) = P₀(1 - IM)/(1 - MM) | Short: P* = P₀(1 + IM)/(1 + MM)', note: 'Long divides by (1 - MM); Short divides by (1 + MM).' },
+      { tag: 'L02 • Fixed Income', title: 'Spot Rate & Implied Forward Rate', eq: '(1 + s_n)^n = (1 + s_{n-1})^{n-1} · (1 + f_{n-1,n})', note: 'No-arbitrage term structure relation.' },
+      { tag: 'L03 • Duration & Convexity', title: '2nd-Order Bond Price Approximation', eq: 'ΔP / P ≈ -D_mod · Δy + ½ · Convexity · (Δy)²', note: 'D_mod = D_Mac / (1 + y/m). Never drop the ½ factor!' },
+      { tag: 'L04 • Portfolio Choice', title: 'Utility & Optimal Risky Allocation y*', eq: 'U = E(r) - ½·A·σ²  ⇒  y* = [E(r_P) - r_f] / (A · σ_P²)', note: 'No ½ in the denominator of y*!' },
+      { tag: 'L05 • Markowitz', title: 'Diversification Sharpe Hurdle', eq: 'Add Asset Z to P iff: Sharpe_Z > Sharpe_P × ρ_{Z,P}', note: 'An asset with lower Sharpe than P can still raise overall Sharpe if ρ is low!' },
+      { tag: 'L06 • Single-Index Model', title: 'SIM Variance & Covariance', eq: 'σ_i² = β_i²·σ_M² + σ²(e_i)  |  Cov(R_i, R_j) = β_i·β_j·σ_M²', note: 'Idiosyncratic risk σ²(e_i) never enters cross-stock covariance.' },
+      { tag: 'L07 • CAPM & APT', title: 'Security Market Line (SML) & Alpha', eq: 'E(r_i) = r_f + β_i·[E(r_M) - r_f]  |  α_i = E(r_i)_forecast - E(r_i)_CAPM', note: 'α > 0 ⇒ Plots ABOVE SML ⇒ Undervalued ⇒ BUY.' },
+      { tag: 'L09 • Forwards & Futures', title: 'Forward Price & Existing Contract Value', eq: 'F₀ = [S₀ - PV(D)]·(1 + R_f)^T (or ·e^{(r-q)T}) | V_t(Long) = (F_t - K)·e^{-r(T-t)}', note: 'At initiation V₀ = 0; mid-life V_t discounts (F_t - K) back to today.' },
+      { tag: 'L09 • Hedging', title: 'Min-Variance Hedge Ratio & Beta Adjustment', eq: 'h* = ρ · (σ_S / σ_F)  |  N* = (β_target - β_P) · (V_P / V_F)', note: 'For market-neutral hedging, set β_target = 0.' },
+      { tag: 'L10 • Options Parity', title: 'Put-Call Parity & Call Lower Bound', eq: 'C₀ + PV(K) = P₀ + S₀ - PV(D)  |  C_min = max(0, S₀ - PV(D) - PV(K))', note: 'If C_mkt < C_min: Buy Call + Short Stock + Lend PV(K).' },
+      { tag: 'L11 • Binomial Tree', title: 'Replication (Δ, B) & Risk-Neutral Pricing', eq: 'Δ = (V_u - V_d)/(S_u - S_d) | p = [S_node(1+r) - S_d]/(S_u - S_d) | V = [p·V_u + (1-p)·V_d]/(1+r)', note: 'On an additive tree (+$U, -$D), recompute p at every single node!' },
+      { tag: 'Extra • Option Beta', title: 'Option Elasticity (Ω) & Option Beta', eq: 'Ω = Δ · (S₀ / V₀)  |  β_option = Ω · β_S', note: 'Calls have Ω > 1; Puts have Δ < 0 so Ω < 0 and β_Put < 0.' }
+    ];
+
+    // =========================================================================
+    // 7. PERSISTENT RPG STATE, AUDIO SYNTH & CANVAS PARTICLE FX ENGINE
+    // =========================================================================
+    const SHOP_ITEMS = [
+      { id: 'sword_parity', name: '⚔️ Put-Call Parity Blade', cost: 200, desc: '+45 Base Critical Damage against all Monsters & Raid Bosses' },
+      { id: 'shield_dur', name: '🛡️ Golden Duration Shield', cost: 250, desc: '+40 Max HP (Max HP = 140) and restores full HP immediately' },
+      { id: 'ring_arb', name: '💍 No-Arbitrage Infinity Ring', cost: 300, desc: '+50% Gold (🪙) & +2 Gems (💎) on every correct strike' },
+      { id: 'book_cayirli', name: '📕 Dr. Cayirli’s Red Grimoire', cost: 350, desc: 'Auto-reveals Fairy Mimi’s Hint on every single question!' }
+    ];
+
+    let state = {
+      hero: 'kitsune',
+      pet: 'chick',
+      unlockedPets: ['chick'],
+      items: [],
+      hp: 100,
+      maxHp: 100,
+      mana: 40,
+      xp: 0,
+      gold: 250,
+      gems: 15,
+      combo: 0,
+      potions: 3,
+      sound: true,
+      shieldActive: true,
+      realmIdx: 0,
+      qIdx: 0,
+      monsterHp: 600,
+      monsterMaxHp: 600,
+      answeredCurrent: false,
+      raidIdx: 0,
+      raidSolved: {},
+      spellCat: 'ALL',
+      spellIdx: 0,
+      spellUnlocked: {},
+      bombIdx: 0,
+      mistakes: []
+    };
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem('bfin_rpg_en_v1');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          state = Object.assign(state, parsed);
+        }
+      } catch (e) {}
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('bfin_rpg_en_v1', JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    let audioCtx = null;
+    function playSfx(type) {
+      if (!state.sound) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'slash') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(880, now + 0.12);
+          osc.frequency.exponentialRampToValueAtTime(1180, now + 0.25);
+          gain.gain.setValueAtTime(0.18, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+          osc.start(now); osc.stop(now + 0.28);
+        } else if (type === 'ult') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.exponentialRampToValueAtTime(880, now + 0.35);
+          gain.gain.setValueAtTime(0.22, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+          osc.start(now); osc.stop(now + 0.42);
+        } else if (type === 'hit') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(160, now);
+          osc.frequency.linearRampToValueAtTime(75, now + 0.28);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.start(now); osc.stop(now + 0.3);
+        } else if (type === 'coin') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(987, now);
+          osc.frequency.setValueAtTime(1318, now + 0.08);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now); osc.stop(now + 0.25);
+        }
+      } catch (e) {}
+    }
+
+    function toggleSound() {
+      state.sound = !state.sound;
+      document.getElementById('btn-sound').textContent = state.sound ? '🔊' : '🔇';
+      saveState();
+    }
+
+    const canvas = document.getElementById('fx-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function spawnParticles(x, y, colors, count = 36) {
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 2 + Math.random() * 8;
+        particles.push({
+          x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 2,
+          size: 4 + Math.random() * 6,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1, decay: 0.016 + Math.random() * 0.02
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx; p.y += p.vy; p.vy += 0.18; p.alpha -= p.decay;
+        if (p.alpha <= 0) { particles.splice(i, 1); continue; }
+        ctx.save();
+        ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color; ctx.shadowBlur = 10;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    function spawnFloatingCombatText(text, colorClass = 'text-amber-300') {
+      const layer = document.getElementById('floating-dmg-layer');
+      if (!layer) return;
+      const el = document.createElement('div');
+      el.className = `font-black text-lg sm:text-2xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] ${colorClass}`;
+      el.style.animation = 'floatDamage 1.15s ease-out forwards';
+      el.innerHTML = text;
+      layer.appendChild(el);
+      setTimeout(() => el.remove(), 1150);
+    }
+
+    function triggerSlashBeam(color = '#38bdf8') {
+      const layer = document.getElementById('slash-fx-layer');
+      if (!layer) return;
+      const beam = document.createElement('div');
+      beam.style.animation = 'slashWave 0.55s ease-out forwards';
+      beam.innerHTML = `<svg width="180" height="90" viewBox="0 0 180 90">
+        <path d="M10 80 Q95 5 170 20 Q110 55 10 80 Z" fill="${color}" stroke="#ffffff" stroke-width="3"/>
+      </svg>`;
+      layer.appendChild(beam);
+      setTimeout(() => beam.remove(), 560);
+    }
+
+    const FAIRY_TIPS = [
+      '🧚‍♀️ Quick Tip: Long Margin divides by (1 - MM), while Short Margin divides by (1 + MM)!',
+      '🧚‍♀️ Quick Tip: On Futures (Q7), balance must fall STRICTLY BELOW (< MM) to trigger a call, and you top up back to INITIAL MARGIN!',
+      '🧚‍♀️ Quick Tip: European Call Lower Bound is max(0, S₀ - PV(K)), NEVER S₀ - K!',
+      '🧚‍♀️ Quick Tip: On an Additive Binomial Tree (+$18 / -$12 in Q33), risk-neutral p changes at every node!',
+      '🧚‍♀️ Quick Tip: A Put Option has Δ < 0, so Option Elasticity Ω < 0 and Option Beta β_Put < 0!'
+    ];
+    function setFairyMessage(html) {
+      const box = document.getElementById('fairy-text');
+      const bubble = document.getElementById('fairy-bubble');
+      if (box) box.innerHTML = html;
+      if (bubble) bubble.classList.remove('hidden');
+    }
+    function pokeFairy() {
+      playSfx('coin');
+      setFairyMessage(FAIRY_TIPS[Math.floor(Math.random() * FAIRY_TIPS.length)]);
+      spawnParticles(window.innerWidth - 60, window.innerHeight - 60, ['#f472b6', '#c084fc', '#38bdf8', '#fde047'], 24);
+    }
+    function toggleFairyBubble() {
+      document.getElementById('fairy-bubble').classList.toggle('hidden');
+    }
+
+    const RANKS = [
+      '🏅 Lv.1 Trading Rookie',
+      '⚔️ Lv.2 Fixed Income Knight',
+      '🛡️ Lv.3 Markowitz Vanguard',
+      '🔮 Lv.4 No-Arbitrage Mage',
+      '⚡ Lv.5 Derivatives Blademaster',
+      '👑 Lv.6 Wall Street Grandmaster'
+    ];
+
+    function updateHUD() {
+      const h = HEROES[state.hero] || HEROES.kitsune;
+      const pet = PETS[state.pet] || PETS.chick;
+      const lv = Math.min(6, Math.floor(state.xp / 300) + 1);
+      const xpInLv = state.xp % 300;
+
+      document.getElementById('hud-hero-avatar').innerHTML = h.svg;
+      document.getElementById('hud-hero-name').textContent = h.name;
+      document.getElementById('hud-level-badge').textContent = `Lv.${lv}`;
+      document.getElementById('hud-rank-title').textContent = RANKS[lv - 1];
+      document.getElementById('hud-xp-text').textContent = `${xpInLv} / 300 XP`;
+      document.getElementById('hud-xp-bar').style.width = `${Math.max(4, (xpInLv / 300) * 100)}%`;
+
+      state.maxHp = state.items.includes('shield_dur') ? 140 : 100;
+      state.hp = Math.min(state.maxHp, Math.max(0, state.hp));
+      document.getElementById('hud-hp-bar').style.width = `${(state.hp / state.maxHp) * 100}%`;
+      document.getElementById('hud-hp-text').textContent = `❤️ ${state.hp}/${state.maxHp}`;
+
+      state.mana = Math.min(100, Math.max(0, state.mana));
+      document.getElementById('hud-mana-bar').style.width = `${state.mana}%`;
+      document.getElementById('hud-mana-text').textContent = `⚡ Ult: ${state.mana}%`;
+
+      document.getElementById('hud-gold').textContent = state.gold;
+      document.getElementById('hud-gems').textContent = state.gems;
+      document.getElementById('hud-combo').textContent = `x${state.combo}`;
+      document.getElementById('hud-potions').textContent = state.potions;
+      document.getElementById('mistake-badge').textContent = state.mistakes.length;
+
+      const battleHero = document.getElementById('battle-hero-sprite');
+      if (battleHero) battleHero.innerHTML = h.svg;
+      const battlePet = document.getElementById('battle-pet-sprite');
+      if (battlePet) {
+        battlePet.innerHTML = `<span class="text-2xl">${pet.emoji}</span><span class="text-[9px] font-black text-amber-300 text-center leading-tight">${pet.name.replace(/^[^\s]+\s/, '')}</span>`;
+      }
+      const ultBtn = document.getElementById('ult-ready-text');
+      if (ultBtn) ultBtn.textContent = state.mana >= 100 ? 'READY 🔥' : `${state.mana}%`;
+
+      const shieldPill = document.getElementById('shield-status-pill');
+      if (shieldPill) {
+        if (state.hero === 'paladin' && state.shieldActive) shieldPill.classList.remove('hidden');
+        else shieldPill.classList.add('hidden');
+      }
+      saveState();
+    }
+
+    function usePotion(type) {
+      if (type === 'heal') {
+        if (state.potions <= 0) {
+          setFairyMessage('🧚‍♀️ Out of Potions! Visit the <b>🏪 Tavern (Tab 6)</b> or earn more Gold!');
+          return;
+        }
+        if (state.hp >= state.maxHp) {
+          setFairyMessage('🧚‍♀️ Your HP is already full!');
+          return;
+        }
+        state.potions--;
+        state.hp = Math.min(state.maxHp, state.hp + 50);
+        playSfx('coin');
+        spawnFloatingCombatText('+50 HP 🧪', 'text-emerald-400');
+        spawnParticles(window.innerWidth * 0.25, window.innerHeight * 0.35, ['#34d399', '#10b981', '#a7f3d0'], 30);
+        updateHUD();
+      }
+    }
+
+    const MODES = ['campaign', 'boss', 'spells', 'bomb', 'forge', 'tavern', 'grimoire'];
+    function switchMode(mode) {
+      MODES.forEach(m => {
+        const sec = document.getElementById(`view-${m}`);
+        const tab = document.getElementById(`tab-${m}`);
+        if (m === mode) {
+          sec.classList.remove('hidden');
+          tab.className = 'mode-tab btn-game px-3.5 py-2 rounded-xl font-extrabold text-xs whitespace-nowrap flex items-center gap-1.5 bg-gradient-to-r from-indigo-600 to-fuchsia-600 text-white shadow-lg shadow-indigo-500/30 border border-white/20';
+        } else {
+          sec.classList.add('hidden');
+          tab.className = 'mode-tab btn-game px-3.5 py-2 rounded-xl font-extrabold text-xs whitespace-nowrap flex items-center gap-1.5 bg-slate-900/90 text-slate-300 border border-slate-700 hover:border-indigo-400';
+        }
+      });
+      if (mode === 'campaign') renderCampaignStage();
+      if (mode === 'boss') renderRaidBosses();
+      if (mode === 'spells') renderSpellAcademy();
+      if (mode === 'bomb') renderBombStage();
+      if (mode === 'forge') runBinomialForge();
+      if (mode === 'tavern') renderTavern();
+      if (mode === 'grimoire') { renderFormulaGrimoire(); renderRevengeList(); }
+    }
+
+    function getRealmQuestions(realmId) {
+      return CAMPAIGN_QUESTIONS.filter(q => q.realm === realmId);
+    }
+
+    function selectRealm(idx) {
+      state.realmIdx = idx;
+      state.qIdx = 0;
+      const realm = REALMS[idx];
+      state.monsterMaxHp = realm.monsterMaxHp;
+      state.monsterHp = realm.monsterMaxHp;
+      state.shieldActive = true;
+      playSfx('coin');
+      renderCampaignStage();
+    }
+
+    function renderCampaignStage() {
+      const realmSel = document.getElementById('realm-selector');
+      realmSel.innerHTML = REALMS.map((r, i) => {
+        const active = i === state.realmIdx;
+        return `<button onclick="selectRealm(${i})" class="btn-game text-left p-2.5 rounded-2xl border transition-all ${
+          active
+            ? 'bg-gradient-to-br from-indigo-600/90 via-fuchsia-600/80 to-amber-500/80 border-white text-white shadow-xl shadow-indigo-500/30'
+            : 'bg-slate-900/85 border-slate-800 text-slate-300 hover:border-indigo-400/50'
+        }">
+          <div class="text-[10px] font-black uppercase tracking-wider ${active ? 'text-amber-200' : 'text-indigo-400'}">${r.badge}</div>
+          <div class="font-extrabold text-xs truncate mt-0.5">${r.name}</div>
+        </button>`;
+      }).join('');
+
+      const realm = REALMS[state.realmIdx];
+      const qs = getRealmQuestions(realm.id);
+      if (state.qIdx >= qs.length) state.qIdx = 0;
+      const q = qs[state.qIdx];
+      state.answeredCurrent = false;
+
+      const arena = document.getElementById('campaign-arena');
+      arena.className = `${realm.arenaClass} relative rounded-3xl border-2 border-indigo-400/50 p-4 sm:p-6 overflow-hidden shadow-2xl`;
+      document.getElementById('stage-realm-badge').textContent = realm.badge;
+      document.getElementById('stage-realm-title').textContent = `${realm.name} (${realm.sub})`;
+      document.getElementById('stage-wave-counter').textContent = `Wave ${state.qIdx + 1} / ${qs.length}`;
+
+      document.getElementById('battle-monster-sprite').innerHTML = realm.monsterSvg;
+      document.getElementById('monster-name').textContent = realm.monsterName;
+      document.getElementById('monster-hp-text').textContent = `HP: ${state.monsterHp} / ${state.monsterMaxHp}`;
+      document.getElementById('monster-hp-bar').style.width = `${(state.monsterHp / state.monsterMaxHp) * 100}%`;
+
+      document.getElementById('monster-speech').textContent = `"${realm.monsterTaunts[state.qIdx % realm.monsterTaunts.length]}"`;
+      document.getElementById('hero-speech').textContent = `"${HEROES[state.hero].quotes[state.qIdx % HEROES[state.hero].quotes.length]}"`;
+
+      document.getElementById('q-topic-tag').textContent = q.topic;
+      document.getElementById('q-prompt-box').innerHTML = q.prompt;
+
+      const hintBox = document.getElementById('q-hint-box');
+      if (state.hero === 'oracle' || state.pet === 'owl' || state.items.includes('book_cayirli')) {
+        hintBox.classList.remove('hidden');
+        hintBox.innerHTML = `✨ <b>Auto-Passive Hint:</b> ${q.hint}`;
+      } else {
+        hintBox.classList.add('hidden');
+      }
+
+      const badges = ['⚡ STRIKE A', '🔥 STRIKE B', '💎 STRIKE C', '🌪️ STRIKE D'];
+      document.getElementById('q-options-grid').innerHTML = q.options.map((opt, idx) => `
+        <button id="opt-btn-${idx}" onclick="attackWithOption(${idx})" class="btn-game text-left p-3.5 sm:p-4 rounded-2xl bg-slate-950/90 border-2 border-slate-700/80 hover:border-cyan-400 flex items-start gap-3 group">
+          <span class="shrink-0 px-2.5 py-1 rounded-xl text-[10px] font-black bg-indigo-500/20 text-cyan-300 border border-cyan-400/30 group-hover:bg-cyan-400 group-hover:text-slate-950 transition-all">${badges[idx]}</span>
+          <span class="text-xs sm:text-sm font-bold text-slate-100 leading-relaxed">${opt}</span>
+        </button>
+      `).join('');
+
+      document.getElementById('q-feedback-panel').classList.add('hidden');
+      updateHUD();
+    }
+
+    function attackWithOption(chosenIdx) {
+      if (state.answeredCurrent) return;
+      state.answeredCurrent = true;
+
+      const realm = REALMS[state.realmIdx];
+      const q = getRealmQuestions(realm.id)[state.qIdx];
+      const isCorrect = chosenIdx === q.ans;
+      const heroSprite = document.getElementById('battle-hero-sprite');
+      const monsterSprite = document.getElementById('battle-monster-sprite');
+
+      q.options.forEach((_, idx) => {
+        const b = document.getElementById(`opt-btn-${idx}`);
+        if (!b) return;
+        if (idx === q.ans) {
+          b.className = 'text-left p-3.5 sm:p-4 rounded-2xl bg-emerald-950/90 border-2 border-emerald-400 flex items-start gap-3 shadow-lg shadow-emerald-500/20';
+        } else if (idx === chosenIdx && !isCorrect) {
+          b.className = 'text-left p-3.5 sm:p-4 rounded-2xl bg-rose-950/90 border-2 border-rose-500 flex items-start gap-3 opacity-80';
+        } else {
+          b.classList.add('opacity-45');
+        }
+      });
+
+      const fb = document.getElementById('q-feedback-panel');
+      fb.classList.remove('hidden');
+
+      if (isCorrect) {
+        playSfx('slash');
+        state.combo++;
+        let baseDmg = 180 + state.combo * 25;
+        if (state.items.includes('sword_parity')) baseDmg += 45;
+        if (state.hero === 'kitsune' && (realm.id === 'w5' || realm.id === 'w6')) baseDmg = Math.round(baseDmg * 1.35);
+        if (state.pet === 'cat') baseDmg = Math.round(baseDmg * 1.4);
+
+        let goldGain = 60 + state.combo * 10;
+        if (state.hero === 'paladin') goldGain = Math.round(goldGain * 1.3);
+        if (state.pet === 'chick') goldGain += 25;
+        if (state.items.includes('ring_arb')) { goldGain = Math.round(goldGain * 1.5); state.gems += 2; }
+
+        let xpGain = 120 + state.combo * 15;
+        if (state.pet === 'cat') xpGain += 35;
+        if (state.pet === 'owl') state.hp = Math.min(state.maxHp, state.hp + 8);
+
+        state.xp += xpGain;
+        state.gold += goldGain;
+        state.mana = Math.min(100, state.mana + (state.hero === 'oracle' ? 35 : 25));
+        state.monsterHp = Math.max(0, state.monsterHp - baseDmg);
+
+        heroSprite.classList.add('lunge-right');
+        triggerSlashBeam('#38bdf8');
+        setTimeout(() => {
+          monsterSprite.classList.add('hit-shake');
+          spawnFloatingCombatText(`-${baseDmg} CRIT! 💥`, 'text-amber-300');
+          spawnFloatingCombatText(`+${goldGain} 🪙  +${xpGain} XP`, 'text-cyan-300');
+          const rect = monsterSprite.getBoundingClientRect();
+          spawnParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, ['#38bdf8', '#fde047', '#f43f5e', '#a855f7'], 45);
+        }, 200);
+
+        setTimeout(() => {
+          heroSprite.classList.remove('lunge-right');
+          monsterSprite.classList.remove('hit-shake');
+        }, 750);
+
+        if (state.monsterHp <= 0) {
+          document.getElementById('monster-speech').textContent = '"Nooo! You mastered the financial core! I yield!"';
+          state.gems += 5;
+          setTimeout(() => { state.monsterHp = state.monsterMaxHp; updateHUD(); }, 1100);
+        } else {
+          document.getElementById('monster-speech').textContent = '"Gah! What a razor-sharp calculation!"';
+        }
+
+        setFairyMessage(`🎉 <b>Awesome! Combo x${state.combo}!</b> Check the <b>ELI5 Intuition</b> below to lock this concept in forever!`);
+
+        fb.className = 'rounded-2xl border-2 border-emerald-400/70 bg-emerald-950/40 p-4 sm:p-5 space-y-3';
+        fb.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-sm sm:text-base font-black text-emerald-300">⚔️ CRITICAL HIT! (-${baseDmg} Monster HP • +${xpGain} XP • +${goldGain} 🪙)</span>
+            <button onclick="nextCampaignQ()" class="btn-game px-4 py-1.5 rounded-xl bg-emerald-500 text-slate-950 font-black text-xs">Next Wave ▶</button>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-950/90 border border-cyan-500/30 text-xs sm:text-sm text-cyan-100 leading-relaxed">
+            <b class="text-cyan-300">📐 Step-by-Step Math Solution:</b><br>${q.math}
+          </div>
+          <div class="p-3.5 rounded-xl bg-fuchsia-950/50 border border-fuchsia-400/40 text-xs sm:text-sm text-fuchsia-100 leading-relaxed">
+            ${q.eli5}
+          </div>
+          <div class="p-3 rounded-xl bg-amber-950/50 border border-amber-400/40 text-xs font-bold text-amber-200">
+            ${q.trap}
+          </div>
+        `;
+      } else {
+        playSfx('hit');
+        state.combo = 0;
+
+        if (!state.mistakes.some(m => m.id === q.id)) {
+          state.mistakes.push({ id: q.id, topic: q.topic, prompt: q.prompt, ansText: q.options[q.ans], math: q.math });
+        }
+
+        monsterSprite.classList.add('lunge-left');
+        document.getElementById('game-root').classList.add('screen-shake');
+
+        let dmgTaken = 22;
+        if (state.hero === 'paladin' && state.shieldActive) {
+          dmgTaken = 0;
+          state.shieldActive = false;
+          spawnFloatingCombatText('🛡️ SHIELD BLOCKED 100% DMG!', 'text-emerald-300');
+        } else {
+          state.hp = Math.max(5, state.hp - dmgTaken);
+          spawnFloatingCombatText(`-${dmgTaken} HP 💔`, 'text-rose-400');
+        }
+
+        setTimeout(() => {
+          heroSprite.classList.add('hit-shake');
+          const rect = heroSprite.getBoundingClientRect();
+          spawnParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, ['#ef4444', '#f97316', '#fbbf24'], 32);
+        }, 180);
+
+        setTimeout(() => {
+          monsterSprite.classList.remove('lunge-left');
+          heroSprite.classList.remove('hit-shake');
+          document.getElementById('game-root').classList.remove('screen-shake');
+        }, 700);
+
+        setFairyMessage(`🧚‍♀️ Don’t worry! Mimi logged this into your <b>Revenge Queue</b> and unlocked the <b>ELI5 Story</b> below!`);
+
+        fb.className = 'rounded-2xl border-2 border-rose-500/70 bg-rose-950/40 p-4 sm:p-5 space-y-3';
+        fb.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-sm sm:text-base font-black text-rose-300">💥 HIT BY EXAM TRAP! Correct Answer: ${q.options[q.ans]}</span>
+            <button onclick="nextCampaignQ()" class="btn-game px-4 py-1.5 rounded-xl bg-rose-500 text-white font-black text-xs">Continue Battle ▶</button>
+          </div>
+          <div class="p-3.5 rounded-xl bg-fuchsia-950/60 border border-fuchsia-400/50 text-xs sm:text-sm text-fuchsia-100 leading-relaxed">
+            ${q.eli5}
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-950/90 border border-cyan-500/30 text-xs sm:text-sm text-cyan-100 leading-relaxed">
+            <b class="text-cyan-300">📐 Step-by-Step Math Solution:</b><br>${q.math}
+          </div>
+          <div class="p-3 rounded-xl bg-amber-950/60 border border-amber-400/50 text-xs font-bold text-amber-200">
+            ${q.trap}
+          </div>
+        `;
+      }
+
+      document.getElementById('monster-hp-text').textContent = `HP: ${state.monsterHp} / ${state.monsterMaxHp}`;
+      document.getElementById('monster-hp-bar').style.width = `${(state.monsterHp / state.monsterMaxHp) * 100}%`;
+      updateHUD();
+    }
+
+    function nextCampaignQ() {
+      const qs = getRealmQuestions(REALMS[state.realmIdx].id);
+      state.qIdx = (state.qIdx + 1) % qs.length;
+      renderCampaignStage();
+    }
+    function prevCampaignQ() {
+      const qs = getRealmQuestions(REALMS[state.realmIdx].id);
+      state.qIdx = (state.qIdx - 1 + qs.length) % qs.length;
+      renderCampaignStage();
+    }
+    function shuffleCampaignQuestions() {
+      const qs = getRealmQuestions(REALMS[state.realmIdx].id);
+      state.qIdx = Math.floor(Math.random() * qs.length);
+      playSfx('coin');
+      renderCampaignStage();
+    }
+
+    function askFairyHint() {
+      const q = getRealmQuestions(REALMS[state.realmIdx].id)[state.qIdx];
+      const hintBox = document.getElementById('q-hint-box');
+      hintBox.classList.remove('hidden');
+      hintBox.innerHTML = `🧚‍♀️ <b>Fairy Mimi’s Hint:</b> ${q.hint}`;
+      playSfx('coin');
+    }
+
+    function useFiftyFifty() {
+      if (state.answeredCurrent) return;
+      if (state.gold < 50) {
+        setFairyMessage('🧚‍♀️ You need 50 Gold (🪙) to Slash 2 Traps!');
+        return;
+      }
+      state.gold -= 50;
+      const q = getRealmQuestions(REALMS[state.realmIdx].id)[state.qIdx];
+      let removed = 0;
+      for (let i = 0; i < q.options.length; i++) {
+        if (i !== q.ans && removed < 2) {
+          const btn = document.getElementById(`opt-btn-${i}`);
+          if (btn && !btn.disabled) {
+            btn.disabled = true;
+            btn.classList.add('opacity-20', 'line-through');
+            removed++;
+          }
+        }
+      }
+      playSfx('slash');
+      updateHUD();
+    }
+
+    function castUltimateSkill() {
+      if (state.mana < 100) {
+        setFairyMessage(`⚡ Your Rage Gauge is at <b>${state.mana}%</b>. Answer questions right to reach 100% and unleash Ultimate R!`);
+        return;
+      }
+      state.mana = 0;
+      playSfx('ult');
+      const heroObj = HEROES[state.hero];
+      triggerSlashBeam('#f59e0b');
+      spawnParticles(window.innerWidth * 0.5, window.innerHeight * 0.35, ['#fde047', '#f43f5e', '#38bdf8', '#e879f9'], 70);
+
+      state.monsterHp = Math.max(0, state.monsterHp - 250);
+      state.hp = Math.min(state.maxHp, state.hp + 40);
+      state.gold += 60;
+      spawnFloatingCombatText(`⚡ ${heroObj.ultName}! -250 HP!`, 'text-amber-300');
+
+      const q = getRealmQuestions(REALMS[state.realmIdx].id)[state.qIdx];
+      let removed = 0;
+      for (let i = 0; i < q.options.length; i++) {
+        if (i !== q.ans && removed < 2) {
+          const btn = document.getElementById(`opt-btn-${i}`);
+          if (btn) {
+            btn.disabled = true;
+            btn.classList.add('opacity-20', 'line-through');
+            removed++;
+          }
+        }
+      }
+      askFairyHint();
+      document.getElementById('monster-hp-text').textContent = `HP: ${state.monsterHp} / ${state.monsterMaxHp}`;
+      document.getElementById('monster-hp-bar').style.width = `${(state.monsterHp / state.monsterMaxHp) * 100}%`;
+      updateHUD();
+    }
+
+    function selectRaidBoss(idx) {
+      state.raidIdx = idx;
+      playSfx('coin');
+      renderRaidBosses();
+    }
+
+    function renderRaidBosses() {
+      document.getElementById('raid-boss-selector').innerHTML = RAID_BOSSES.map((b, idx) => {
+        const active = idx === state.raidIdx;
+        return `<button onclick="selectRaidBoss(${idx})" class="btn-game text-left p-3.5 rounded-2xl border transition-all ${
+          active
+            ? 'bg-gradient-to-r from-rose-600 to-amber-600 border-white text-white shadow-xl'
+            : 'bg-slate-900/90 border-slate-800 text-slate-300 hover:border-rose-400'
+        }">
+          <div class="text-[10px] font-black uppercase text-amber-200">${b.tag}</div>
+          <div class="font-black text-xs sm:text-sm mt-0.5">${b.title}</div>
+        </button>`;
+      }).join('');
+
+      const boss = RAID_BOSSES[state.raidIdx];
+      document.getElementById('raid-boss-avatar').innerHTML = REALMS[(state.raidIdx + 4) % REALMS.length].monsterSvg;
+      document.getElementById('raid-boss-tag').textContent = boss.tag;
+      document.getElementById('raid-boss-title').textContent = boss.title;
+      document.getElementById('raid-boss-lore').textContent = boss.lore;
+      document.getElementById('raid-scenario-box').innerHTML = boss.scenario;
+
+      let solvedCount = 0;
+      const phasesHtml = boss.phases.map((p, pIdx) => {
+        const key = `${boss.id}_${pIdx}`;
+        const isDone = !!state.raidSolved[key];
+        if (isDone) solvedCount++;
+        return `<div class="rounded-2xl border-2 ${isDone ? 'border-emerald-400 bg-emerald-950/30' : 'border-rose-400/40 bg-slate-950/90'} p-4 space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black ${isDone ? 'bg-emerald-500 text-slate-950' : 'bg-rose-500/30 text-rose-200'}">${p.label}</span>
+              ${isDone ? '<span class="text-xs font-black text-emerald-300">✅ ARMOR BROKEN</span>' : '<span class="text-xs font-bold text-amber-300">+150 XP • +80 🪙</span>'}
+            </div>
+            <p class="text-xs sm:text-sm font-bold text-slate-100 leading-relaxed">${p.question}</p>
+          </div>
+
+          <div class="space-y-2 pt-2">
+            <div class="flex gap-2">
+              <input id="raid-input-${pIdx}" type="number" step="any" placeholder="Enter answer..." value="${isDone ? p.ans : ''}" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2 text-sm font-black text-amber-300" />
+              <button onclick="checkRaidPhase(${pIdx})" class="btn-game shrink-0 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-amber-500 text-slate-950 font-black text-xs">Strike 💥</button>
+            </div>
+            <button onclick="revealRaidPhase(${pIdx})" class="text-[11px] font-bold text-cyan-300 hover:underline">🔍 Show formula & full solution</button>
+            <div id="raid-exp-${pIdx}" class="${isDone ? '' : 'hidden'} p-3 rounded-xl bg-slate-900/95 border border-emerald-400/40 text-xs text-slate-200 leading-relaxed">
+              🎯 <b>Exact Answer: ${p.ans} ${p.unit}</b><br>${p.explain}
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+
+      document.getElementById('raid-phases-container').innerHTML = phasesHtml;
+      const hpPct = Math.round(((3 - solvedCount) / 3) * 100);
+      document.getElementById('raid-hp-label').textContent = `${hpPct}% HP`;
+      document.getElementById('raid-hp-bar').style.width = `${hpPct}%`;
+    }
+
+    function checkRaidPhase(pIdx) {
+      const boss = RAID_BOSSES[state.raidIdx];
+      const p = boss.phases[pIdx];
+      const val = parseFloat(document.getElementById(`raid-input-${pIdx}`).value);
+      if (isNaN(val)) return;
+
+      const tol = state.hero === 'kitsune' ? p.tol * 1.5 : p.tol;
+      if (Math.abs(val - p.ans) <= tol) {
+        playSfx('ult');
+        const key = `${boss.id}_${pIdx}`;
+        if (!state.raidSolved[key]) {
+          state.raidSolved[key] = true;
+          state.xp += 150;
+          state.gold += 80;
+          state.gems += 2;
+        }
+        spawnParticles(window.innerWidth * 0.5, window.innerHeight * 0.4, ['#10b981', '#fde047', '#38bdf8'], 50);
+        setFairyMessage(`🐉 <b>Bullseye!</b> You shattered <b>${p.label}</b> of the Raid Boss!`);
+        renderRaidBosses();
+        updateHUD();
+      } else {
+        playSfx('hit');
+        setFairyMessage(`🧚‍♀️ Not quite (you entered <b>${val}</b>). Check your rounding or click <b>"Show formula & full solution"</b>!`);
+      }
+    }
+
+    function revealRaidPhase(pIdx) {
+      document.getElementById(`raid-exp-${pIdx}`).classList.toggle('hidden');
+    }
+
+    function renderSpellAcademy() {
+      const cats = ['ALL', 'Derivatives', 'Core L01-L08'];
+      document.getElementById('spell-filter-bar').innerHTML = cats.map(c => `
+        <button onclick="state.spellCat='${c}'; state.spellIdx=0; renderSpellAcademy();" class="btn-game px-3 py-1.5 rounded-xl text-xs font-black ${
+          state.spellCat === c ? 'bg-fuchsia-500 text-slate-950' : 'bg-slate-900 text-slate-300 border border-slate-700'
+        }">${c}</button>
+      `).join('');
+
+      const list = SPELLS_DB.filter(s => state.spellCat === 'ALL' || s.cat === state.spellCat);
+      if (state.spellIdx >= list.length) state.spellIdx = 0;
+      const sp = list[state.spellIdx];
+      const unlocked = !!state.spellUnlocked[sp.id];
+
+      document.getElementById('spell-card-stage').innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full text-xs font-black bg-fuchsia-500/25 text-fuchsia-300 border border-fuchsia-400/50">${sp.code} • ${sp.cat}</span>
+            <h3 class="text-base sm:text-lg font-black text-white">${sp.title}</h3>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-slate-400">Scroll ${state.spellIdx + 1} / ${list.length}</span>
+            <button onclick="state.spellIdx = (state.spellIdx - 1 + ${list.length}) % ${list.length}; renderSpellAcademy();" class="btn-game px-3 py-1 rounded-xl bg-slate-800 text-xs font-bold">◀</button>
+            <button onclick="state.spellIdx = (state.spellIdx + 1) % ${list.length}; renderSpellAcademy();" class="btn-game px-3 py-1 rounded-xl bg-fuchsia-500 text-slate-950 text-xs font-black">Next Scroll ▶</button>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-indigo-950/50 border border-indigo-400/40 space-y-3">
+          <div class="text-xs sm:text-sm font-extrabold text-indigo-200">🔮 Unlock the Seal: ${sp.hookQuestion}</div>
+          <div class="grid grid-cols-1 gap-2.5">
+            ${sp.hooks.map((h, idx) => `
+              <button onclick="unlockSpellCard('${sp.id}', ${idx})" class="btn-game text-left p-3 rounded-xl border text-xs sm:text-sm font-bold ${
+                unlocked && idx === sp.ansHook
+                  ? 'bg-emerald-950/90 border-emerald-400 text-emerald-200'
+                  : 'bg-slate-900/90 border-slate-700 text-slate-200 hover:border-fuchsia-400'
+              }">✨ ${h}</button>
+            `).join('')}
+          </div>
+        </div>
+
+        <div id="spell-secret-panel" class="${unlocked ? '' : 'hidden'} space-y-3 pt-2">
+          <div class="p-4 rounded-2xl bg-gradient-to-r from-fuchsia-950/80 via-purple-950/80 to-indigo-950/80 border-2 border-pink-400/60 text-xs sm:text-sm text-pink-100 leading-relaxed shadow-lg">
+            ${sp.eli5}
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-900 border-2 border-cyan-400/50 space-y-2">
+            <div class="text-xs font-black uppercase text-cyan-300">✍️ EXAM MODEL ANSWER (≤ 100 WORDS):</div>
+            <p class="text-xs sm:text-sm font-mono text-slate-100 leading-relaxed select-text">${sp.modelEn}</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            ${sp.keywords.map(k => `<span class="px-3 py-1 rounded-full text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-400/40">🔑 ${k}</span>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function unlockSpellCard(spId, chosenIdx) {
+      const sp = SPELLS_DB.find(s => s.id === spId);
+      if (chosenIdx === sp.ansHook) {
+        playSfx('slash');
+        if (!state.spellUnlocked[spId]) {
+          state.spellUnlocked[spId] = true;
+          state.xp += 100;
+          state.gold += 50;
+        }
+        spawnParticles(window.innerWidth * 0.5, window.innerHeight * 0.45, ['#e879f9', '#38bdf8', '#fde047'], 40);
+        renderSpellAcademy();
+        updateHUD();
+      } else {
+        playSfx('hit');
+        setFairyMessage('🧚‍♀️ Seal locked! Pick the statement with the true No-Arbitrage / Equilibrium logic!');
+      }
+    }
+
+    function renderBombStage() {
+      if (state.bombIdx >= BOMBS_DB.length) state.bombIdx = 0;
+      const b = BOMBS_DB[state.bombIdx];
+      document.getElementById('bomb-progress-pill').textContent = `Bomb ${state.bombIdx + 1} / ${BOMBS_DB.length}`;
+      document.getElementById('bomb-topic').textContent = b.topic;
+      document.getElementById('bomb-statement').textContent = `"${b.stmt}"`;
+      document.getElementById('bomb-feedback').classList.add('hidden');
+    }
+
+    function cutBombWire(choseTrue) {
+      const b = BOMBS_DB[state.bombIdx];
+      const fb = document.getElementById('bomb-feedback');
+      fb.classList.remove('hidden');
+
+      if (choseTrue === b.isTrue) {
+        playSfx('slash');
+        state.xp += 90;
+        state.gold += 45;
+        state.combo++;
+        spawnParticles(window.innerWidth * 0.5, window.innerHeight * 0.5, ['#34d399', '#fde047', '#38bdf8'], 45);
+        fb.className = 'text-left p-4 rounded-2xl border-2 border-emerald-400 bg-emerald-950/60 text-xs sm:text-sm text-emerald-100 mt-4';
+        fb.innerHTML = `<div class="font-black text-emerald-300 text-base mb-1">🎉 BOMB DEFUSED! (+90 XP • +45 🪙)</div>${b.explain}`;
+      } else {
+        playSfx('hit');
+        state.combo = 0;
+        document.getElementById('game-root').classList.add('screen-shake');
+        setTimeout(() => document.getElementById('game-root').classList.remove('screen-shake'), 500);
+        fb.className = 'text-left p-4 rounded-2xl border-2 border-rose-500 bg-rose-950/60 text-xs sm:text-sm text-rose-100 mt-4';
+        fb.innerHTML = `<div class="font-black text-rose-300 text-base mb-1">💥 KABOOM! WRONG WIRE!</div>${b.explain}`;
+      }
+      updateHUD();
+    }
+
+    function nextBombTrap() {
+      state.bombIdx = (state.bombIdx + 1) % BOMBS_DB.length;
+      renderBombStage();
+    }
+
+    function loadForgePreset(p) {
+      if (p === 'q32') {
+        document.getElementById('fg-mode').value = 'mult';
+        document.getElementById('fg-type').value = 'call';
+        document.getElementById('fg-s0').value = 100;
+        document.getElementById('fg-k').value = 100;
+        document.getElementById('fg-u').value = 1.10;
+        document.getElementById('fg-d').value = 0.90;
+        document.getElementById('fg-r').value = 0.05;
+      } else if (p === 'q33') {
+        document.getElementById('fg-mode').value = 'add';
+        document.getElementById('fg-type').value = 'call';
+        document.getElementById('fg-s0').value = 100;
+        document.getElementById('fg-k').value = 105;
+        document.getElementById('fg-u').value = 18;
+        document.getElementById('fg-d').value = 12;
+        document.getElementById('fg-r').value = 0.03;
+      } else if (p === 'q39') {
+        document.getElementById('fg-mode').value = 'mult';
+        document.getElementById('fg-type').value = 'put';
+        document.getElementById('fg-s0').value = 50;
+        document.getElementById('fg-k').value = 52;
+        document.getElementById('fg-u').value = 1.20;
+        document.getElementById('fg-d').value = 0.80;
+        document.getElementById('fg-r').value = 0.05;
+      } else if (p === 'extra') {
+        document.getElementById('fg-mode').value = 'mult';
+        document.getElementById('fg-type').value = 'call';
+        document.getElementById('fg-s0').value = 100;
+        document.getElementById('fg-k').value = 100;
+        document.getElementById('fg-u').value = 1.25;
+        document.getElementById('fg-d').value = 0.80;
+        document.getElementById('fg-r').value = 0.07;
+      }
+      playSfx('coin');
+      runBinomialForge();
+    }
+
+    function runBinomialForge() {
+      const mode = document.getElementById('fg-mode').value;
+      const type = document.getElementById('fg-type').value;
+      const S0 = parseFloat(document.getElementById('fg-s0').value) || 100;
+      const K = parseFloat(document.getElementById('fg-k').value) || 100;
+      const uVal = parseFloat(document.getElementById('fg-u').value) || 1.1;
+      const dVal = parseFloat(document.getElementById('fg-d').value) || 0.9;
+      const r = parseFloat(document.getElementById('fg-r').value) || 0.05;
+
+      document.getElementById('fg-u-label').textContent = mode === 'mult' ? 'Up Factor (u)' : 'Add Up (+U $)';
+      document.getElementById('fg-d-label').textContent = mode === 'mult' ? 'Down Factor (d)' : 'Sub Down (-D $)';
+
+      let Su, Sd, Suu, Sud, Sdd;
+      if (mode === 'mult') {
+        Su = S0 * uVal; Sd = S0 * dVal;
+        Suu = Su * uVal; Sud = S0 * uVal * dVal; Sdd = Sd * dVal;
+      } else {
+        Su = S0 + uVal; Sd = S0 - dVal;
+        Suu = Su + uVal; Sud = Su - dVal; Sdd = Sd - dVal;
+      }
+
+      const payoff = (S) => type === 'call' ? Math.max(0, S - K) : Math.max(0, K - S);
+      const Vuu = payoff(Suu), Vud = payoff(Sud), Vdd = payoff(Sdd);
+
+      const p0 = (S0 * (1 + r) - Sd) / (Su - Sd);
+      const pu = (Su * (1 + r) - Sud) / (Suu - Sud);
+      const pd = (Sd * (1 + r) - Sdd) / (Sud - Sdd);
+
+      const Vu = (pu * Vuu + (1 - pu) * Vud) / (1 + r);
+      const Vd = (pd * Vud + (1 - pd) * Vdd) / (1 + r);
+      const V0 = (p0 * Vu + (1 - p0) * Vd) / (1 + r);
+
+      const D0 = (Vu - Vd) / (Su - Sd);
+      const B0 = (Vd * Su - Vu * Sd) / ((Su - Sd) * (1 + r));
+      const Du = (Vuu - Vud) / (Suu - Sud);
+      const Bu = (Vud * Suu - Vuu * Sud) / ((Suu - Sud) * (1 + r));
+      const Dd = (Vud - Vdd) / (Sud - Sdd);
+      const Bd = (Vdd * Sud - Vud * Sdd) / ((Sud - Sdd) * (1 + r));
+
+      const omega0 = V0 > 0 ? D0 * (S0 / V0) : 0;
+
+      document.getElementById('forge-output').innerHTML = `
+        <div class="bg-slate-950/90 border border-cyan-400/40 rounded-2xl p-4 space-y-2 text-xs">
+          <div class="font-black text-cyan-300 text-sm">1. Risk-Neutral Probabilities & Node Values</div>
+          <div>• At t=0: <b>p₀ = ${p0.toFixed(4)}</b></div>
+          <div>• At Period 1 Up (S_u = $${Su.toFixed(2)}): <b>p_u = ${pu.toFixed(4)}</b></div>
+          <div>• At Period 1 Down (S_d = $${Sd.toFixed(2)}): <b>p_d = ${pd.toFixed(4)}</b></div>
+          <div class="pt-2 border-t border-slate-800 text-amber-300 font-black text-sm">
+            💎 Option Value V₀ = $${V0.toFixed(4)} (Rounded: $${V0.toFixed(2)})
+          </div>
+          <div>• Period 1 Nodes: <b>V_u = $${Vu.toFixed(4)}</b> | <b>V_d = $${Vd.toFixed(4)}</b></div>
+          <div>• Period 2 Payoffs: <b>V_uu = $${Vuu.toFixed(2)}</b> | <b>V_ud = $${Vud.toFixed(2)}</b> | <b>V_dd = $${Vdd.toFixed(2)}</b></div>
+        </div>
+
+        <div class="bg-slate-950/90 border border-fuchsia-400/40 rounded-2xl p-4 space-y-2 text-xs">
+          <div class="font-black text-fuchsia-300 text-sm">2. Dynamic Replicating Portfolio (Δ, B)</div>
+          <div>• <b>At t=0:</b> Δ₀ = <b>${D0.toFixed(4)}</b> sh | B₀ = <b>$${B0.toFixed(2)}</b></div>
+          <div>• <b>At S_u:</b> Δ_u = <b>${Du.toFixed(4)}</b> sh | B_u = <b>$${Bu.toFixed(2)}</b></div>
+          <div>• <b>At S_d:</b> Δ_d = <b>${Dd.toFixed(4)}</b> sh | B_d = <b>$${Bd.toFixed(2)}</b></div>
+          <div class="p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-400/40 text-emerald-200 mt-2">
+            ✅ <b>Self-Financing Check at S_u:</b><br>
+            Δ₀·S_u + B₀(1+r) = $${(D0 * Su + B0 * (1 + r)).toFixed(4)} = V_u = Δ_u·S_u + B_u!
+          </div>
+        </div>
+
+        <div class="bg-slate-950/90 border border-amber-400/40 rounded-2xl p-4 space-y-2 text-xs">
+          <div class="font-black text-amber-300 text-sm">3. Option Elasticity Ω & Option Beta (Extra Session)</div>
+          <div>• <b>Option Elasticity (Leverage) Ω₀:</b><br>
+            Ω₀ = Δ₀ × (S₀ / V₀) = <b>${omega0.toFixed(4)}x</b>
+          </div>
+          <div>• <b>Assuming Stock β_S = 1.20:</b><br>
+            β_option = Ω₀ × 1.20 = <b>${(omega0 * 1.2).toFixed(4)}</b>
+          </div>
+          <div class="p-2.5 rounded-xl bg-indigo-950/60 border border-indigo-400/40 text-indigo-200 mt-2">
+            💡 <b>Exam Note:</b> ${mode === 'add' ? 'On an ADDITIVE tree, p₀ ≠ p_u ≠ p_d! Always recompute p at every node!' : 'On a MULTIPLICATIVE tree, p₀ = p_u = p_d is constant across all nodes!'}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderHeroCardsHtml() {
+      return Object.values(HEROES).map(h => {
+        const selected = state.hero === h.id;
+        return `<div class="rounded-3xl border-2 ${selected ? 'border-amber-400 bg-indigo-950/70' : 'border-slate-700 bg-slate-950/80'} p-4 flex flex-col justify-between space-y-3">
+          <div class="space-y-2 text-center">
+            <div class="w-28 h-28 mx-auto">${h.svg}</div>
+            <div class="font-black text-base text-white">${h.name}</div>
+            <div class="text-xs font-bold text-cyan-300">${h.title}</div>
+            <p class="text-xs text-slate-300 leading-relaxed text-left bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">🌟 <b>Passive:</b> ${h.passive}</p>
+            <p class="text-xs text-amber-200 leading-relaxed text-left bg-amber-950/40 p-2.5 rounded-xl border border-amber-500/30">⚡ <b>Ultimate R:</b> ${h.ultDesc}</p>
+          </div>
+          <button onclick="chooseHero('${h.id}')" class="btn-game w-full py-2.5 rounded-xl font-black text-xs ${
+            selected ? 'bg-emerald-500 text-slate-950' : 'bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white'
+          }">${selected ? '✅ CURRENTLY ACTIVE' : '🦸 SELECT HERO'}</button>
+        </div>`;
+      }).join('');
+    }
+
+    function chooseHero(id) {
+      state.hero = id;
+      state.shieldActive = true;
+      playSfx('ult');
+      updateHUD();
+      renderTavern();
+      closeHeroModal();
+      renderCampaignStage();
+    }
+
+    function openHeroModal() {
+      document.getElementById('modal-heroes-grid').innerHTML = renderHeroCardsHtml();
+      const m = document.getElementById('hero-modal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+    function closeHeroModal() {
+      const m = document.getElementById('hero-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function renderTavern() {
+      document.getElementById('tavern-heroes-grid').innerHTML = renderHeroCardsHtml();
+
+      document.getElementById('tavern-pets-grid').innerHTML = Object.values(PETS).map(p => {
+        const owned = state.unlockedPets.includes(p.id);
+        const equipped = state.pet === p.id;
+        return `<div class="rounded-2xl border-2 ${equipped ? 'border-amber-400 bg-amber-950/30' : 'border-slate-800 bg-slate-950/90'} p-4 flex flex-col justify-between space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="text-4xl pet-sprite">${p.emoji}</div>
+            <div>
+              <div class="font-black text-sm text-white">${p.name}</div>
+              <div class="text-xs text-amber-200 mt-0.5">${p.buff}</div>
+            </div>
+          </div>
+          <button onclick="buyOrEquipPet('${p.id}')" class="btn-game w-full py-2 rounded-xl font-black text-xs ${
+            equipped ? 'bg-emerald-500 text-slate-950' : owned ? 'bg-indigo-600 text-white' : 'bg-amber-500 text-slate-950'
+          }">${equipped ? '✅ EQUIPPED' : owned ? '🐾 EQUIP PET' : `🪙 RECRUIT (${p.cost} Gold)`}</button>
+        </div>`;
+      }).join('');
+
+      document.getElementById('tavern-items-grid').innerHTML = SHOP_ITEMS.map(it => {
+        const owned = state.items.includes(it.id);
+        return `<div class="rounded-2xl border ${owned ? 'border-emerald-400 bg-emerald-950/30' : 'border-slate-800 bg-slate-950/90'} p-3.5 flex flex-col justify-between space-y-3">
+          <div>
+            <div class="font-black text-xs sm:text-sm text-white">${it.name}</div>
+            <p class="text-xs text-slate-300 mt-1">${it.desc}</p>
+          </div>
+          <button onclick="buyShopItem('${it.id}', ${it.cost})" ${owned ? 'disabled' : ''} class="btn-game w-full py-2 rounded-xl font-black text-xs ${
+            owned ? 'bg-emerald-600/40 text-emerald-200' : 'bg-fuchsia-500 text-slate-950'
+          }">${owned ? '✅ OWNED' : `🪙 BUY (${it.cost} Gold)`}</button>
+        </div>`;
+      }).join('');
+    }
+
+    function buyOrEquipPet(petId) {
+      const p = PETS[petId];
+      if (!state.unlockedPets.includes(petId)) {
+        if (state.gold < p.cost) {
+          setFairyMessage(`🧚‍♀️ You need <b>${p.cost} Gold (🪙)</b> to recruit ${p.name}!`);
+          return;
+        }
+        state.gold -= p.cost;
+        state.unlockedPets.push(petId);
+      }
+      state.pet = petId;
+      playSfx('coin');
+      updateHUD();
+      renderTavern();
+    }
+
+    function buyShopItem(itemId, cost) {
+      if (state.items.includes(itemId)) return;
+      if (state.gold < cost) {
+        setFairyMessage(`🧚‍♀️ Not enough Gold! Slay a few more monsters to collect <b>${cost} 🪙</b>!`);
+        return;
+      }
+      state.gold -= cost;
+      state.items.push(itemId);
+      if (itemId === 'shield_dur') { state.maxHp = 140; state.hp = 140; }
+      playSfx('ult');
+      updateHUD();
+      renderTavern();
+    }
+
+    function renderFormulaGrimoire() {
+      const q = (document.getElementById('formula-search').value || '').toLowerCase();
+      const filtered = FORMULAS_DB.filter(f =>
+        f.tag.toLowerCase().includes(q) || f.title.toLowerCase().includes(q) || f.eq.toLowerCase().includes(q) || f.note.toLowerCase().includes(q)
+      );
+      document.getElementById('formula-cards-list').innerHTML = filtered.map(f => `
+        <div class="p-3.5 rounded-2xl bg-slate-950 border border-indigo-500/30 space-y-1.5">
+          <span class="px-2 py-0.5 rounded text-[10px] font-black bg-indigo-500/20 text-indigo-300">${f.tag}</span>
+          <div class="font-black text-xs sm:text-sm text-white">${f.title}</div>
+          <div class="p-2 rounded-xl bg-slate-900 font-mono text-xs text-cyan-300 select-text">${f.eq}</div>
+          <div class="text-[11px] text-amber-200">💡 ${f.note}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderRevengeList() {
+      const box = document.getElementById('revenge-list-box');
+      if (!state.mistakes.length) {
+        box.innerHTML = `<div class="p-6 text-center text-xs text-emerald-300 font-bold bg-slate-950 rounded-2xl border border-emerald-500/30">🎉 Revenge Queue is empty! No monster has defeated you yet!</div>`;
+        return;
+      }
+      box.innerHTML = state.mistakes.map((m, idx) => `
+        <div class="p-3 rounded-2xl bg-slate-950 border border-rose-500/40 space-y-1.5 text-xs">
+          <div class="flex justify-between items-center">
+            <span class="font-black text-rose-300">${m.topic}</span>
+            <button onclick="resolveRevenge(${idx})" class="px-2 py-0.5 rounded bg-emerald-500 text-slate-950 font-black text-[10px]">Mastered (+40 XP)</button>
+          </div>
+          <p class="text-slate-200 font-bold">${m.prompt}</p>
+          <div class="text-emerald-300 font-bold">✅ Correct Answer: ${m.ansText}</div>
+          <div class="text-slate-400">${m.math}</div>
+        </div>
+      `).join('');
+    }
+
+    function resolveRevenge(idx) {
+      state.mistakes.splice(idx, 1);
+      state.xp += 40;
+      playSfx('coin');
+      updateHUD();
+      renderRevengeList();
+    }
+    function clearRevengeList() {
+      state.mistakes = [];
+      updateHUD();
+      renderRevengeList();
+    }
+
+    loadState();
+    updateHUD();
+    renderCampaignStage();
+  </script>
+</body>
+</html>
